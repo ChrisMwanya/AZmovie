@@ -1,5 +1,5 @@
-import TitleSection from "./../titleSection/titlesection";
-import CardMovie from "./../../cards/cardmovie";
+import TitleSection from "../titleSection/titlesection";
+import CardMovie from "../../cards/cardmovie";
 import { useState, useEffect } from "react";
 import styled from 'styled-components'
 
@@ -16,7 +16,7 @@ const CardContainerStyled = styled.div`
     
 `
 
-const Section = () => {
+const SectionLatestMovie = () => {
 	const [latestMovies, setLastestMovies] = useState([]);	
 	useEffect(() => {
 		fetch(
@@ -25,7 +25,7 @@ const Section = () => {
 			.then((response) => response.json())
 			.then(({ results }) => {
 				console.log(results);
-				let dataMapped = results.map(
+				let dataMapped = results.slice(0, 8).map(
 					({ id, title, release_date, poster_path }) => {						
 						return { id, title, release_date, poster_path };
 					}
@@ -50,4 +50,4 @@ const Section = () => {
 	);
 };
 
-export default Section;
+export default SectionLatestMovie;

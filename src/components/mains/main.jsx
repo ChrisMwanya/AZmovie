@@ -1,5 +1,6 @@
-import Section from "./sections/section";
+import SectionLatestMovie from "./sections/sectionlastetMovie";
 import styled from "styled-components";
+import SectionLatestSeries from "./sections/sectionlastestseries";
 
 const MainStyled = styled.main`
 	padding: 10px;
@@ -10,7 +11,8 @@ const MainStyled = styled.main`
 const Main = () => {
 	return (
 		<MainStyled>
-			<Section />
+			<SectionLatestMovie />
+			<SectionLatestSeries />
 		</MainStyled>
 	);
 };
