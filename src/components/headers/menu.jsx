@@ -7,9 +7,9 @@ const MenuStyle = styled.ul`
 
 	color: ${({ theme }) => theme.colors.secondText};
 	.linkMenu {
-		/* border-left: 5px solid ${({ theme }) => theme.colors.main};
-		border-bottom: 2px solid ${({ theme }) => theme.colors.main};
-		background-color:${({ theme }) => theme.colors.secondMain}; */
+		border-left: 5px solid ${({ theme }) => theme.colors.main};
+		/* border-bottom: 2px solid ${({ theme }) => theme.colors.main}; */
+		
 		padding: 10px;
 		margin: 2px;
 	}
@@ -17,7 +17,7 @@ const MenuStyle = styled.ul`
 	.linkMenu:hover {
 		transition: all 0.6s ease;
 		border-left: 5px solid ${({ theme }) => theme.colors.secondMain};
-		border-bottom : 2px solid ${({ theme }) => theme.colors.secondMain};
+		/* border-bottom : 2px solid ${({ theme }) => theme.colors.secondMain}; */
 	}
 `;
 const Menu = () => {

@@ -3,6 +3,7 @@ import NavBar from './components/navbar';
 import styled from 'styled-components';
 import Header from './components/headers/header';
 import Main from './components/mains/main';
+import Footer from './components/footer/footer';
 
 const MainWrapper = styled.div`
   width: 100vw;
@@ -14,6 +15,7 @@ function App() {
       <NavBar />
       <Header />
       <Main/>
+      <Footer/>
      </MainWrapper>
 
   );
