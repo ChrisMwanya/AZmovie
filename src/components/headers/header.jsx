@@ -9,6 +9,7 @@ const HeaderStyled = styled.div`
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
 		url("${imageFond}") no-repeat;
 	background-size: cover;
+	
 
 	.welcome-text {
 		color: ${({ theme }) => theme.colors.textWhite};

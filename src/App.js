@@ -12,7 +12,7 @@ function App() {
   return (
     <MainWrapper>
       <NavBar />
-      {/* <Header /> */}
+      <Header />
       <Main/>
      </MainWrapper>
 
