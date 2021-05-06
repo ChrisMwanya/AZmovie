@@ -6,6 +6,7 @@ import SectionSource from "./section/sectionsource";
 const FooterStyled = styled.footer`
 	background: #000;
     padding: 4px;	
+	width: 100%;
 	.section {        
 		display: flex;
 		justify-content: space-around;

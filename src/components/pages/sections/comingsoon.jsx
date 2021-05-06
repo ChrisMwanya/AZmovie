@@ -1,16 +1,17 @@
 import styled from "styled-components";
-import {useState, useEffect} from "react"
-import CardMovie from './../../cards/cardmovie'
+import { useState, useEffect } from "react";
 
-const ComingSoonStyled= styled.section`
-    background-color:${({ theme }) => theme.colors.secondMain};
-    display: flex;
-    justify-content: center;
-    align-items: center;
-`
+import CardComingSoon from "../../cards/cardcomingsoon";
+
+const ComingSoonStyled = styled.section`
+	background-color: ${({ theme }) => theme.colors.secondMain};
+	display: flex;
+	justify-content: center;
+	align-items: center;
+`;
 
 const ComingSoon = () => {
-    const [comingSoon, setComingSoon] = useState([]);
+	const [comingSoon, setComingSoon] = useState([]);
 	useEffect(() => {
 		fetch(
 			"https://api.themoviedb.org/3/movie/now_playing?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&page=20"
@@ -23,25 +24,24 @@ const ComingSoon = () => {
 					.map(({ id, title, release_date, poster_path }) => {
 						return { id, title, release_date, poster_path };
 					});
-                    setComingSoon(dataMapped);
+				setComingSoon(dataMapped);
 			});
 	}, []);
 
-    return(
-        <ComingSoonStyled>
-            {comingSoon.map((movie) => {
-					return (
-						<CardMovie
-							urlImage={movie.poster_path}
-							key={movie.id}
-							date={movie.release_date}>
-							{movie.title}
-						</CardMovie>
-					);
-				})}
-        </ComingSoonStyled>
-    )
-  
-}
+	return (
+		<ComingSoonStyled>
+			{comingSoon.map((movie) => {
+				return (
+					<CardComingSoon
+						urlImage={movie.poster_path}
+						key={movie.id}
+						date={movie.release_date}>
+						{movie.title}
+					</CardComingSoon>				
+				);
+			})}
+		</ComingSoonStyled>
+	);
+};
 
-export default ComingSoon
+export default ComingSoon;
