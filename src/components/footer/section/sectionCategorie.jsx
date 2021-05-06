@@ -4,6 +4,7 @@ import SectionContent from "./sectionContent";
 
 const SectionFooterStyled = styled.section`
 	margin-right : 10px;
+	height: 30vh;
 `;
 
 const SectionCategorie = () => {

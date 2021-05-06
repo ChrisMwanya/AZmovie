@@ -5,6 +5,7 @@ import logoDBmovie from "./../../../images/TheMovieDB.svg"
 
 const SectionFooterStyled = styled.section`
 	margin-right : 10px;
+    height: 30vh;
 `;
 
 const SectionSource = () => {
