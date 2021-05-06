@@ -9,6 +9,9 @@ import Movie from './components/pages/movie';
 const MainWrapper = styled.div`
   width: 100vw;
   margin: 0 auto;
+  display: flex !important;
+  flex-direction: column;
+  justify-content: space-evenly;
 `
 function App() {
   return (

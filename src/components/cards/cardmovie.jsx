@@ -3,7 +3,7 @@ import Button from "../../buttons/button";
 
 const CardStyled = styled.div`
 	margin: 5px;
-	width: 20vw;
+	width: 30vw;
 	border-radius: 15px;
 	position: relative;
 	height: 50vh;
@@ -61,7 +61,7 @@ const CardStyled = styled.div`
 		text-align: center;
 		font-size: 1rem;
 		width: 100%;
-		height: 20%;
+		height: 30%;
 		color: ${({ theme }) => theme.colors.textWhite};
 		background: linear-gradient(
 			to bottom,

@@ -2,12 +2,16 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 
 import CardComingSoon from "../../cards/cardcomingsoon";
+import Slide from "../../slides/slide";
+import TitleSection from "../../mains/titleSection/titlesection";
 
 const ComingSoonStyled = styled.section`
-	background-color: ${({ theme }) => theme.colors.secondMain};
+	/* background-color: ${({ theme }) => theme.colors.secondMain}; */
 	display: flex;
+    padding: 2rem;
 	justify-content: center;
 	align-items: center;
+    
 `;
 
 const ComingSoon = () => {
@@ -27,9 +31,22 @@ const ComingSoon = () => {
 				setComingSoon(dataMapped);
 			});
 	}, []);
-
+//     let slideCards= comingSoon.map((movie) => {
+//         return (
+//             <CardComingSoon
+//                 urlImage={movie.poster_path}
+//                 key={movie.id}
+//                 date={movie.release_date}>
+//                 {movie.title}
+//             </CardComingSoon>				
+//         );
+//     });
+//    console.log(slideCards);
 	return (
-		<ComingSoonStyled>
+        <div>
+            <TitleSection>Bientôt sur vos écrans</TitleSection>
+            <ComingSoonStyled>
+            {/* <Slide slides={slideCards}/> */}
 			{comingSoon.map((movie) => {
 				return (
 					<CardComingSoon
@@ -41,6 +58,8 @@ const ComingSoon = () => {
 				);
 			})}
 		</ComingSoonStyled>
+        </div>
+		
 	);
 };
 
