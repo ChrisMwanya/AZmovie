@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import SectionCategorie from "./section/sectionCategorie";
+import SectionMenu from "./section/sectionmenu";
 
 const FooterStyled = styled.footer`
 	background: #000;
@@ -20,7 +21,7 @@ const Footer = () => {
 		<FooterStyled>
 			<div className="section">
 				<SectionCategorie />
-				<SectionCategorie />
+				<SectionMenu />
                 <SectionCategorie />
                 
 			</div>
