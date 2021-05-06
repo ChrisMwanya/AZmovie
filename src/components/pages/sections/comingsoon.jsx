@@ -14,7 +14,7 @@ const ComingSoon = () => {
 	const [comingSoon, setComingSoon] = useState([]);
 	useEffect(() => {
 		fetch(
-			"https://api.themoviedb.org/3/movie/now_playing?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&page=20"
+			"https://api.themoviedb.org/3/movie/now_playing?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&page=2"
 		)
 			.then((response) => response.json())
 			.then(({ results }) => {

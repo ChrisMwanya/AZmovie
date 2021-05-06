@@ -1,12 +1,11 @@
 import styled from "styled-components";
 
 const CardStyled = styled.div`
-	margin: 5px;
 	width: 50vw;
-	border-radius: 15px;
 	position: relative;
-	height: 70vh;
-	background: url("${(props) => (props.urlImage ? props.urlImage : "")}");
+	height: 50vh;
+	background: url("${(props) => (props.urlImage ? props.urlImage : "")}") center
+		no-repeat;
 	background-size: cover;
 
 	&:hover {
@@ -18,19 +17,19 @@ const CardStyled = styled.div`
 		.movie-info {
 			transition: all 1s ease;
 			height: 20%;
-            text-align: center;
+			text-align: center;
 			background: linear-gradient(
 				to bottom,
 				rgba(0, 0, 0, 0.8),
 				rgba(0, 0, 0, 0.8)
 			);
 		}
-        .info-hidden {
+		.info-hidden {
 			transition: all 2s ease;
 			margin-top: 10px;
 			display: block;
 			text-align: center;
-			opacity:1;
+			opacity: 1;
 		}
 
 		.film-title {
@@ -39,7 +38,7 @@ const CardStyled = styled.div`
 		}
 	}
 
-    .info-hidden {
+	.info-hidden {
 		display: none;
 		opacity: 0;
 	}
@@ -49,8 +48,6 @@ const CardStyled = styled.div`
 
 		position: absolute;
 		padding: 20px;
-		border-bottom-right-radius: 15px;
-		border-bottom-left-radius: 15px;
 		text-align: center;
 		font-size: 1rem;
 		width: 100%;
@@ -68,16 +65,13 @@ const CardComingSoon = ({ children, urlImage, date }) => {
 	let url = `https://image.tmdb.org/t/p/w500/${urlImage}`;
 	return (
 		<CardStyled urlImage={url}>
-			<div className="movie-info">
+			<div className="movie-info info-hidden">
 				<p className="film-title">{children}</p>
-                <div className="info-hidden">
-					<p>
-						Dès :<span>{date}</span>
-					</p>			
-				
+
+				<p>
+					Dès :<span>{date}</span>
+				</p>
 			</div>
-			</div>
-		
 		</CardStyled>
 	);
 };
