@@ -3,11 +3,12 @@ import styled from 'styled-components'
 const ButtonStyled= styled.button`    
     border-radius: 5px;
     padding: 10px;
+    font-size: ${(props) => props.size? props.size : ".5rem"}; 
     border: 2px solid ${({ theme }) => theme.colors.secondMain};
     background: ${(props) => props.type? ({theme}) => theme.colors.secondMain:'none'};    
     color: ${({ theme }) => theme.colors.textWhite};
     /* width:35%; */
-    height: 40%;
+    /* height: 40%; */
 
 &:hover{
     
@@ -18,7 +19,7 @@ const ButtonStyled= styled.button`
 `
 const Button = (props) =>{
     return (
-        <ButtonStyled type={props.type}>{props.children}</ButtonStyled>
+        <ButtonStyled type={props.type} size={props.size}>{props.children}</ButtonStyled>
     )
 }
 

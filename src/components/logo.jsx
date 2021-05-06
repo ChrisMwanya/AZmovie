@@ -2,20 +2,20 @@ import logo from "../images/logo.svg"
 import styled from 'styled-components'
 
 const ImageContainer =  styled.div`
-    width: 70px;
+    width: ${(props) => props.width? props.width : "70px"};
     height: 15vh;
     
     .image{
         display:bloc;
         width:100%;
-        height: 5vh;
+        height: ${(props) => props.height? props.height : "15vw"};
         
     }
 `
 
-const Logo = () =>{
+const Logo = (props) =>{
     return (
-        <ImageContainer>
+        <ImageContainer width={props.width} height={props.height}>
             <img src={logo} alt="logo" className='image' />
         </ImageContainer>
     )
