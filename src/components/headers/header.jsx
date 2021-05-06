@@ -37,18 +37,14 @@ const HeaderStyled = styled.div`
 		width: 20%;
 		display: flex;
 		justify-content:center;
-
+		margin-bottom:2rem
 	}
-
-
-
 	.title {
 		color: ${({ theme }) => theme.colors.textWhite};
 		text-align: right;
 		font-size: 1.4rem;
 		font-family: "Roboto", sans-serif;
 	}
-
 	.span {
 		display: bloc;
 		color: ${({ theme }) => theme.colors.secondMain};
@@ -59,6 +55,15 @@ const HeaderStyled = styled.div`
 	.text-container {
 		/* padding-top: 200px; */
 		padding-right: 30px;
+	}
+
+	ul{
+		width: 100vw;
+		display: flex;
+		justify-content: space-around;
+		color: ${({ theme }) => theme.colors.secondMain};
+		font-weight: lighter;
+		opacity:.5;
 	}
 `;
 
@@ -72,7 +77,7 @@ const Header = () => {
 			<div className="text-container welcome-text">				
 				<div className="title">
 					<Title>
-						TOUS VOS FILMS DE  <span className="span">A-Z</span>
+						TOUS VOS FILMS ET SERIES DE  <span className="span">A-Z</span>
 					</Title>
 				</div>
 				<div className="welcome-text">
@@ -83,7 +88,19 @@ const Header = () => {
 				</div>				
 			</div>
 			<div className="btn-container">
-			<Button type='type' size="2rem">Démarrer</Button>
+			<Button color={({theme}) => theme.colors.textWhite} size="1.2rem">Démarrer</Button>
+			</div>
+			<div>
+				<ul>
+					<li>Drame</li>
+					<li>Action</li>
+					<li>Horreur</li>
+					<li>Comedi</li>
+					<li>Fiction</li>
+					<li>Guerre</li>
+					<li>Animation</li>
+					<li>Documentaire</li>
+				</ul>
 			</div>
 		</HeaderStyled>
 	);
