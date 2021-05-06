@@ -6,6 +6,7 @@ import Main from './components/mains/main';
 import Footer from './components/footer/footer';
 import Movie from './components/pages/movie';
 import Home from './components/pages/home';
+import Start from './components/pages/start';
 
 const MainWrapper = styled.div`
   width: 100vw;
@@ -17,10 +18,12 @@ const MainWrapper = styled.div`
 function App() {
   return (
     <MainWrapper>
-      <NavBar/>
-      <Home />
+      <Start />
+      {/* <NavBar/>
+
+      <Home /> */}
        {/* <Header />
-      <Main/> 
+      <Main/>
       <Movie/>
       <Footer/> */}
      </MainWrapper>
