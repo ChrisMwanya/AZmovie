@@ -17,8 +17,8 @@ function App() {
   return (
     <MainWrapper>
       <NavBar />
-      {/* <Header />
-      <Main/> */}
+       <Header />
+      <Main/> 
       <Movie/>
       <Footer/>
      </MainWrapper>
