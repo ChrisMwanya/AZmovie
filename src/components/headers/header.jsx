@@ -5,7 +5,7 @@ import imageFond from "./../../images/imageFilm.jpeg";
 
 const HeaderStyled = styled.div`
 	width: 100vw;
-	height: 93vh;
+	height: 100vh;
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)),
 		url("${imageFond}") no-repeat;
 	background-size: cover;

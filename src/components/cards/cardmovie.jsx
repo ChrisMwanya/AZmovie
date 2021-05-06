@@ -3,7 +3,7 @@ import Button from "../../buttons/button";
 
 const CardStyled = styled.div`
 	margin: 5px;
-	width: 30vw;
+	width: 20vw;
 	border-radius: 15px;
 	position: relative;
 	height: 50vh;
