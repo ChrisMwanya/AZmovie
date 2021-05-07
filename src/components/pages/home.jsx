@@ -9,12 +9,14 @@ const HomeStyled = styled.section`
 	background: ${({ theme }) => theme.colors.main};
 `;
 const Home = () => {
+	
 	return (
 		<HomeStyled>
-			<NavBar />
+			
+			
 			<Route path="/home" component={Main} />
 			<Route path="/home/movie" component={Movie} />			
-			<Footer />
+			
 		</HomeStyled>
 	);
 };

@@ -1,10 +1,8 @@
 import Start from "./components/pages/start";
 
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch, useLocation } from "react-router-dom";
 import NavBar from "./components/navbar";
 import styled from "styled-components";
-import Header from "./components/headers/header";
-import Main from "./components/mains/main";
 import Footer from "./components/footer/footer";
 import Movie from "./components/pages/movie";
 import Home from "./components/pages/home";
@@ -17,14 +15,16 @@ const MainWrapper = styled.div`
 	justify-content: space-evenly;
 `;
 function App() {
+	const location = useLocation()
 	return (
-		<MainWrapper>
-			<BrowserRouter>
+		<MainWrapper>				
+			{location.pathname !== "/" && <NavBar />}		
 				<Switch>
 					<Route exact path="/" component={Start} />
 					<Route path="/home" component={Home} />
+					<Route path="/movie" component={Movie} />
 				</Switch>
-			</BrowserRouter>
+				{location.pathname !== "/" && <Footer />}				
 		</MainWrapper>
 	);
 }

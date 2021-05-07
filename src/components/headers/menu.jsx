@@ -36,8 +36,8 @@ const Menu = () => {
 	return (
 		<MenuStyle>
 			<li className="linkMenu"><LinkStyled to="/home">Accueil</LinkStyled></li>
-			<li className="linkMenu"><LinkStyled to="/home/movie">Films</LinkStyled></li>
-			<li className="linkMenu"><LinkStyled to="/home/movie">Séries</LinkStyled></li>
+			<li className="linkMenu"><LinkStyled to="/movie">Films</LinkStyled></li>
+			<li className="linkMenu"><LinkStyled to="/movie">Séries</LinkStyled></li>
 		</MenuStyle>
 	);
 };
