@@ -5,6 +5,7 @@ import GlobleStyle from "./theme/globalstyle";
 import { ThemeProvider } from "styled-components";
 import Theme from "./theme/theme";
 import { BrowserRouter } from "react-router-dom";
+import "./index.css"
 ReactDOM.render(
 	<React.StrictMode>
 		<GlobleStyle />

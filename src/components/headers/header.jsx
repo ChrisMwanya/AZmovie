@@ -1,20 +1,35 @@
+import "react-slideshow-image/dist/styles.css";
+import { Slide } from "react-slideshow-image";
 import styled from "styled-components";
 import WelcomeText from "../texts/welcometext";
 import Title from "../texts/title";
-import imageFond from "./../../images/imageFilm.jpeg";
+// import imageFond from "./../../images/imageFilm.jpeg";
 import Button from "../../buttons/button";
 import Logo from "../logo";
-import {Link} from 'react-router-dom'
+import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 const HeaderStyled = styled.div`
+	position: relative;
 	width: 100vw;
 	height: 100vh;
 	display: flex;
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 1)),
-		url("${imageFond}") no-repeat;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, .2), rgba(0, 0, 0, 1)),
+		url("${({ imagefond }) => imagefond}") no-repeat;
 	background-size: cover;
+`;
+
+const TextStyled = styled.div`
+	background: none;
+	position:absolute;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
 
 	.welcome-text {
 		color: ${({ theme }) => theme.colors.textWhite};
@@ -61,53 +76,79 @@ const HeaderStyled = styled.div`
 		width: 100vw;
 		display: flex;
 		justify-content: space-around;
-		color: ${({ theme }) => theme.colors.secondMain};
+		color: ${({ theme }) => theme.colors.textWhite};
 		font-weight: lighter;
 		opacity: 0.5;
 	}
 `;
 
 const Header = () => {
-	return (
-		<HeaderStyled>
-			<div className="logo">
-				<Logo width="100%" height="10vh" />
-			</div>
+	const [movie, setMovie] = useState([]);
 
-			<div className="text-container welcome-text">
-				<div className="title">
-					<Title>
-						TOUS VOS FILMS ET SERIES DE <span className="span">A-Z</span>
-					</Title>
+	useEffect(() => {
+		fetch(
+			"https://api.themoviedb.org/3/tv/popular?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&page=1"
+		)
+			.then((response) => response.json())
+			.then(({ results }) => {
+				let dataMapped = results
+					.map(({ id, title, release_date, poster_path, backdrop_path }) => {
+						return { id, title, release_date, poster_path, backdrop_path };
+					});
+				setMovie(dataMapped);
+			});
+	}, []);
+
+	return (
+		<>
+			<Slide easing="ease" arrows={false} autoplay={true}>
+				{movie.map(({ backdrop_path }) => {
+					return (
+						<HeaderStyled
+							imagefond={`https://image.tmdb.org/t/p/original${backdrop_path}`}></HeaderStyled>
+					);
+				})}
+			</Slide>
+
+			<TextStyled>
+				<div className="logo">
+					<Logo width="100%" height="10vh" />
 				</div>
-				<div className="welcome-text">
-					<WelcomeText>
-						La plateforme qui vous offres toutes les infos sur vos films de A à
-						Z
-					</WelcomeText>
+
+				<div className="text-container welcome-text">
+					<div className="title">
+						<Title>
+							TOUS VOS FILMS ET SERIES DE <span className="span">A-Z</span>
+						</Title>
+					</div>
+					<div className="welcome-text">
+						<WelcomeText>
+							La plateforme qui vous offres toutes les infos sur vos films de A
+							à Z
+						</WelcomeText>
+					</div>
 				</div>
-			</div>
-			<div className="btn-container">
-				<Link to="/Home">
-				<Button color={({ theme }) => theme.colors.textWhite} size="1.2rem">
-					Démarrer
-				</Button>
-				</Link>
-			
-			</div>
-			<div>
-				<ul>
-					<li>Drame</li>
-					<li>Action</li>
-					<li>Horreur</li>
-					<li>Comedi</li>
-					<li>Fiction</li>
-					<li>Guerre</li>
-					<li>Animation</li>
-					<li>Documentaire</li>
-				</ul>
-			</div>
-		</HeaderStyled>
+				<div className="btn-container">
+					<Link to="/Home">
+						<Button color={({ theme }) => theme.colors.textWhite} size="1.2rem">
+							Démarrer
+						</Button>
+					</Link>
+				</div>
+				<div>
+					<ul>
+						<li>Drame</li>
+						<li>Action</li>
+						<li>Horreur</li>
+						<li>Comedi</li>
+						<li>Fiction</li>
+						<li>Guerre</li>
+						<li>Animation</li>
+						<li>Documentaire</li>
+					</ul>
+				</div>
+			</TextStyled>
+		</>
 	);
 };
 
