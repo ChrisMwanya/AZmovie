@@ -4,6 +4,7 @@ import Title from "../texts/title";
 import imageFond from "./../../images/imageFilm.jpeg";
 import Button from "../../buttons/button";
 import Logo from "../logo";
+import {Link} from 'react-router-dom'
 const HeaderStyled = styled.div`
 	width: 100vw;
 	height: 100vh;
@@ -87,9 +88,12 @@ const Header = () => {
 				</div>
 			</div>
 			<div className="btn-container">
+				<Link to="/Home">
 				<Button color={({ theme }) => theme.colors.textWhite} size="1.2rem">
 					Démarrer
 				</Button>
+				</Link>
+			
 			</div>
 			<div>
 				<ul>

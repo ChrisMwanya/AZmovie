@@ -8,7 +8,7 @@ const ImageContainer =  styled.div`
     .image{
         display:bloc;
         width:100%;
-        height: ${(props) => props.height? props.height : "15vw"};
+        height: ${(props) => props.height? props.height : ""};
         
     }
 `

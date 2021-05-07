@@ -39,21 +39,20 @@ const CardStyled = styled.div`
 			margin-top: 10px;
 			display: block;
 			text-align: left;
-			opacity:1;
+			opacity: 1;
 		}
 	}
 
-	.button-container{
-		display:flex;
+	.button-container {
+		display: flex;
 		justify-content: space-between;
 	}
 	.info-hidden {
 		display: none;
 		opacity: 0;
 	}
-	.movie-info {
+	.movie-info {	
 		bottom: 0;
-
 		position: absolute;
 		padding: 20px;
 		border-bottom-right-radius: 15px;
@@ -61,6 +60,7 @@ const CardStyled = styled.div`
 		text-align: center;
 		font-size: 1rem;
 		width: 100%;
+		transition: all 1s ease;
 		height: 30%;
 		color: ${({ theme }) => theme.colors.textWhite};
 		background: linear-gradient(
@@ -69,8 +69,6 @@ const CardStyled = styled.div`
 			rgba(0, 0, 0, 0.9)
 		);
 	}
-
-	
 `;
 
 const CardMovie = ({ children, urlImage, date }) => {
@@ -84,10 +82,9 @@ const CardMovie = ({ children, urlImage, date }) => {
 						Durée :<span>{date}</span>
 					</p>
 					<div className="button-container">
-					<Button type='type'>Bande d'annonce </Button>
-					<Button >Voir plus </Button>
+						<Button type="type">Bande d'annonce </Button>
+						<Button>Voir plus </Button>
 					</div>
-				
 				</div>
 			</div>
 		</CardStyled>

@@ -22,7 +22,7 @@ const SectionLatestSeries = () => {
 		)
 			.then((response) => response.json())
 			.then(({ results }) => {
-				console.log(results);
+			
 				let dataMapped = results
 					.slice(0, 8)
 					.map(({ id, title, release_date, poster_path }) => {

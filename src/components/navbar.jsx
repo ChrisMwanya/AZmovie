@@ -2,6 +2,7 @@ import InputField from "./inputfilds";
 import Logo from "./logo";
 import Menu from "./headers/menu";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const NavBarStyled = styled.div`
 	display: flex;
@@ -21,7 +22,7 @@ const NavBarStyled = styled.div`
 const NavBar = () => {
 	return (
 		<NavBarStyled>
-			<Logo />
+			<Link to="/"><Logo /></Link>
 			<div className='menu-inputfield'>
 				<Menu />
 				<InputField />
