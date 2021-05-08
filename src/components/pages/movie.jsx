@@ -4,6 +4,8 @@ import SectionAllMovies from "./sections/sectionallmovies";
 
 const PageMovie = styled.div`
     padding: 1rem;
+    border: 2px solid Red;
+    width:100vw;    
     background:${({ theme }) => theme.colors.main};
 `
 

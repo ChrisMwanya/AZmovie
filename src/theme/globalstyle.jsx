@@ -1,4 +1,4 @@
-import {createGlobalStyle} from 'styled-components'
+import {createGlobalStyle} from 'styled-components';
 
 const GlobleStyle = createGlobalStyle `
 
@@ -18,4 +18,4 @@ li{
     list-style :none;
 }
 `;
-export default GlobleStyle
+export default GlobleStyle;

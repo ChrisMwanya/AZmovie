@@ -3,9 +3,10 @@ import styled from "styled-components";
 import SectionLatestSeries from "./sections/sectionlastestseries";
 
 const MainStyled = styled.main`
-	padding: 10px;
-	width: 100vw;
+	padding: 10px; 
+	width: 100vw;	
 	background-color: ${({ theme }) => theme.colors.main};
+	border: 1px solid green;
 `;
 
 const Main = () => {

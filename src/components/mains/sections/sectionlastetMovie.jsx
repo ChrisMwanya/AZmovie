@@ -6,10 +6,11 @@ import styled from 'styled-components'
 
 const SectionStyled= styled.section`
     width:100vw;
+	border: 1px solid green;
 `
 
 const CardContainerStyled = styled.div`
-    width: 100vw;
+    width: 100%;
     display: flex;
     justify-content: center;
     flex-wrap: wrap;

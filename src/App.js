@@ -19,11 +19,11 @@ function App() {
 	return (
 		<MainWrapper>				
 			{location.pathname !== "/" && <NavBar />}		
-				<Switch>
+				 <Switch>
 					<Route exact path="/" component={Start} />
 					<Route path="/home" component={Home} />
 					<Route path="/movie" component={Movie} />
-				</Switch>
+				</Switch> 
 				{location.pathname !== "/" && <Footer />}				
 		</MainWrapper>
 	);

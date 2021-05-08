@@ -8,7 +8,7 @@ const SectionStyled = styled.section`
 `;
 
 const CardContainerStyled = styled.div`
-	width: 100vw;
+	width: 100%;
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
