@@ -3,6 +3,7 @@ import Button from "../../buttons/button";
 import imageFond from "../../images/VinDiesel.jpg";
 import poster from "../../images/fastandfurious.jpg";
 import TitleSection from "../mains/titleSection/titlesection";
+import CardActor from "../cards/cardactor";
 
 const AboutMovieStyled = styled.div`
 	background: ${({ theme }) => theme.colors.main};
@@ -30,6 +31,7 @@ const AboutMovieStyled = styled.div`
     .synopsis{
         margin-top: 8rem;
         padding: 1rem;
+        border-bottom: .1px solid ${({ theme }) => theme.colors.textWhite}
     }
 
     p{
@@ -66,6 +68,10 @@ const AboutMovieStyled = styled.div`
 		justify-content: space-between;
 	}
 
+    .other{
+        padding: 1rem;
+    }
+
 	.film-poster {
 		border-radius: 15px;
 		margin-left: 2rem;
@@ -77,6 +83,18 @@ const AboutMovieStyled = styled.div`
 		width: 20vw;
 		background-position: center;
 	}
+
+    .actors{
+        padding: 1rem;
+        border-bottom: .1px solid ${({ theme }) => theme.colors.textWhite}
+    }
+
+    .actors-container
+    {
+        padding: 1rem;
+        display: flex;        
+        flex-wrap:wrap;
+    }
 `;
 
 const AboutMovie = (props) => {
@@ -132,12 +150,21 @@ const AboutMovie = (props) => {
 						lectus felis curabitur morbi dictumst.
 					</p>
 				</div>
-				<hr />
-				<div className="actors"></div>
-				<hr />
+				
+				<div className="actors">
+                    <TitleSection>Tête d'affiche</TitleSection>
+                    <div className="actors-container">
+                        <CardActor />  <CardActor />  <CardActor />
+                    </div>
+                </div>
+				
 				<div className="other">
-					<div className="title-other">A voir aussi</div>
-					<div className="slide-other"></div>
+					<div className="title-other">
+                    <TitleSection>A voir aussi</TitleSection>
+                    </div>
+					<div className="slide-other">
+
+                    </div>
 				</div>
 			</div>
 		</AboutMovieStyled>
