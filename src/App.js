@@ -6,6 +6,7 @@ import styled from "styled-components";
 import Footer from "./components/footer/footer";
 import Movie from "./components/pages/movie";
 import Home from "./components/pages/home";
+import AboutMovie from "./components/pages/aboutmovie";
 
 const MainWrapper = styled.div`
 	width: 100vw;
@@ -16,16 +17,17 @@ const MainWrapper = styled.div`
 `;
 function App() {
 	const location = useLocation()
-	return (
+	return (		
 		<MainWrapper>				
 			{location.pathname !== "/" && <NavBar />}		
-				 <Switch>
+				<Switch>
 					<Route exact path="/" component={Start} />
 					<Route path="/home" component={Home} />
-					<Route path="/movie" component={Movie} />
-				</Switch> 
+					<Route path="/movie" component={Movie} />					
+				</Switch>
 				{location.pathname !== "/" && <Footer />}				
 		</MainWrapper>
+
 	);
 }
 
