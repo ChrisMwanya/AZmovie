@@ -11,19 +11,22 @@ import AboutMovie from "./components/pages/aboutmovie";
 const MainWrapper = styled.div`
 	width: 100vw;
 	margin: 0 auto;
-	display: flex !important;
+	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
 `;
 function App() {
 	const location = useLocation()
 	return (		
-		<MainWrapper>				
+		<MainWrapper>
+						
 			{location.pathname !== "/" && <NavBar />}		
 				<Switch>
 					<Route exact path="/" component={Start} />
 					<Route path="/home" component={Home} />
-					<Route path="/movie" component={Movie} />					
+					<Route exact path="/movie" component={Movie} />	
+					<Route path="/movie/:id" render={({match}) => <AboutMovie match={match}/>}	/>	
+					<Route path="/tv/:id" render={({match}) => <AboutMovie match={match}/>}	/>			
 				</Switch>
 				{location.pathname !== "/" && <Footer />}				
 		</MainWrapper>

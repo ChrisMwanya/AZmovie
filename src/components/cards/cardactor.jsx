@@ -2,11 +2,11 @@ import styled from "styled-components";
 import profil from "../../images/profilVinDiesel.jpeg";
 
 const CardStyled = styled.div`
-	margin: 5px;
-	width: 10vw;
-	border-radius: 15px;
+	margin: 1rem;
+	width: 10vw;	
+	border-radius: 15px; 
 	height: 30vh;
-	background: url("${profil}") no-repeat;
+	background: url("${(props) => (props.urlImage ? props.urlImage : "")}"),no-repeat;
 	background-size: cover;
 	position: relative;
 	background-position: center;
@@ -18,16 +18,23 @@ const CardStyled = styled.div`
 		width: 100%;
 		background: ${({ theme }) => theme.colors.main};
 	}
+
+	span{
+		font-size:.8rem;
+
+	}
 `;
 
-const CardActor = () => {
+const CardActor = (props) => {
+
+	let url = `https://image.tmdb.org/t/p/w500/${props.urlImage}`;
 	return (
-		<CardStyled>
+		<CardStyled urlImage={url}>
 			<div className="info-actor">
 				<p>
-					Vin Diesel
+					{props.name}
 					<br />
-					Toretto
+					<span>{props.character}</span>
 				</p>
 			</div>
 		</CardStyled>

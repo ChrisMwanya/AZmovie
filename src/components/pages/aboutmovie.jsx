@@ -1,16 +1,19 @@
 import styled from "styled-components";
 import Button from "../../buttons/button";
-import imageFond from "../../images/VinDiesel.jpg";
-import poster from "../../images/fastandfurious.jpg";
+import CardMovie from "../cards/cardmovie";
+import Carousel from "react-elastic-carousel";
+// import imageFond from "../../images/VinDiesel.jpg";
+// import poster from "../../images/fastandfurious.jpg";
 import TitleSection from "../mains/titleSection/titlesection";
 import CardActor from "../cards/cardactor";
+import { useState, useEffect } from "react";
 
 const AboutMovieStyled = styled.div`
 	background: ${({ theme }) => theme.colors.main};
 	color: ${({ theme }) => theme.colors.textWhite};
 	display: flex;
 	justify-content: center;
-    padding: .9rem;
+	padding: 0.9rem;
 
 	.container {
 		width: 100vw;
@@ -19,7 +22,8 @@ const AboutMovieStyled = styled.div`
 	.header {
 		position: relative;
 		padding-right: 2rem;
-		background: url("${imageFond}") no-repeat;
+		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)),
+			url("${(props) => (props.imageFond ? props.imageFond : "")}") no-repeat;
 		background-size: cover;
 		height: 70vh;
 		display: flex;
@@ -28,15 +32,37 @@ const AboutMovieStyled = styled.div`
 		align-items: flex-end;
 	}
 
-    .synopsis{
-        margin-top: 8rem;
-        padding: 1rem;
-        border-bottom: .1px solid ${({ theme }) => theme.colors.textWhite}
-    }
+	a {
+		text-decoration: none;
+		color: white;
+		margin: 1rem;
+	}
 
-    p{
-       padding-top: 1rem;
-    }
+	.synopsis {
+		margin-top: 8rem;
+		padding: 1rem;
+		border-bottom: 0.1px solid ${({ theme }) => theme.colors.textWhite};
+	}
+
+	span {
+		margin: 0.5rem;
+	}
+
+	.categorie {
+		width: 50%;
+		display: flex;
+		justify-content: flex-start;
+	}
+
+	.slide-other {
+		display: flex;
+		justify-content: flex-start;
+		flex-wrap: wrap;
+	}
+
+	p {
+		padding-top: 1rem;
+	}
 
 	.more-info {
 		display: flex;
@@ -44,7 +70,7 @@ const AboutMovieStyled = styled.div`
 		justify-content: space-between;
 		padding: 1rem;
 		position: absolute;
-		right: .8rem;
+		right: 0.8rem;
 		margin-top: -6rem;
 		width: 75.5%;
 		height: 13vw;
@@ -68,41 +94,113 @@ const AboutMovieStyled = styled.div`
 		justify-content: space-between;
 	}
 
-    .other{
-        padding: 1rem;
-    }
+	.other {
+		padding: 1rem;
+	}
 
 	.film-poster {
 		border-radius: 15px;
 		margin-left: 2rem;
 		margin-top: -13rem;
 		position: absolute;
-		background: url("${poster}") no-repeat;
+		background: url("${(props) =>props.imagePoster ? props.imagePoster : ""}")
+			no-repeat;
 		background-size: cover;
+		background-position: center;
 		height: 48vh;
 		width: 20vw;
 		background-position: center;
 	}
 
-    .actors{
-        padding: 1rem;
-        border-bottom: .1px solid ${({ theme }) => theme.colors.textWhite}
-    }
+	.actors {
+		padding: 1rem;
+		border-bottom: 0.1px solid ${({ theme }) => theme.colors.textWhite};
+	}
 
-    .actors-container
-    {
-        padding: 1rem;
-        display: flex;        
-        flex-wrap:wrap;
-    }
+	.actors-container {
+		padding: 1rem;
+		display: flex;
+		flex-wrap: wrap;
+	}
+
+	.rec.rec-arrow {
+		
+		background: ${({ theme }) => theme.colors.secondMain};
+	}
+
+	.rec.rec-pagination {
+		color: ${({ theme }) => theme.colors.textWhite};
+		display:none;
+	}
 `;
 
 const AboutMovie = (props) => {
+	const [movie, setMovie] = useState([]);
+	const [actors, setActors] = useState([]);
+	const [similar, setSimilar] = useState([]);
+
+	console.log(props.match);
+	const urlSegment = props.match.url;
+
+	useEffect(() => {
+		fetch(
+			`https://api.themoviedb.org/3${urlSegment}?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr`
+		)
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				console.log(data);
+				setMovie(data);
+			});
+	}, []);
+
+	useEffect(() => {
+		fetch(
+			`https://api.themoviedb.org/3${urlSegment}/credits?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr`
+		)
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				setActors(data);
+			});
+	}, []);
+
+	useEffect(() => {
+		fetch(
+			`https://api.themoviedb.org/3${urlSegment}/similar?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&page=1`
+		)
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				setSimilar(data);
+			});
+	}, []);
+
+	let urlFond = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
+
+	let urlPoster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 	return (
-		<AboutMovieStyled>
+		<AboutMovieStyled imageFond={urlFond} imagePoster={urlPoster}>
 			<div className="container">
 				<div className="header">
-					<h1>Fast & Furious 9</h1>
+					<h1>{movie.title}</h1>
+					<p>{movie.tagline}</p>
+					<br />
+					<div>
+						<span>
+							<i class="fas fa-calendar-day"></i> : {movie.release_date}
+						</span>{" "}
+						<span>
+							<i class="fas fa-users"></i> : {movie.popularity}{" "}
+						</span>
+					</div>
+					<a href={movie.homepage} rel="noreferrer" target="_blank">
+						Visitez le site
+					</a>
+
 					<div className="btn-container">
 						<Button size=".9rem" type="button">
 							Bande d'annonce
@@ -112,59 +210,70 @@ const AboutMovie = (props) => {
 				<div className="film-poster"></div>
 				<div className="more-info">
 					<div className="categorie">
-						<Button>Triller</Button> <Button>Action</Button>
+						{movie.genres ? (
+							movie.genres.map((genre) => {
+								return <Button>{genre.name}</Button>;
+							})
+						) : (
+							<p>Patientez</p>
+						)}
 					</div>
 					<div className="other-info">
-						<div className="director">Director: Justin Lin</div>
+						<div className="director">{movie.director}</div>
 						<div>
-							<div className="status">Satus: Annoncé</div>
-							<div className="time">Durée : 1h30</div>
+							<div className="status">Satus: {movie.status}</div>
+							<div className="time">Durée : {movie.runtime} min</div>
 						</div>
 					</div>
 				</div>
 				<div className="synopsis">
-                    <TitleSection>Synopsis</TitleSection>
-					<p>
-						Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla eu,
-						convallis porta sit. Lorem scelerisque facilisis tortor aliquet
-						pretium. Semper sed arcu felis nulla. Et, augue porttitor ultrices
-						amet. Nunc, tellus mattis eget turpis at pharetra nulla odio vel.
-						Sit pretium felis dui lacinia morbi nisl sed eget. Integer dictum
-						habitant etiam enim ut tristique dui. Augue sit neque libero quam
-						egestas id suspendisse id nisi. Turpis maecenas malesuada sed
-						faucibus quam felis, fermentum cursus. Vulputate placerat sit eu
-						tellus scelerisque donec. Tellus in facilisis ornare pellentesque
-						mauris id facilisi convallis ultrices. Leo, lectus scelerisque
-						facilisis luctus facilisis felis, fringilla imperdiet. Pharetra
-						interdum malesuada molestie pharetra sed enim, magna facilisi sit.
-						Egestas ut ridiculus habitant ornare risus iaculis nibh nisl. Massa
-						orci neque purus elementum. Fermentum, eget est, integer non
-						interdum nunc urna porta. Nam vestibulum bibendum eu ullamcorper
-						amet vitae commodo. Aliquet netus est molestie lorem risus
-						scelerisque magna. In malesuada tellus volutpat aliquet egestas
-						vitae aliquet quam. Volutpat scelerisque nullam convallis et quis
-						nunc quis. Purus eu praesent phasellus morbi ut etiam tincidunt.
-						Montes, tempus pharetra, tortor et porttitor molestie nibh nunc. Leo
-						vulputate volutpat sagittis libero blandit. Semper neque, arcu,
-						neque, porttitor laoreet pulvinar justo. Molestie convallis id
-						lectus felis curabitur morbi dictumst.
-					</p>
+					<TitleSection>Synopsis</TitleSection>
+					<p>{movie.overview}</p>
 				</div>
-				
+
 				<div className="actors">
-                    <TitleSection>Tête d'affiche</TitleSection>
-                    <div className="actors-container">
-                        <CardActor />  <CardActor />  <CardActor />
-                    </div>
-                </div>
-				
+					<TitleSection>Castings</TitleSection>
+					<div className="actors-container">
+						{actors.cast ? (
+							actors.cast.slice(0, 14).map((actors) => {
+								return (
+									<CardActor
+										urlImage={actors.profile_path}
+										name={actors.name}
+										character={actors.character}
+									/>
+								);
+							})
+						) : (
+							<p>Patientez</p>
+						)}
+					</div>
+				</div>
+
 				<div className="other">
 					<div className="title-other">
-                    <TitleSection>A voir aussi</TitleSection>
-                    </div>
+						<TitleSection>Silimaires</TitleSection>
+					</div>
 					<div className="slide-other">
-
-                    </div>
+						{similar.results ? (
+							<Carousel itemsToShow={4} enableAutoPlay="true">
+								{similar.results.map((movie) => {
+									return (
+										<CardMovie
+											urlImage={movie.poster_path}
+											key={movie.id}
+											date={movie.release_date}
+											type="movie"
+											id={movie.id}>
+											{movie.title}
+										</CardMovie>
+									);
+								})}
+							</Carousel>
+						) : (
+							<p>Patientez...</p>
+						)}
+					</div>
 				</div>
 			</div>
 		</AboutMovieStyled>

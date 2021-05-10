@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import Button from "../../buttons/button";
+import { Link } from "react-router-dom";
 
 const CardStyled = styled.div`
 	margin: 5px;
@@ -51,7 +52,7 @@ const CardStyled = styled.div`
 		display: none;
 		opacity: 0;
 	}
-	.movie-info {	
+	.movie-info {
 		bottom: 0;
 		position: absolute;
 		padding: 20px;
@@ -71,19 +72,21 @@ const CardStyled = styled.div`
 	}
 `;
 
-const CardMovie = ({ children, urlImage, date }) => {
-	let url = `https://image.tmdb.org/t/p/w500/${urlImage}`;
+const CardMovie = (props) => {
+	let url = `https://image.tmdb.org/t/p/w500/${props.urlImage}`;
 	return (
 		<CardStyled urlImage={url}>
 			<div className="movie-info">
-				<p className="film-title">{children}</p>
+				<p className="film-title">{props.children}</p>
 				<div className="info-hidden">
 					<p>
-						Durée :<span>{date}</span>
+						Durée :<span>{props.date}</span>
 					</p>
 					<div className="button-container">
 						<Button type="type">Bande d'annonce </Button>
-						<Button>Voir plus </Button>
+						<Link to={`/${props.type}/${props.id}`}>							
+							<Button>Voir plus</Button>
+						</Link>
 					</div>
 				</div>
 			</div>

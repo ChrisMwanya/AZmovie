@@ -5,6 +5,9 @@ import styled from "styled-components";
 
 const SectionStyled = styled.section`
 	width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 `;
 
 const CardContainerStyled = styled.div`
@@ -34,19 +37,23 @@ const SectionLatestSeries = () => {
 
 	return (
 		<SectionStyled>
-			<TitleSection>Film du Moment</TitleSection>
+			<div>
+			{/* <TitleSection>Film du Moment</TitleSection> */}
 			<CardContainerStyled>
 				{latestMovies.map((movie) => {
 					return (
 						<CardMovie
 							urlImage={movie.poster_path}
 							key={movie.id}
-							date={movie.release_date}>
+							date={movie.release_date}
+							type="tv"
+							id={movie.id}>
 							{movie.title}
 						</CardMovie>
 					);
 				})}
 			</CardContainerStyled>
+			</div>
 		</SectionStyled>
 	);
 };
