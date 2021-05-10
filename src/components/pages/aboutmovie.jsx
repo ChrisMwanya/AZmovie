@@ -39,7 +39,7 @@ const AboutMovieStyled = styled.div`
 	}
 
 	.synopsis {
-		margin-top: 8rem;
+		margin-top: 6rem;
 		padding: 1rem;
 		border-bottom: 0.1px solid ${({ theme }) => theme.colors.textWhite};
 	}
@@ -72,8 +72,8 @@ const AboutMovieStyled = styled.div`
 		position: absolute;
 		right: 0.8rem;
 		margin-top: -6rem;
-		width: 75.5%;
-		height: 13vw;
+		width: 75.2%;
+		height: 9vw;
 		background: linear-gradient(
 			to bottom,
 			rgba(0, 0, 0, 0.7),
@@ -212,16 +212,15 @@ const AboutMovie = (props) => {
 					<div className="categorie">
 						{movie.genres ? (
 							movie.genres.map((genre) => {
-								return <Button>{genre.name}</Button>;
+								return <Button color="white">{genre.name}</Button>;
 							})
 						) : (
 							<p>Patientez</p>
 						)}
 					</div>
-					<div className="other-info">
-						<div className="director">{movie.director}</div>
+					<div className="other-info">						
 						<div>
-							<div className="status">Satus: {movie.status}</div>
+							<div className="status">Status: {movie.status}</div>
 							<div className="time">Durée : {movie.runtime} min</div>
 						</div>
 					</div>
