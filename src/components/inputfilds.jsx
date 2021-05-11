@@ -1,25 +1,43 @@
 import styled from "styled-components";
-import {useState, useEffect} from "react";
+import {useState, useEffect} from "react"
+import {Link} from "react-router-dom"
 
 const ContainerStyled= styled.div`
     display: flex;
-    flex-direction: column;
+    /* flex-direction: column; */
     align-items: center;
+    color: white;
+
+   
 `;
+
+const LinkStyled = styled(Link)`
+    position: absolute;
+    color:white;
+    margin-left: 28vw;
+    i{  
+            
+
+    }
+`
 
 const UnrollContainerStyled = styled.div`
 	border: 1px solid white;
-	padding: 10px;
+	padding-right: 4rem;
 	text-align: right;
 	width: 30vw;
 	color: white;
 	background-color: ${({ theme }) => theme.colors.main};
+  
 `;
 
 const InputFieldsStyled = styled.input`
+    position: relative;
 	border-radius: 15px;
 	border: 1px solid white;
-	padding: 10px;
+	padding-right: 2rem;
+    padding-top: .5rem;
+    padding-bottom: .5rem;
 	text-align: right;
 	width: 30vw;
 	color: white;
@@ -27,49 +45,15 @@ const InputFieldsStyled = styled.input`
 	&:focus {
 		outline: none;
 	}
+
+   
 `;
 
-const InputField = () => {
-    const [allMovieAndTv,setAllMovieAndTv] = useState([
-
-    ]);
-    const [movieAndTv,setMovieAndTv]= useState([]);
-
-    useEffect(() => {
-        // fetch().then((response) => {
-        //     return response.json()
-        // }).then((data) => {
-        //     setAllMovieAndTv(data)
-        // })
-
-        setAllMovieAndTv([
-            {name: 'Christian'},{name: 'Christopher'},{name: 'Merdie'},{name: 'Emmi'}
-        ])
-    },[])
-
-    const searchResults = (e) => {
-        if(e.target.value === "CHRISTIAN"){
-            setMovieAndTv([]);
-        }else{
-            const results = allMovieAndTv.filter(item =>{
-                return item.name.toUpperCase().includes(e.target.value.toUpperCase())
-            })
-            setMovieAndTv(results)
-        }
-    
-    }
-
+const InputField = (props) => {     
 	return (
 		<ContainerStyled>
-			<InputFieldsStyled type="text" placeholder="Recherche" onChange={searchResults} />
-            {/* <UnrollContainerStyled>
-                <ul>
-                    {movieAndTv.map((item) =>{
-                        return <li>{item.name}</li>
-                    })}
-                </ul>
-            </UnrollContainerStyled> */}
-
+			<InputFieldsStyled type="text" placeholder="Recherche" onChange={props.onChange} /> <LinkStyled to="/SearchPage"><i class="fas fa-search"></i></LinkStyled>
+        
 		</ContainerStyled>
 	);
 };

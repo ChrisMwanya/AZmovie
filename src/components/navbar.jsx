@@ -20,14 +20,15 @@ const NavBarStyled = styled.div`
 	}
 `;
 
-const NavBar = () => {
+const NavBar = (props) => {
+	
 	return (
 		<NavBarStyled>
 			<Link to="/">
 				<Logo />
 			</Link>
 			<div className="menu-inputfield">
-				<InputField />				
+				<InputField  onChange={props.onChange}/>				
 				<Menu />
 			</div>
 		</NavBarStyled>

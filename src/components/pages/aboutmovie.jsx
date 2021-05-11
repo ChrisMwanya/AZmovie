@@ -165,6 +165,7 @@ const AboutMovie = (props) => {
 			.then((data) => {
 				setActors(data);
 			});
+		
 	}, []);
 
 	useEffect(() => {
@@ -177,7 +178,8 @@ const AboutMovie = (props) => {
 			.then((data) => {
 				setSimilar(data);
 			});
-	}, []);
+			window.scrollTo(0,0)
+	}, [urlSegment]);
 
 	let urlFond = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
 

@@ -6,7 +6,7 @@ import Button from "../../buttons/button";
 
 const SearchPageStyled = styled.div`
 	background: ${({ theme }) => theme.colors.main};
-	width: 90vw;
+	width: 100vw;
 	padding-left: 10vw;
 
 	.cards-container {
@@ -32,35 +32,35 @@ const Container = styled.div`
 `;
 
 const SearchPage = (props) => {
+    
 	const [resultMovie, setResultMovie] = useState({});
 	const [resultSeries, setResultSeries] = useState({});
     const [toggle,setToggle] = useState(true)
 
 	useEffect(() => {
 		fetch(
-			"https://api.themoviedb.org/3/movie/popular?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr"
+			`https://api.themoviedb.org/3/search/movie?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&query=${props.valueInput}&page=1&include_adult=false`
 		)
 			.then((response) => {
 				return response.json();
 			})
 			.then((data) => {
-				console.log(data);
+				
 				setResultMovie(data);
 			});
-	}, []);
+	}, [resultMovie]);
 
 	useEffect(() => {
 		fetch(
-			"https://api.themoviedb.org/3/tv/popular?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr"
+			`https://api.themoviedb.org/3/search/tv?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&query=${props.valueInput}&page=1&include_adult=false`
 		)
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {
-				console.log(data);
+			.then((data) => {				
 				setResultSeries(data);
 			});
-	}, []);
+	}, [resultSeries]);
 
     const handleClickMovie= () =>{
         setToggle(true)
@@ -72,7 +72,7 @@ const SearchPage = (props) => {
 	return (
 		<Container>
 			<SearchPageStyled>
-                <h1>Resultats de votre recherche</h1>
+                <h1>Resultats de votre recherche:  {props.valueInput}</h1>
 				<div className="btn-container">
 					<Button onClick={handleClickMovie} size="1rem">Films</Button>
 					<Button onClick={handleClickSerie} size="1rem">Series</Button>
