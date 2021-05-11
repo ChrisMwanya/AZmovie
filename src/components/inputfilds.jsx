@@ -1,21 +1,40 @@
-import styled from 'styled-components'
+import styled from "styled-components";
 
-const InputFieldsStyled= styled.input`
-    border-radius: 15px;
-    border: 1px solid white ;
-    padding: 10px;
-    text-align: right; 
-     width: 60vw;
-     color: white;
-     background-color: ${({ theme }) => theme.colors.main};
-    &:focus{
-        outline: none;
-    }
-    
-`
+const ContainerStyled= styled.div`
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+`;
 
-const InputField = () =>{
-    return <InputFieldsStyled type="text" placeholder='Recherche'/>
-}
+const UnrollContainerStyled = styled.div`
+	border: 1px solid white;
+	padding: 10px;
+	text-align: right;
+	width: 30vw;
+	color: white;
+	background-color: ${({ theme }) => theme.colors.main};
+`;
 
-export default InputField
+const InputFieldsStyled = styled.input`
+	border-radius: 15px;
+	border: 1px solid white;
+	padding: 10px;
+	text-align: right;
+	width: 30vw;
+	color: white;
+	background-color: ${({ theme }) => theme.colors.main};
+	&:focus {
+		outline: none;
+	}
+`;
+
+const InputField = () => {
+	return (
+		<ContainerStyled>
+			<InputFieldsStyled type="text" placeholder="Recherche" />
+            <UnrollContainerStyled />
+		</ContainerStyled>
+	);
+};
+
+export default InputField;
