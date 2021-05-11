@@ -12,8 +12,8 @@ const LinkStyled = styled(Link)`
 
 const MenuStyle = styled.ul`
 	display: flex;
-	justify-content: space-between;
-	width: 100%;
+	justify-content: space-around;
+	width: 80%;
 
 	color: ${({ theme }) => theme.colors.secondText};
 	.linkMenu {

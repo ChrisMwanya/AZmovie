@@ -11,10 +11,10 @@ const NavBarStyled = styled.div`
 	padding: 5px;
 	box-shadow: 2px 5px 10px grey;
 	background-color: ${({ theme }) => theme.colors.main};
-	width: 100vw;
+	width: 100%;
 	.menu-inputfield {
 		display: flex;
-		justify-content: space-between;
+		justify-content: space-around;
 		width: 70%;
 	}
 `;
