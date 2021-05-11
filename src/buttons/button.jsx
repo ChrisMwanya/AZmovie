@@ -36,7 +36,7 @@ const ButtonStyled = styled.button`
 `;
 const Button = (props) => {
 	return (
-		<ButtonStyled type={props.type} color={props.color} size={props.size}>
+		<ButtonStyled onClick={props.onClick} type={props.type} color={props.color} size={props.size}>
 			{props.children}
 		</ButtonStyled>
 	);

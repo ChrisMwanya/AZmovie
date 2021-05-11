@@ -4,6 +4,7 @@ import Menu from "./headers/menu";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
 
+
 const NavBarStyled = styled.div`
 	display: flex;
 	justify-content: space-between;
@@ -15,7 +16,7 @@ const NavBarStyled = styled.div`
 	.menu-inputfield {
 		display: flex;
 		justify-content: space-around;
-		width: 70%;
+		width: 90%;
 	}
 `;
 
@@ -26,7 +27,7 @@ const NavBar = () => {
 				<Logo />
 			</Link>
 			<div className="menu-inputfield">
-				<InputField />
+				<InputField />				
 				<Menu />
 			</div>
 		</NavBarStyled>

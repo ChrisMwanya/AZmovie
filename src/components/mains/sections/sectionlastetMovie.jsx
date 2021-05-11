@@ -5,7 +5,6 @@ import styled from "styled-components";
 
 const SectionStyled = styled.section`
 	width: 100vw;
-	border: 1px solid green;
 	display: flex;
 	justify-content: center;
 	align-items: center;

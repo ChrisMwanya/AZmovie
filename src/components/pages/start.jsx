@@ -1,9 +1,7 @@
-import Header from "../headers/header"
+import Header from "../headers/header";
 
-const Start= () => {
-    return (
-        <Header/>
-    )
-}
+const Start = () => {
+	return <Header />
+};
 
-export default Start
+export default Start;

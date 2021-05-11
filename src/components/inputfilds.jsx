@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import {useState, useEffect} from "react";
 
 const ContainerStyled= styled.div`
     display: flex;
@@ -29,10 +30,46 @@ const InputFieldsStyled = styled.input`
 `;
 
 const InputField = () => {
+    const [allMovieAndTv,setAllMovieAndTv] = useState([
+
+    ]);
+    const [movieAndTv,setMovieAndTv]= useState([]);
+
+    useEffect(() => {
+        // fetch().then((response) => {
+        //     return response.json()
+        // }).then((data) => {
+        //     setAllMovieAndTv(data)
+        // })
+
+        setAllMovieAndTv([
+            {name: 'Christian'},{name: 'Christopher'},{name: 'Merdie'},{name: 'Emmi'}
+        ])
+    },[])
+
+    const searchResults = (e) => {
+        if(e.target.value === "CHRISTIAN"){
+            setMovieAndTv([]);
+        }else{
+            const results = allMovieAndTv.filter(item =>{
+                return item.name.toUpperCase().includes(e.target.value.toUpperCase())
+            })
+            setMovieAndTv(results)
+        }
+    
+    }
+
 	return (
 		<ContainerStyled>
-			<InputFieldsStyled type="text" placeholder="Recherche" />
-            <UnrollContainerStyled />
+			<InputFieldsStyled type="text" placeholder="Recherche" onChange={searchResults} />
+            {/* <UnrollContainerStyled>
+                <ul>
+                    {movieAndTv.map((item) =>{
+                        return <li>{item.name}</li>
+                    })}
+                </ul>
+            </UnrollContainerStyled> */}
+
 		</ContainerStyled>
 	);
 };

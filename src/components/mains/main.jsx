@@ -5,8 +5,7 @@ import SectionLatestSeries from "./sections/sectionlastestseries";
 const MainStyled = styled.main`
 
 	width: 100%;	
-	background-color: ${({ theme }) => theme.colors.main};
-	border: 1px solid green;
+	background-color: ${({ theme }) => theme.colors.main};	
 	display:flex;
 	justify-content: center;
 	align-items: center;
