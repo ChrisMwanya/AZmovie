@@ -50,16 +50,11 @@ const InputFieldsStyled = styled.input`
 `;
 
 const InputField = (props) => {  
-    
-    const [inputValue,setInputValue] = useState()
-
-    const handleClik= () => {
-        setInputValue("")
-    }
+ 
     
 	return (
 		<ContainerStyled>
-			<InputFieldsStyled value={inputValue} type="search" placeholder="Recherche" onChange={props.onChange} /> <LinkStyled onClick={handleClik} to="/SearchPage"><i class="fas fa-search"></i></LinkStyled>
+			<InputFieldsStyled  type="search" placeholder="Recherche" onChange={props.onChange} /> <LinkStyled  to="/SearchPage"><i class="fas fa-search"></i></LinkStyled>
         
 		</ContainerStyled>
 	);

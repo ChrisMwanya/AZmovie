@@ -1,12 +1,11 @@
 import styled from 'styled-components'
-import Button from '../../../buttons/button'
+import Button from './../../buttons/button'
 import {useState, useEffect} from 'react'
 import CardMovie from "../../cards/cardmovie";
 
 const SectionStyled= styled.section`
     margin-top: 1rem;
     width: 100%;
-  
 
     .buttons{
         border-bottom: 2px solid  ${({ theme }) => theme.colors.secondMain};
@@ -29,9 +28,9 @@ const SectionAllMovies= () => {
 			"https://api.themoviedb.org/3/trending/movie/day?api_key=9320cf81bdc9ea7daa7bd98066b669de"
 		)
 			.then((response) => response.json())
-			.then(({ results }) => {
-				console.log(results);
-				let dataMapped = results
+			.then((data) => {
+				
+				let dataMapped = data.results
 					.map(({ id, title, release_date, poster_path,popularity,vote_average  }) => {
 						return { id, title, release_date, poster_path,popularity,vote_average  };
 					});
@@ -42,11 +41,11 @@ const SectionAllMovies= () => {
 
     return(
         <SectionStyled>
-            <div className="buttons">
+            {/* <div className="buttons">
                 <Button>Plus Coté</Button>
                 <Button>Récent</Button>
                 <Button>Populaire</Button>
-            </div>
+            </div> */}
             <CardContainerStyled>
 				{Movies.map((movie) => {
 					return (

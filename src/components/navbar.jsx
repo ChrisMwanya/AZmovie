@@ -25,7 +25,7 @@ const NavBar = (props) => {
 	return (
 		<NavBarStyled>
 			<Link to="/">
-				<Logo />
+				<Logo  width="6vw"/>
 			</Link>
 			<div className="menu-inputfield">
 				<InputField  onChange={props.onChange}/>				

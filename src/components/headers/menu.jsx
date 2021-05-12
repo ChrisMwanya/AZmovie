@@ -28,7 +28,7 @@ const MenuStyle = styled.ul`
 		font-size: 1rem;
 		font-weight: bold;
 		color:${({ theme }) => theme.colors.textWhite};
-		border-bottom: 1px solid ${({ theme }) => theme.colors.secondMain};
+		border-bottom: 3px solid ${({ theme }) => theme.colors.textWhite};
 	}
 
 	.linkMenu:hover {
@@ -46,7 +46,7 @@ const Menu = () => {
 		<MenuStyle>
 			<li className="linkMenu"><LinkStyled to="/home">Accueil</LinkStyled></li>
 			<li className="linkMenu"><LinkStyled to="/movie">Films</LinkStyled></li>
-			<li className="linkMenu"><LinkStyled to="/movie">Séries</LinkStyled></li>
+			{/* <li className="linkMenu"><LinkStyled >Séries</LinkStyled></li> */}
 		</MenuStyle>
 	);
 };

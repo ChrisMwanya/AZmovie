@@ -11,6 +11,12 @@ const CardStyled = styled.div`
 	position: relative;
 	background-position: center;
 
+	&:hover {
+		transition: all 0.3s ease;
+		transform: scale(1.05);
+		
+	}
+
 	.info-actor {
 		position: absolute;
 		bottom: 0;

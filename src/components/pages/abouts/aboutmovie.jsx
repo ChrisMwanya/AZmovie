@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Button from "../../../buttons/button";
+import Button from "./../../buttons/button";
 import CardMovie from "../../cards/cardmovie";
 import Carousel from "react-elastic-carousel";
 // import imageFond from "../../images/VinDiesel.jpg";

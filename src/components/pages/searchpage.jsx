@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import CardMovie from "../../components/cards/cardmovie";
 import TitleSection from "../mains/titleSection/titlesection";
-import Button from "../../buttons/button";
+import Button from "./../buttons/button";
 
 const SearchPageStyled = styled.div`
 	background: ${({ theme }) => theme.colors.main};

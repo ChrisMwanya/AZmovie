@@ -4,7 +4,7 @@ import styled from "styled-components";
 import WelcomeText from "../texts/welcometext";
 import Title from "../texts/title";
 // import imageFond from "./../../images/imageFilm.jpeg";
-import Button from "../../buttons/button";
+import Button from "./../buttons/button";
 import Logo from "../logo";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";

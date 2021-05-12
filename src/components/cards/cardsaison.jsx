@@ -1,6 +1,4 @@
 import styled from "styled-components";
-import Button from "../../buttons/button";
-import { Link } from "react-router-dom";
 import defaultImage from "../../images/logo.svg"
 
 const CardStyled = styled.div`
@@ -12,17 +10,28 @@ const CardStyled = styled.div`
 	background: url("${(props) => (props.urlImage ? props.urlImage : defaultImage)}");
 	background-size: cover;	
 
+
+
+	&:hover {
+		transition: all 0.3s ease;
+		transform: scale(1.05);
+		
+	}
+
+	.title{
+		font-weight: bold;
+	}
 	.movie-info {
 		bottom: 0;
 		position: absolute;
-		padding: 20px;
+		padding: 0 .5rem;
 		border-bottom-right-radius: 15px;
 		border-bottom-left-radius: 15px;
 		text-align: center;
 		font-size: 1rem;
 		width: 100%;
 		transition: all 1s ease;
-		height: 40%;
+		height: 30%;
 		color: ${({ theme }) => theme.colors.textWhite};
 		background: linear-gradient(
 			to bottom,
@@ -31,8 +40,8 @@ const CardStyled = styled.div`
 		);
 	}
 	.more-infos{
-		/* display: flex;
-		justify-content: space-between; */
+		display: flex;		
+		justify-content: center;
 	}
 `;
 
@@ -41,9 +50,13 @@ const CardSerie = (props) => {
 	return (
 		<CardStyled urlImage={url}>
 			<div className="movie-info">
-				<p className="film-title">{props.name}</p>
-                <p>Date :  {props.air_date}</p>
-                <p>Nombre d'épisodes: {props.episode_count}</p>				
+				<div>
+				<p className="title">{props.name}</p>
+				</div>
+				<div className="more-infos">
+				{/* <p>Date :  {props.air_date}</p> */}
+                <p>{props.episode_count} épisodes</p>	
+				</div>
 			</div>
 		</CardStyled>
 	);
