@@ -48,7 +48,7 @@ const SectionLatestSeries = () => {
 						urlImage={movie.poster_path}
 						key={movie.id}
 						date={movie.release_date}
-						type="movie"
+						type="tv"
 						id={movie.id}>
 							{movie.name}
 						</CardMovie>

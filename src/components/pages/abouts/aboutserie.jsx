@@ -1,12 +1,13 @@
 import styled from "styled-components";
-import Button from "../../buttons/button";
-import CardMovie from "../cards/cardmovie";
+import Button from "../../../buttons/button";
+import CardMovie from "../../cards/cardmovie";
 import Carousel from "react-elastic-carousel";
 // import imageFond from "../../images/VinDiesel.jpg";
 // import poster from "../../images/fastandfurious.jpg";
-import TitleSection from "../mains/titleSection/titlesection";
-import CardActor from "../cards/cardactor";
+import TitleSection from "../../mains/titleSection/titlesection";
+import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
+import CardSerie from "../../cards/cardsaison";
 
 const AboutMovieStyled = styled.div`
 	background: ${({ theme }) => theme.colors.main};
@@ -134,8 +135,8 @@ const AboutMovieStyled = styled.div`
 	}
 `;
 
-const AboutMovie = (props) => {
-	const [movie, setMovie] = useState([]);
+const AboutSerie = (props) => {
+	const [serie, setSerie] = useState([]);
 	const [actors, setActors] = useState([]);
 	const [similar, setSimilar] = useState([]);
 
@@ -151,9 +152,9 @@ const AboutMovie = (props) => {
 			})
 			.then((data) => {
 				console.log(data);
-				setMovie(data);
+				setSerie(data);
 			});
-	}, []);
+	}, [urlSegment]);
 
 	useEffect(() => {
 		fetch(
@@ -166,7 +167,7 @@ const AboutMovie = (props) => {
 				setActors(data);
 			});
 		
-	}, []);
+	}, [urlSegment]);
 
 	useEffect(() => {
 		fetch(
@@ -181,25 +182,25 @@ const AboutMovie = (props) => {
 			window.scrollTo(0,0)
 	}, [urlSegment]);
 
-	let urlFond = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
+	let urlFond = `https://image.tmdb.org/t/p/w500/${serie.backdrop_path}`;
 
-	let urlPoster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+	let urlPoster = `https://image.tmdb.org/t/p/w500/${serie.poster_path}`;
 	return (
 		<AboutMovieStyled imageFond={urlFond} imagePoster={urlPoster}>
 			<div className="container">
 				<div className="header">
-					<h1>{movie.title}</h1>
-					<p>{movie.tagline}</p>
+					<h1>{serie.name}</h1>
+					<p>{serie.tagline}</p>
 					<br />
 					<div>
 						<span>
-							<i class="fas fa-calendar-day"></i> : {movie.release_date}
+							<i class="fas fa-calendar-day"></i> : {serie.first_air_date}
 						</span>{" "}
 						<span>
-							<i class="fas fa-users"></i> : {movie.popularity}{" "}
+							<i class="fas fa-users"></i> : {serie.popularity}{" "}
 						</span>
 					</div>
-					<a href={movie.homepage} rel="noreferrer" target="_blank">
+					<a href={serie.homepage} rel="noreferrer" target="_blank">
 						Visitez le site
 					</a>
 
@@ -212,8 +213,8 @@ const AboutMovie = (props) => {
 				<div className="film-poster"></div>
 				<div className="more-info">
 					<div className="categorie">
-						{movie.genres ? (
-							movie.genres.map((genre) => {
+						{serie.genres ? (
+							serie.genres.map((genre) => {
 								return <Button color="white">{genre.name}</Button>;
 							})
 						) : (
@@ -222,14 +223,56 @@ const AboutMovie = (props) => {
 					</div>
 					<div className="other-info">						
 						<div>
-							<div className="status">Status: {movie.status}</div>
-							<div className="time">Durée : {movie.runtime} min</div>
+							<div className="status">Status: {serie.status}</div>
+							<div className="time">Durée par épisode : {serie.episode_run_time} min</div>
+						</div>
+                        <div>
+							<div className="seasons">Total de saisons: {serie.number_of_seasons}</div>
+							<div className="epissode">Total d'épisodes : {serie.number_of_episodes}</div>
 						</div>
 					</div>
 				</div>
 				<div className="synopsis">
 					<TitleSection>Synopsis</TitleSection>
-					<p>{movie.overview}</p>
+					<p>{serie.overview}</p>
+				</div>
+
+				<div className="actors">
+					<TitleSection>Saisons</TitleSection>
+					<div className="actors-container">
+						{serie.seasons ? (
+							serie.seasons.map((season) => {
+								return (
+									<CardSerie 
+										urlImage={season.poster_path}
+										name={season.name}
+										air_date={season.air_date}
+										episode_count={season.episode_count}
+									/>
+								);
+							})
+						) : (
+							<p>Patientez</p>
+						)}
+					</div>
+				</div>
+
+                <div className="actors">
+					<TitleSection>Créer par</TitleSection>
+					<div className="actors-container">
+						{serie.created_by ? (
+							serie.created_by.map((creator) => {
+								return (
+									<CardActor
+										urlImage={creator.profile_path}
+										name={creator.name}										
+									/>
+								);
+							})
+						) : (
+							<p>Patientez</p>
+						)}
+					</div>
 				</div>
 
 				<div className="actors">
@@ -261,12 +304,14 @@ const AboutMovie = (props) => {
 								{similar.results.map((movie) => {
 									return (
 										<CardMovie
-											urlImage={movie.poster_path}
-											key={movie.id}
-											date={movie.release_date}
-											type="movie"
-											id={movie.id}>
-											{movie.title}
+										popularity={movie.popularity}
+										vote_average={movie.vote_average}
+										urlImage={movie.poster_path}
+										key={movie.id}
+										date={movie.release_date}
+										type="tv"
+										id={movie.id}>
+											{movie.name}
 										</CardMovie>
 									);
 								})}
@@ -281,4 +326,4 @@ const AboutMovie = (props) => {
 	);
 };
 
-export default AboutMovie;
+export default AboutSerie;

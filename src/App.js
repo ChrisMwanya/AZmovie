@@ -6,7 +6,8 @@ import styled from "styled-components";
 import Footer from "./components/footer/footer";
 import Movie from "./components/pages/movie";
 import Home from "./components/pages/home";
-import AboutMovie from "./components/pages/aboutmovie";
+import AboutMovie from "./components/pages/abouts/aboutmovie";
+import AboutSerie from "./components/pages/abouts/aboutserie";
 import SearchPage from "./components/pages/searchpage"
 
 const MainWrapper = styled.div`
@@ -36,7 +37,7 @@ function App() {
 					<Route path="/searchpage" render={()=> <SearchPage valueInput={searchedValue} /> } />
 					<Route exact path="/movie" component={Movie} />	
 					<Route path="/movie/:id" render={({match}) => <AboutMovie match={match}/>}	/>	
-					<Route path="/tv/:id" render={({match}) => <AboutMovie match={match}/>}	/>			
+					<Route path="/tv/:id" render={({match}) => <AboutSerie match={match}/>}	/>			
 				</Switch>
 				{location.pathname !== "/" && <Footer />}				
 		</MainWrapper>

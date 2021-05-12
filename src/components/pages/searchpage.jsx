@@ -112,10 +112,14 @@ const SearchPage = (props) => {
 										console.log(item);
 										return (
 											<CardMovie
-												urlImage={item.poster_path}
-												key={item.id}
-												date={item.release_date}>
-												{item.title}
+											popularity={item.popularity}
+											vote_average={item.vote_average}
+											urlImage={item.poster_path}
+											key={item.id}
+											date={item.release_date}
+											type="tv"
+											id={item.id}>
+												{item.name}
 											</CardMovie>
 										);
 								  })
