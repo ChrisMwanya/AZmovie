@@ -28,8 +28,8 @@ const SectionLatestSeries = () => {
 			
 				let dataMapped = results
 					.slice(0, 8)
-					.map(({ id, title, release_date, poster_path }) => {
-						return { id, title, release_date, poster_path };
+					.map(({ id, name, release_date, poster_path,popularity,vote_average  }) => {
+						return { id, name, release_date, poster_path,popularity,vote_average  };
 					});
 				setLastestMovies(dataMapped);
 			});
@@ -43,12 +43,14 @@ const SectionLatestSeries = () => {
 				{latestMovies.map((movie) => {
 					return (
 						<CardMovie
-							urlImage={movie.poster_path}
-							key={movie.id}
-							date={movie.release_date}
-							type="tv"
-							id={movie.id}>
-							{movie.title}
+						popularity={movie.popularity}
+						vote_average={movie.vote_average}
+						urlImage={movie.poster_path}
+						key={movie.id}
+						date={movie.release_date}
+						type="movie"
+						id={movie.id}>
+							{movie.name}
 						</CardMovie>
 					);
 				})}

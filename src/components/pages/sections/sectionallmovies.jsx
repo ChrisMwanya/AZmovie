@@ -32,8 +32,8 @@ const SectionAllMovies= () => {
 			.then(({ results }) => {
 				console.log(results);
 				let dataMapped = results
-					.map(({ id, title, release_date, poster_path }) => {
-						return { id, title, release_date, poster_path };
+					.map(({ id, title, release_date, poster_path,popularity,vote_average  }) => {
+						return { id, title, release_date, poster_path,popularity,vote_average  };
 					});
 				setMovies(dataMapped);
 			});
