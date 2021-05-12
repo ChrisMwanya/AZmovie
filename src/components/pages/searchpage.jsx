@@ -15,10 +15,11 @@ const SearchPageStyled = styled.div`
 		flex-wrap: wrap;
 	}
 
-    h1 {
-        font-size:3rem;
-        color: ${({ theme }) => theme.colors.textWhite};
-    }
+	h1 {
+		font-size: 3rem;
+		color: ${({ theme }) => theme.colors.textWhite};
+		font-style: italic;
+	}
 
 	.btn-container {
 		text-align: left;
@@ -32,10 +33,9 @@ const Container = styled.div`
 `;
 
 const SearchPage = (props) => {
-    
 	const [resultMovie, setResultMovie] = useState({});
 	const [resultSeries, setResultSeries] = useState({});
-    const [toggle,setToggle] = useState(true)
+	const [toggle, setToggle] = useState(true);
 
 	useEffect(() => {
 		fetch(
@@ -45,7 +45,6 @@ const SearchPage = (props) => {
 				return response.json();
 			})
 			.then((data) => {
-				
 				setResultMovie(data);
 			});
 	}, [resultMovie]);
@@ -57,25 +56,29 @@ const SearchPage = (props) => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {				
+			.then((data) => {
 				setResultSeries(data);
 			});
 	}, [resultSeries]);
 
-    const handleClickMovie= () =>{
-        setToggle(true)
-    }
-    const handleClickSerie= () =>{
-        setToggle(false)
-    }
+	const handleClickMovie = () => {
+		setToggle(true);
+	};
+	const handleClickSerie = () => {
+		setToggle(false);
+	};
 
 	return (
 		<Container>
 			<SearchPageStyled>
-                <h1>Resultats de votre recherche:  {props.valueInput}</h1>
+				<h1>Resultats de votre recherche: {props.valueInput}</h1>
 				<div className="btn-container">
-					<Button onClick={handleClickMovie} size="1rem">Films</Button>
-					<Button onClick={handleClickSerie} size="1rem">Series</Button>
+					<Button onClick={handleClickMovie} size="1rem">
+						Films
+					</Button>
+					<Button onClick={handleClickSerie} size="1rem">
+						Series
+					</Button>
 				</div>
 				{toggle ? (
 					<>
@@ -86,9 +89,13 @@ const SearchPage = (props) => {
 										console.log(item);
 										return (
 											<CardMovie
+												popularity={item.popularity}
+												vote_average={item.vote_average}
 												urlImage={item.poster_path}
 												key={item.id}
-												date={item.release_date}>
+												date={item.release_date}
+												type="movie"
+												id={item.id}>
 												{item.title}
 											</CardMovie>
 										);

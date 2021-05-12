@@ -6,7 +6,7 @@ const CardStyled = styled.div`
 	width: 10vw;	
 	border-radius: 15px; 
 	height: 30vh;
-	background: url("${(props) => (props.urlImage ? props.urlImage : "")}"),no-repeat;
+	background: url("${(props) => (props.urlImage ? props.urlImage : profil)}"),no-repeat;
 	background-size: cover;
 	position: relative;
 	background-position: center;

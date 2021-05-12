@@ -1,6 +1,6 @@
-import styled from "styled-components";
-import {useState, useEffect} from "react"
+import styled from "styled-components"
 import {Link} from "react-router-dom"
+import {useState, useEffect} from 'react'
 
 const ContainerStyled= styled.div`
     display: flex;
@@ -49,10 +49,17 @@ const InputFieldsStyled = styled.input`
    
 `;
 
-const InputField = (props) => {     
+const InputField = (props) => {  
+    
+    const [inputValue,setInputValue] = useState()
+
+    const handleClik= () => {
+        setInputValue("")
+    }
+    
 	return (
 		<ContainerStyled>
-			<InputFieldsStyled type="text" placeholder="Recherche" onChange={props.onChange} /> <LinkStyled to="/SearchPage"><i class="fas fa-search"></i></LinkStyled>
+			<InputFieldsStyled value={inputValue} type="search" placeholder="Recherche" onChange={props.onChange} /> <LinkStyled onClick={handleClik} to="/SearchPage"><i class="fas fa-search"></i></LinkStyled>
         
 		</ContainerStyled>
 	);

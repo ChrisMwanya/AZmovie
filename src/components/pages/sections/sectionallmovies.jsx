@@ -51,9 +51,13 @@ const SectionAllMovies= () => {
 				{Movies.map((movie) => {
 					return (
 						<CardMovie
-							urlImage={movie.poster_path}
-							key={movie.id}
-							date={movie.release_date}>
+						popularity={movie.popularity}
+						vote_average={movie.vote_average}
+						urlImage={movie.poster_path}
+						key={movie.id}
+						date={movie.release_date}
+						type="movie"
+						id={movie.id}>
 							{movie.title}
 						</CardMovie>
 					);

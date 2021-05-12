@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Button from "../../buttons/button";
 import { Link } from "react-router-dom";
+import defaultImage from "../../images/logo.svg"
 
 const CardStyled = styled.div`
 	margin: 5px;
@@ -8,7 +9,7 @@ const CardStyled = styled.div`
 	border-radius: 15px;
 	position: relative;
 	height: 50vh;
-	background: url("${(props) => (props.urlImage ? props.urlImage : "")}");
+	background: url("${(props) => (props.urlImage ? props.urlImage : defaultImage)}");
 	background-size: cover;
 
 	&:hover {
@@ -46,7 +47,7 @@ const CardStyled = styled.div`
 
 	.button-container {
 		display: flex;
-		justify-content: space-between;
+		justify-content: center;
 	}
 	.info-hidden {
 		display: none;
@@ -70,6 +71,10 @@ const CardStyled = styled.div`
 			rgba(0, 0, 0, 0.9)
 		);
 	}
+	.more-infos{
+		display: flex;
+		justify-content: space-between;
+	}
 `;
 
 const CardMovie = (props) => {
@@ -79,11 +84,11 @@ const CardMovie = (props) => {
 			<div className="movie-info">
 				<p className="film-title">{props.children}</p>
 				<div className="info-hidden">
-					<p>
-						Durée :<span>{props.date}</span>
+					<p className="more-infos">						
+						<p><i class="fas fa-star"></i> {props.vote_average}</p>
+						<p><i class="fas fa-eye"></i>{props.popularity}</p>
 					</p>
-					<div className="button-container">
-						<Button type="type">Bande d'annonce </Button>
+					<div className="button-container">						
 						<Link to={`/${props.type}/${props.id}`}>							
 							<Button>Voir plus</Button>
 						</Link>

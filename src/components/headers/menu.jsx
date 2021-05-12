@@ -1,13 +1,15 @@
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 
-const LinkStyled = styled(Link)`
+const LinkStyled = styled(NavLink)`
 	color:${({ theme }) => theme.colors.textWhite};
 	font-family: 'Roboto', sans-serif;
 	font-size: 1rem;
 	text-transform: uppercase;
 	text-decoration:none;
+
+	
 `
 
 const MenuStyle = styled.ul`
@@ -22,9 +24,16 @@ const MenuStyle = styled.ul`
 		margin: 2px;
 	}
 
+	.active {
+		font-size: 1rem;
+		font-weight: bold;
+		color:${({ theme }) => theme.colors.textWhite};
+		border-bottom: 1px solid ${({ theme }) => theme.colors.secondMain};
+	}
+
 	.linkMenu:hover {
 		transition: all 0.6s ease;
-		border-left: 5px solid ${({ theme }) => theme.colors.textWhite};		
+		/* border-left: 5px solid ${({ theme }) => theme.colors.textWhite};		 */
 	}
 
 	.linkMenu:active {
