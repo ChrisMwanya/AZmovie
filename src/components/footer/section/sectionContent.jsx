@@ -1,6 +1,6 @@
 import styled from  'styled-components'
 
-const SectionContentStyled = styled.p`
+const SectionContentStyled = styled.div`
     color:${({ theme }) => theme.colors.textWhite};
     padding: 10px;
 `

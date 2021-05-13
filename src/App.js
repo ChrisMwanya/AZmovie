@@ -5,10 +5,12 @@ import NavBar from "./components/navbar";
 import styled from "styled-components";
 import Footer from "./components/footer/footer";
 import Movie from "./components/pages/movie";
+import Serie from "./components/pages/serie";
 import Home from "./components/pages/home";
 import AboutMovie from "./components/pages/abouts/aboutmovie";
 import AboutSerie from "./components/pages/abouts/aboutserie";
 import SearchPage from "./components/pages/searchpage"
+
 
 const MainWrapper = styled.div`
 	width: 100vw;
@@ -23,9 +25,7 @@ function App() {
 
     const searchResults = (e) => {
       setSearchedValue(e.target.value)    
-    }
-
-    console.log(searchedValue)
+    }    
 	const location = useLocation()
 	return (		
 		<MainWrapper>
@@ -36,6 +36,7 @@ function App() {
 					<Route path="/home" component={Home} />
 					<Route path="/searchpage" render={()=> <SearchPage valueInput={searchedValue} /> } />
 					<Route exact path="/movie" component={Movie} />	
+					<Route exact path="/series" component={Serie} />	
 					<Route path="/movie/:id" render={({match}) => <AboutMovie match={match}/>}	/>	
 					<Route path="/tv/:id" render={({match}) => <AboutSerie match={match}/>}	/>			
 				</Switch>

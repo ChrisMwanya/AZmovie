@@ -54,7 +54,7 @@ const InputField = (props) => {
     
 	return (
 		<ContainerStyled>
-			<InputFieldsStyled  type="search" placeholder="Recherche" onChange={props.onChange} /> <LinkStyled  to="/SearchPage"><i class="fas fa-search"></i></LinkStyled>
+			<InputFieldsStyled  type="search" placeholder="Recherche" onChange={props.onChange} /> <LinkStyled  to="/SearchPage"><i className="fas fa-search"></i></LinkStyled>
         
 		</ContainerStyled>
 	);

@@ -19,21 +19,21 @@ const CardContainerStyled = styled.div`
 
 
 
-const SectionAllMovies= () => {
+const SectionAllSeries= () => {
 
-    const [Movies, setMovies] = useState([]);
+    const [Series, setSeries] = useState([]);
 	useEffect(() => {
 		fetch(
-			"https://api.themoviedb.org/3/movie/popular?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&page=1"
+			"https://api.themoviedb.org/3/tv/popular?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&page=1"
 		)
 			.then((response) => response.json())
 			.then((data) => {
-				
+				console.log(data);
 				let dataMapped = data.results
 					.map(({ id, title, release_date, poster_path,popularity,vote_average  }) => {
 						return { id, title, release_date, poster_path,popularity,vote_average  };
 					});
-				setMovies(dataMapped);
+				setSeries(dataMapped);
 			});
 	}, []);
 
@@ -46,17 +46,17 @@ const SectionAllMovies= () => {
                 <Button>Populaire</Button>
             </div> */}
             <CardContainerStyled>
-				{Movies.map((movie) => {
+				{Series.map((serie) => {
 					return (
 						<CardMovie
-						popularity={movie.popularity}
-						vote_average={movie.vote_average}
-						urlImage={movie.poster_path}
-						key={movie.id}
-						date={movie.release_date}
-						type="movie"
-						id={movie.id}>
-							{movie.title}
+						popularity={serie.popularity}
+						vote_average={serie.vote_average}
+						urlImage={serie.poster_path}
+						key={serie.id}
+						date={serie.release_date}
+						type="tv"
+						id={serie.id}>
+							{serie.name}
 						</CardMovie>
 					);
 				})}
@@ -65,4 +65,4 @@ const SectionAllMovies= () => {
     )
 }
 
-export default SectionAllMovies
+export default SectionAllSeries

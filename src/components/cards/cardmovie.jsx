@@ -84,10 +84,10 @@ const CardMovie = (props) => {
 			<div className="movie-info">
 				<p className="film-title">{props.children}</p>
 				<div className="info-hidden">
-					<p className="more-infos">						
-						<p><i class="fas fa-star"></i> {props.vote_average}</p>
-						<p><i class="fas fa-eye"></i>{props.popularity}</p>
-					</p>
+					<div className="more-infos">						
+						<p><i className="fas fa-star"></i> {props.vote_average}</p>
+						<p><i className="fas fa-eye"></i>{props.popularity}</p>
+					</div>
 					<div className="button-container">						
 						<Link to={`/${props.type}/${props.id}`}>							
 							<Button>Voir plus</Button>

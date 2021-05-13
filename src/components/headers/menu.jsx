@@ -46,7 +46,7 @@ const Menu = () => {
 		<MenuStyle>
 			<li className="linkMenu"><LinkStyled to="/home">Accueil</LinkStyled></li>
 			<li className="linkMenu"><LinkStyled to="/movie">Films</LinkStyled></li>
-			{/* <li className="linkMenu"><LinkStyled >Séries</LinkStyled></li> */}
+			<li className="linkMenu"><LinkStyled to="/series" >Séries</LinkStyled></li>
 		</MenuStyle>
 	);
 };

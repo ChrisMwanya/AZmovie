@@ -2,7 +2,7 @@ import styled from "styled-components";
 import TitleSection from './sectiontitle'
 import SectionContent from "./sectionContent";
 
-const SectionFooterStyled = styled.section`
+const SectionFooterStyled = styled.div`
 	margin-right : 10px;
 	height: 30vh;
 `;
