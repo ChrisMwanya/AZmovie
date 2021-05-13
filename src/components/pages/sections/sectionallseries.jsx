@@ -30,8 +30,8 @@ const SectionAllSeries= () => {
 			.then((data) => {
 				console.log(data);
 				let dataMapped = data.results
-					.map(({ id, title, release_date, poster_path,popularity,vote_average  }) => {
-						return { id, title, release_date, poster_path,popularity,vote_average  };
+					.map(({ id, name, release_date, poster_path,popularity,vote_average  }) => {
+						return { id, name, release_date, poster_path,popularity,vote_average  };
 					});
 				setSeries(dataMapped);
 			});

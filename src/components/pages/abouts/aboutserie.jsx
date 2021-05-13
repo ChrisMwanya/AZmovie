@@ -300,7 +300,7 @@ const AboutSerie = (props) => {
 					</div>
 					<div className="slide-other">
 						{similar.results ? (
-							<Carousel itemsToShow={4} enableAutoPlay="true">
+							<Carousel itemsToShow={4}>
 								{similar.results.map((movie) => {
 									return (
 										<CardMovie

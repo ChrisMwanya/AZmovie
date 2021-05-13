@@ -19,8 +19,9 @@ const CardStyled = styled.div`
 		z-index: 9;
 
 		.movie-info {
+			padding: 10px;
 			transition: all 1s ease;
-			height: 50%;
+			height: 40%;
 			background: linear-gradient(
 				to bottom,
 				rgba(0, 0, 0, 0.8),
@@ -56,14 +57,14 @@ const CardStyled = styled.div`
 	.movie-info {
 		bottom: 0;
 		position: absolute;
-		padding: 20px;
+		padding: 10px 20px;
 		border-bottom-right-radius: 15px;
 		border-bottom-left-radius: 15px;
 		text-align: center;
 		font-size: 1rem;
 		width: 100%;
 		transition: all 1s ease;
-		height: 30%;
+		height: 20%;
 		color: ${({ theme }) => theme.colors.textWhite};
 		background: linear-gradient(
 			to bottom,
