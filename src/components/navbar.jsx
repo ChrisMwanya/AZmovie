@@ -6,11 +6,14 @@ import { Link } from "react-router-dom";
 
 
 const NavBarStyled = styled.div`
+	position: fixed;
+	top: 0;
+	z-index: 100;	
 	display: flex;
 	justify-content: space-between;
 	height: 7vh;
 	padding: 5px;
-	box-shadow: 2px 5px 10px grey;
+	/* box-shadow: 2px 2px 10px grey; */
 	background-color: ${({ theme }) => theme.colors.main};
 	width: 100%;
 	.menu-inputfield {

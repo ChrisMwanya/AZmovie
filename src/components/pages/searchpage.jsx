@@ -8,6 +8,7 @@ const SearchPageStyled = styled.div`
 	background: ${({ theme }) => theme.colors.main};
 	width: 100vw;
 	padding-left: 10vw;
+	margin-top: 2rem; 
 
 	.cards-container {
 		display: flex;

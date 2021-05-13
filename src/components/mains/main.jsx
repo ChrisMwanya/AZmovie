@@ -3,7 +3,7 @@ import styled from "styled-components";
 import SectionLatestSeries from "./sections/sectionlastestseries";
 
 const MainStyled = styled.main`
-
+	 margin-top: 1rem; 
 	width: 100%;	
 	background-color: ${({ theme }) => theme.colors.main};	
 	display:flex;
