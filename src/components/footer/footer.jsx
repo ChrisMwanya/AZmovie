@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import CategoriesList from "../categories/categories";
 import SectionCategorie from "./section/sectionCategorie";
 import SectionMenu from "./section/sectionmenu";
 import SectionSource from "./section/sectionsource";
@@ -21,12 +22,12 @@ const FooterStyled = styled.footer`
 const Footer = () => {
 	return (
 		<FooterStyled>
-			<div className="section">
-				<SectionCategorie />
+			<div className="section">				
 				<SectionMenu />
                 <SectionSource />
-                
+                <SectionCategorie />
 			</div>
+			
             <hr/>
             <p className="copyright">By MwanyaChristian</p>
             

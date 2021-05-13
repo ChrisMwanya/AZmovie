@@ -1,10 +1,11 @@
 import styled from "styled-components";
 import TitleSection from './sectiontitle'
 import SectionContent from "./sectionContent";
+import CategoriesList from "../../categories/categories";
 
 const SectionFooterStyled = styled.div`
 	margin-right : 10px;
-	height: 30vh;
+
 `;
 
 const SectionCategorie = () => {
@@ -21,6 +22,7 @@ const SectionCategorie = () => {
                 <li>Drama</li>
                 <li>Documenataire</li>
 			</ul>
+			{/* <CategoriesList /> */}
 		</SectionContent>
 	</SectionFooterStyled>
     )

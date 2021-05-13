@@ -8,6 +8,7 @@ import Button from "./../buttons/button";
 import Logo from "../logo";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import CategoriesList from "../categories/categories";
 const HeaderStyled = styled.div`
 	position: relative;
 	width: 100vw;
@@ -136,7 +137,7 @@ const Header = () => {
 					</Link>
 				</div>
 				<div>
-					<ul>
+					{/* <ul>
 						<li>Drame</li>
 						<li>Action</li>
 						<li>Horreur</li>
@@ -145,7 +146,8 @@ const Header = () => {
 						<li>Guerre</li>
 						<li>Animation</li>
 						<li>Documentaire</li>
-					</ul>
+					</ul> */}
+					<CategoriesList/>
 				</div>
 			</TextStyled>
 		</>
