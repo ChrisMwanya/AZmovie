@@ -9,6 +9,18 @@ import Logo from "../logo";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import CategoriesList from "../categories/categories";
+import Loader from "../loader/loader";
+
+const StyledHeaderLoad = styled.div`
+	position: relative;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-around;
+	align-items: center;
+	background: ${({ theme }) => theme.colors.main}
+`;
 const HeaderStyled = styled.div`
 	position: relative;
 	width: 100vw;
@@ -17,14 +29,14 @@ const HeaderStyled = styled.div`
 	flex-direction: column;
 	justify-content: space-around;
 	align-items: center;
-	background: linear-gradient(to bottom, rgba(0, 0, 0, .2), rgba(0, 0, 0, 1)),
-		url("${({ imagefond }) => imagefond}") no-repeat;
+	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)),
+		url("${({ imagefond }) => (imagefond ? imagefond : "#111")}") no-repeat;
 	background-size: cover;
 `;
 
 const TextStyled = styled.div`
 	background: none;
-	position:absolute;
+	position: absolute;
 	width: 100vw;
 	height: 100vh;
 	display: flex;
@@ -85,6 +97,7 @@ const TextStyled = styled.div`
 
 const Header = () => {
 	const [movie, setMovie] = useState([]);
+	const [loader, setLoader] = useState(true);
 
 	useEffect(() => {
 		fetch(
@@ -92,52 +105,62 @@ const Header = () => {
 		)
 			.then((response) => response.json())
 			.then(({ results }) => {
-				let dataMapped = results
-					.map(({ id, title, release_date, poster_path, backdrop_path }) => {
+				let dataMapped = results.map(
+					({ id, title, release_date, poster_path, backdrop_path }) => {
 						return { id, title, release_date, poster_path, backdrop_path };
-					});
+					}
+				);
 				setMovie(dataMapped);
+				setLoader(false);
 			});
 	}, []);
 
 	return (
 		<>
-			<Slide easing="ease" arrows={false} autoplay={true}>
-				{movie.map(({ backdrop_path }) => {
-					return (
-						<HeaderStyled
-							imagefond={`https://image.tmdb.org/t/p/original${backdrop_path}`}></HeaderStyled>
-					);
-				})}
-			</Slide>
+			{loader ? (
+				<StyledHeaderLoad>
+					<Loader />
+				</StyledHeaderLoad>
+			) : (
+				<>
+					<Slide easing="ease" arrows={false} autoplay={true}>
+						{movie.map(({ backdrop_path }) => {
+							return (
+								<HeaderStyled
+									imagefond={`https://image.tmdb.org/t/p/original${backdrop_path}`}></HeaderStyled>
+							);
+						})}
+					</Slide>
 
-			<TextStyled>
-				<div className="logo">
-					<Logo width="100%" height="10vh" />
-				</div>
+					<TextStyled>
+						<div className="logo">
+							<Logo width="100%" height="10vh" />
+						</div>
 
-				<div className="text-container welcome-text">
-					<div className="title">
-						<Title>
-							TOUS VOS FILMS ET SERIES DE <span className="span">A-Z</span>
-						</Title>
-					</div>
-					<div className="welcome-text">
-						<WelcomeText>
-							La plateforme qui vous offres toutes les infos sur vos films de A
-							à Z
-						</WelcomeText>
-					</div>
-				</div>
-				<div className="btn-container">
-					<Link to="/Home">
-						<Button color={({ theme }) => theme.colors.textWhite} size="1.2rem">
-							Démarrer
-						</Button>
-					</Link>
-				</div>
-				<div>
-					{/* <ul>
+						<div className="text-container welcome-text">
+							<div className="title">
+								<Title>
+									TOUS VOS FILMS ET SERIES DE <span className="span">A-Z</span>
+								</Title>
+							</div>
+							<div className="welcome-text">
+								<WelcomeText>
+									La plateforme qui vous offres toutes les infos sur vos films
+									de A à Z
+								</WelcomeText>
+							</div>
+						</div>
+						<div className="btn-container">
+							<Link to="/Home">
+								<Button
+									color={({ theme }) => theme.colors.textWhite}
+									size="1.2rem">
+									Démarrer
+								</Button>
+							</Link>
+						</div>
+						<div>
+							{/* <ul>
 						<li>Drame</li>
 						<li>Action</li>
 						<li>Horreur</li>
@@ -147,9 +170,11 @@ const Header = () => {
 						<li>Animation</li>
 						<li>Documentaire</li>
 					</ul> */}
-					<CategoriesList/>
-				</div>
-			</TextStyled>
+							<CategoriesList />
+						</div>
+					</TextStyled>
+				</>
+			)}
 		</>
 	);
 };
