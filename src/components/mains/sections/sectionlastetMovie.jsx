@@ -2,6 +2,7 @@ import TitleSection from "../titleSection/titlesection";
 import CardMovie from "../../cards/cardmovie";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Loader from "../../loader/loader";
 
 const SectionStyled = styled.section`
 	width: 100vw;
@@ -19,6 +20,7 @@ const CardContainerStyled = styled.div`
 
 const SectionLatestMovie = () => {
 	const [latestMovies, setLastestMovies] = useState([]);
+	const [loader, setLoader] = useState(true);
 	useEffect(() => {
 		fetch(
 			"https://api.themoviedb.org/3/movie/now_playing?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&page=1"
@@ -28,33 +30,53 @@ const SectionLatestMovie = () => {
 				console.log(results);
 				let dataMapped = results
 					.slice(0, 8)
-					.map(({ id, title, release_date, poster_path,popularity,vote_average }) => {
-						return { id, title, release_date, poster_path,popularity,vote_average };
-					});
+					.map(
+						({
+							id,
+							title,
+							release_date,
+							poster_path,
+							popularity,
+							vote_average,
+						}) => {
+							return {
+								id,
+								title,
+								release_date,
+								poster_path,
+								popularity,
+								vote_average,
+							};
+						}
+					);
 				setLastestMovies(dataMapped);
+				setLoader(false);
 			});
 	}, []);
 
 	return (
 		<SectionStyled>
 			<div>
-				{/* <TitleSection>Film du Moment</TitleSection> */}
-				<CardContainerStyled>
-					{latestMovies.map((movie) => {
-						return (
-							<CardMovie
-								popularity={movie.popularity}
-								vote_average={movie.vote_average}
-								urlImage={movie.poster_path}
-								key={movie.id}
-								date={movie.release_date}
-								type="movie"
-								id={movie.id}>
-								{movie.title}
-							</CardMovie>
-						);
-					})}
-				</CardContainerStyled>
+				{loader ? (
+					<Loader />
+				) : (
+					<CardContainerStyled>
+						{latestMovies.map((movie) => {
+							return (
+								<CardMovie
+									popularity={movie.popularity}
+									vote_average={movie.vote_average}
+									urlImage={movie.poster_path}
+									key={movie.id}
+									date={movie.release_date}
+									type="movie"
+									id={movie.id}>
+									{movie.title}
+								</CardMovie>
+							);
+						})}
+					</CardContainerStyled>
+				)}
 			</div>
 		</SectionStyled>
 	);

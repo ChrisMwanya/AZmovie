@@ -2,6 +2,7 @@ import TitleSection from "../titleSection/titlesection";
 import CardMovie from "../../cards/cardmovie";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
+import Loader from "../../loader/loader";
 
 const SectionStyled = styled.section`
 	width: 100vw;
@@ -19,6 +20,7 @@ const CardContainerStyled = styled.div`
 
 const SectionLatestSeries = () => {
 	const [latestMovies, setLastestMovies] = useState([]);
+	const [loader,setLoader] = useState(true)
 	useEffect(() => {
 		fetch(
 			"https://api.themoviedb.org/3/tv/popular?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&page=1"
@@ -32,6 +34,7 @@ const SectionLatestSeries = () => {
 						return { id, name, release_date, poster_path,popularity,vote_average  };
 					});
 				setLastestMovies(dataMapped);
+				setLoader(false)
 			});
 	}, []);
 
@@ -39,7 +42,8 @@ const SectionLatestSeries = () => {
 		<SectionStyled>
 			<div>
 			{/* <TitleSection>Film du Moment</TitleSection> */}
-			<CardContainerStyled>
+			{loader ?(<Loader/>):(
+				<CardContainerStyled>
 				{latestMovies.map((movie) => {
 					return (
 						<CardMovie
@@ -55,6 +59,8 @@ const SectionLatestSeries = () => {
 					);
 				})}
 			</CardContainerStyled>
+			)}
+			
 			</div>
 		</SectionStyled>
 	);

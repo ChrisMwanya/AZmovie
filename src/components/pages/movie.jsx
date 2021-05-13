@@ -1,6 +1,7 @@
 import ComingSoon from "./sections/comingsoon"
 import styled from "styled-components";
 import SectionAllMovies from "./sections/sectionallmovies";
+import CategoriesList from "../categories/categories";
 
 
 const PageMovie = styled.div`
@@ -12,9 +13,9 @@ const PageMovie = styled.div`
 
 const Movie = () =>{
     return (
-        <PageMovie>            
-            <SectionAllMovies />
-            
+        <PageMovie>    
+            <CategoriesList/>        
+            <SectionAllMovies />            
         </PageMovie>
     )
 }

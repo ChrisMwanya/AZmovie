@@ -6,6 +6,11 @@ const StyledLoader = styled.div`
 	align-items: center;
     background:transparent;
 
+
+p{
+	color: ${({ theme }) => theme.colors.textWhite};
+	font-size: 1rem;
+}
 	@keyframes ldio-y1m1h6fjvff {
 		0% {
 			transform: rotate(0);
@@ -80,6 +85,8 @@ const StyledLoader = styled.div`
 const Loader = () => {
 	return (
 		<StyledLoader>
+			<div>
+				<p>Chargement...</p>
 			<div className="loadingio-spinner-dual-ring-wzw14euopql">
 				<div className="ldio-y1m1h6fjvff">
 					<div></div>
@@ -88,6 +95,8 @@ const Loader = () => {
 					</div>
 				</div>
 			</div>
+			</div>
+			
 		</StyledLoader>
 	);
 };
