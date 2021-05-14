@@ -8,7 +8,6 @@ import Button from "./../buttons/button";
 import Logo from "../logo";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import CategoriesList from "../categories/categories";
 import Loader from "../loader/loader";
 
 const StyledHeaderLoad = styled.div`
@@ -126,7 +125,7 @@ const Header = () => {
 					<Slide easing="ease" arrows={false} autoplay={true}>
 						{movie.map(({ backdrop_path }) => {
 							return (
-								<HeaderStyled
+								<HeaderStyled key={backdrop_path}
 									imagefond={`https://image.tmdb.org/t/p/original${backdrop_path}`}></HeaderStyled>
 							);
 						})}
@@ -159,19 +158,7 @@ const Header = () => {
 								</Button>
 							</Link>
 						</div>
-						<div>
-							{/* <ul>
-						<li>Drame</li>
-						<li>Action</li>
-						<li>Horreur</li>
-						<li>Comedi</li>
-						<li>Fiction</li>
-						<li>Guerre</li>
-						<li>Animation</li>
-						<li>Documentaire</li>
-					</ul> */}
-							<CategoriesList />
-						</div>
+			
 					</TextStyled>
 				</>
 			)}

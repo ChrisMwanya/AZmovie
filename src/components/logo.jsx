@@ -3,7 +3,7 @@ import styled from 'styled-components'
 
 const ImageContainer =  styled.div`
     width: ${(props) => props.width? props.width : "70px"};
-    height: 15vh;
+    height: 5vh;
     
     .image{
         display:bloc;

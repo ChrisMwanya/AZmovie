@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import Button from "../buttons/button";
 
+
 const StyledCategorie = styled.ul`
 	display: flex;
     flex-direction: ${(props) => props.flex?props.flex: 'row'};
@@ -16,7 +17,7 @@ const CategoriesList = (props) => {
 
 	useEffect(() => {
 		fetch(
-			"https://api.themoviedb.org/3/genre/movie/list?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr"
+			`https://api.themoviedb.org/3/genre/${props.type}/list?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr`
 		)
 			.then((response) => {
 				return response.json();
@@ -27,10 +28,12 @@ const CategoriesList = (props) => {
 	});
 	return (
 		<StyledCategorie flex={props.flex}>
-            <Button size=".6rem">Toutes</Button>
-			{categories.genres ? (
+			
+			<Button onClick={props.change} size=".6rem">Toutes</Button>
+           
+			{categories.genres ? (				
 				categories.genres.map((category) => {
-					return <li key={category.id}><Button size=".6rem">{category.name}</Button></li>;
+					return <li key={category.id}><Button onClick={()=> props.onClick(category.id)} size=".6rem">{category.name}</Button></li>;
 				})
 			) : (
 				<p>Chargement...</p>

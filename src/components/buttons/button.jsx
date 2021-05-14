@@ -25,14 +25,16 @@ const ButtonStyled = styled.button`
 		background-color: ${({ theme }) => theme.colors.textWhite};
 		border: 1px solid ${({ theme }) => theme.colors.secondMain};
 	}
-	&:active {
+	&:active,&:focus {
 		transition: all 0.8s ease;
 		transform: scale(1.05);
 		outline: none;
 		color: ${({ theme }) => theme.colors.secondMain};
 		background-color: ${({ theme }) => theme.colors.textWhite};
-		border: 3px solid ${({ theme }) => theme.colors.secondMain};
+		border: 1px solid ${({ theme }) => theme.colors.secondMain};
 	}
+
+	
 `;
 const Button = (props) => {
 	return (

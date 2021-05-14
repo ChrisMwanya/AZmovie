@@ -1,6 +1,7 @@
-import ComingSoon from "./sections/comingsoon"
+
 import styled from "styled-components";
 import SectionAllSeries from "./sections/sectionallseries";
+import CategoriesList from "../categories/categories";
 
 
 const PageSerie = styled.div`
@@ -12,7 +13,8 @@ const PageSerie = styled.div`
 
 const Serie = () =>{
     return (
-        <PageSerie>            
+        <PageSerie> 
+            <CategoriesList type="tv"/>           
             <SectionAllSeries />
         </PageSerie>
     )
