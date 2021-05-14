@@ -2,6 +2,8 @@
 import styled from "styled-components";
 import SectionAllSeries from "./sections/sectionallseries";
 import CategoriesList from "../categories/categories";
+import { useState} from 'react'
+import SeriesbyCategory from "./sections/seriesbycategory";
 
 
 const PageSerie = styled.div`
@@ -12,10 +14,21 @@ const PageSerie = styled.div`
 `
 
 const Serie = () =>{
+
+    const [idCategory,setCategory] = useState()
+    const [showCategory,setShowCategory] = useState(false);
+    const handleClick = (id) =>{
+        setCategory(id)
+        setShowCategory(true)       
+    }
+    const change = (e) =>{
+        e.preventDefault();
+        setShowCategory(false)
+    } 
     return (
         <PageSerie> 
-            <CategoriesList type="tv"/>           
-            <SectionAllSeries />
+            <CategoriesList type="tv"  change={change} onClick={handleClick}/>           
+            {showCategory ? <SeriesbyCategory id={idCategory}/>  : <SectionAllSeries />}
         </PageSerie>
     )
 }
