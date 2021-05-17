@@ -3,12 +3,13 @@ import { useState, useEffect } from "react";
 import CardMovie from "../../components/cards/cardmovie";
 import TitleSection from "../mains/titleSection/titlesection";
 import Button from "./../buttons/button";
+import Pagination from "../pagination/pagination";
 
 const SearchPageStyled = styled.div`
 	background: ${({ theme }) => theme.colors.main};
 	width: 100vw;
 	padding-left: 10vw;
-	margin-top: 2rem; 
+	margin-top: 2.4rem; 
 
 	.cards-container {
 		display: flex;
@@ -37,38 +38,67 @@ const SearchPage = (props) => {
 	const [moviesRequestResult, setMoviesRequestResult] = useState({});
 	const [tvShowRequestResult, setTvShowRequestResult] = useState({});
 	const [toggle, setToggle] = useState(true);
+	const [actualPageMovie, setActualPageMovie] = useState(1);
+	const [totalPagesMovie, setTotalPagesMovie] = useState();
+	const [actualPageTvShow, setActualPageTvShow] = useState(1);
+	const [totalPagesTvShow, setTotalPagesTvShow] = useState();
+
 
 	useEffect(() => {
 		fetch(
-			`https://api.themoviedb.org/3/search/movie?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&query=${props.valueInput}&page=1&include_adult=false`
+			`https://api.themoviedb.org/3/search/movie?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&query=${props.valueInput}&page=${actualPageMovie}&include_adult=false`
 		)
 			.then((response) => {
 				return response.json();
 			})
 			.then((dataCollected) => {
 				setMoviesRequestResult(dataCollected);
+				setTotalPagesMovie(dataCollected.total_pages)
 			});
 			 // eslint-disable-next-line 
-	}, [moviesRequestResult]);
+	}, [moviesRequestResult,actualPageMovie]);
 
 	useEffect(() => {
 		fetch(
-			`https://api.themoviedb.org/3/search/tv?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&query=${props.valueInput}&page=1&include_adult=false`
+			`https://api.themoviedb.org/3/search/tv?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&query=${props.valueInput}&page=${actualPageTvShow}&include_adult=false`
 		)
 			.then((response) => {
 				return response.json();
 			})
 			.then((dataCollected) => {
 				setTvShowRequestResult(dataCollected);
+				setTotalPagesTvShow(dataCollected.total_pages);
 			});
 			 // eslint-disable-next-line 
-	}, [tvShowRequestResult]);
+	}, [tvShowRequestResult,actualPageMovie]);
 
 	const handleClickMovieButton = () => {
 		setToggle(true);
 	};
 	const handleClickTvShowButton = () => {
 		setToggle(false);
+	};
+
+	const handleClickNextPageMovie = () => {
+		if (actualPageMovie < totalPagesMovie) {
+			setActualPageMovie(actualPageMovie + 1);
+		}
+	};
+	const handleClickPrevPageMovie = () => {
+		if (actualPageMovie > 1) {
+			setActualPageMovie(actualPageMovie - 1);
+		}
+	};
+
+	const handleClickNextPageTvShow = () => {
+		if (actualPageTvShow < totalPagesTvShow) {
+			setActualPageTvShow(actualPageTvShow + 1);
+		}
+	};
+	const handleClickPrevPageTvShow = () => {
+		if (actualPageTvShow > 1) {
+			setActualPageTvShow(actualPageTvShow - 1);
+		}
 	};
 
 	return (
@@ -105,6 +135,12 @@ const SearchPage = (props) => {
 								  })
 								: "patientez"}
 						</div>
+						<Pagination
+						onClickNextPage={handleClickNextPageMovie}
+						onClickPrevPage={handleClickPrevPageMovie}
+						actualPage={actualPageMovie}
+						totalPages={totalPagesMovie}
+					/>
 					</>
 				) : (
 					<>
@@ -128,6 +164,12 @@ const SearchPage = (props) => {
 								  })
 								: "patientez"}
 						</div>
+						<Pagination
+						onClickNextPage={handleClickNextPageTvShow}
+						onClickPrevPage={handleClickPrevPageTvShow}
+						actualPage={actualPageTvShow}
+						totalPages={totalPagesTvShow}
+					/>
 					</>
 				)}
 			</SearchPageStyled>
