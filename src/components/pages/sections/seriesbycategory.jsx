@@ -2,6 +2,7 @@ import styled from "styled-components";
 import { useState, useEffect } from "react";
 import CardMovie from "../../cards/cardmovie";
 import Loader from "../../loader/loader";
+import Pagination from "../../pagination/pagination";
 
 const SectionStyled = styled.section`
 	margin-top: 1rem;
@@ -21,10 +22,12 @@ const CardContainerStyled = styled.div`
 const SeriesbyCategory = (props) => {
 	const [Series, setMovies] = useState([]);
 	const [loader, setLoader] = useState(true);
-	
+	const [actualPage, setActualPage] = useState(1);
+	const [totalPages, setTotalPages] = useState();
+
 	useEffect(() => {
 		fetch(
-			`https://api.themoviedb.org/3/discover/tv?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&sort_by=popularity.asc&include_adult=false&include_video=false&page=1&with_genres=${props.id}&with_watch_monetization_types=flatrate`
+			`https://api.themoviedb.org/3/discover/tv?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&sort_by=popularity.asc&include_adult=false&include_video=false&page=${actualPage}&with_genres=${props.id}&with_watch_monetization_types=flatrate`
 		)
 			.then((response) => response.json())
 			.then((data) => {
@@ -49,30 +52,50 @@ const SeriesbyCategory = (props) => {
 				);
 				setMovies(dataMapped);
 				setLoader(false);
+				setTotalPages(data.total_pages);
 			});
-	}, [props.id]);
+	}, [props.id, actualPage]);
+
+	const handleClickNextPage = () => {
+		if (actualPage < totalPages) {
+			setActualPage(actualPage + 1);
+		}
+	};
+	const handleClickPrevPage = () => {
+		if (actualPage > 1) {
+			setActualPage(actualPage - 1);
+		}
+	};
 
 	return (
 		<SectionStyled>
 			{loader ? (
 				<Loader />
 			) : (
-				<CardContainerStyled>
-					{Series.map((serie) => {
-						return (
-							<CardMovie
-								popularity={serie.popularity}
-								vote_average={serie.vote_average}
-								urlImage={serie.poster_path}
-								key={serie.id}
-								date={serie.release_date}
-								type="tv"
-								id={serie.id}>
-								{serie.name}
-							</CardMovie>
-						);
-					})}
-				</CardContainerStyled>
+				<div>
+					<CardContainerStyled>
+						{Series.map((serie) => {
+							return (
+								<CardMovie
+									popularity={serie.popularity}
+									vote_average={serie.vote_average}
+									urlImage={serie.poster_path}
+									key={serie.id}
+									date={serie.release_date}
+									type="tv"
+									id={serie.id}>
+									{serie.name}
+								</CardMovie>
+							);
+						})}
+					</CardContainerStyled>
+					<Pagination
+						onClickNextPage={handleClickNextPage}
+						onClickPrevPage={handleClickPrevPage}
+						actualPage={actualPage}
+						totalPages={totalPages}
+					/>
+				</div>
 			)}
 		</SectionStyled>
 	);
