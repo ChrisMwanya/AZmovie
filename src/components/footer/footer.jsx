@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import CategoriesList from "../categories/categories";
 import SectionCategorie from "./section/sectionCategorie";
 import SectionMenu from "./section/sectionmenu";
 import SectionSource from "./section/sectionsource";

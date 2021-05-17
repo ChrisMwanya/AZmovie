@@ -1,6 +1,6 @@
 import SectionLatestMovie from "./sections/sectionlastetMovie";
 import styled from "styled-components";
-import SectionLatestSeries from "./sections/sectionlastestseries";
+import SectionLatestTvShow from "./sections/sectionlastestseries";
 
 const MainStyled = styled.main`
 	 margin-top: 1rem; 
@@ -19,7 +19,7 @@ const Main = () => {
 		<MainStyled>
 			<div className="bloc">
 			<SectionLatestMovie />
-			<SectionLatestSeries />
+			<SectionLatestTvShow />
 			</div>
 		
 		</MainStyled>

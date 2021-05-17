@@ -1,4 +1,4 @@
-import TitleSection from "../titleSection/titlesection";
+
 import CardMovie from "../../cards/cardmovie";
 import { useState, useEffect } from "react";
 import styled from "styled-components";

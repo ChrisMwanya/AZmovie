@@ -14,7 +14,7 @@ const CardStyled = styled.div`
 
 	&:hover {
 		transition: all 0.3s ease;
-		transform: scale(1.05);
+		/* transform: scale(1.05); */
 		box-shadow: 4px 4px 20px ${({ theme }) => theme.colors.secondMain};
 		z-index: 9;
 

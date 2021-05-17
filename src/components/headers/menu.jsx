@@ -5,41 +5,38 @@ import {NavLink} from "react-router-dom";
 const LinkStyled = styled(NavLink)`
 	color:${({ theme }) => theme.colors.textWhite};
 	font-family: 'Roboto', sans-serif;
-	font-size: 1rem;
+	font-size: .9rem;
 	text-transform: uppercase;
 	text-decoration:none;
 
+	&:hover {
+		font-size: .8rem;
+		font-weight: bold;
+		color:${({ theme }) => theme.colors.textWhite};
+		border-bottom: 3px solid ${({ theme }) => theme.colors.textWhite};
+	}
 	
 `
 
 const MenuStyle = styled.ul`
 	display: flex;
 	justify-content: space-around;
-	width: 80%;
-
+	width: 100%;
 	color: ${({ theme }) => theme.colors.secondText};
+
 	.linkMenu {
 		border-left: 5px solid ${({ theme }) => theme.colors.main};	
-		padding: 10px;
-		margin: 2px;
+		padding: 10px 0;
+	
 	}
 
 	.active {
-		font-size: 1rem;
+		font-size: .8rem;
 		font-weight: bold;
 		color:${({ theme }) => theme.colors.textWhite};
 		border-bottom: 3px solid ${({ theme }) => theme.colors.textWhite};
 	}
 
-	.linkMenu:hover {
-		transition: all 0.6s ease;
-		/* border-left: 5px solid ${({ theme }) => theme.colors.textWhite};		 */
-	}
-
-	.linkMenu:active {
-		transition: all 0.6s ease;
-		border-left: 5px solid ${({ theme }) => theme.colors.secondMain};		
-	}
 `;
 const Menu = () => {
 	return (

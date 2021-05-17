@@ -1,6 +1,6 @@
 import styled from "styled-components"
 import {Link} from "react-router-dom"
-import {useState, useEffect} from 'react'
+
 
 const ContainerStyled= styled.div`
     display: flex;
@@ -21,15 +21,6 @@ const LinkStyled = styled(Link)`
     }
 `
 
-const UnrollContainerStyled = styled.div`
-	border: 1px solid white;
-	padding-right: 4rem;
-	text-align: right;
-	width: 30vw;
-	color: white;
-	background-color: ${({ theme }) => theme.colors.main};
-  
-`;
 
 const InputFieldsStyled = styled.input`
     position: relative;

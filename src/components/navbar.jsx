@@ -19,7 +19,7 @@ const NavBarStyled = styled.div`
 	.menu-inputfield {
 		display: flex;
 		justify-content: space-around;
-		width: 90%;
+		width: 70%;
 	}
 `;
 

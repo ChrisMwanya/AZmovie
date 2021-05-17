@@ -1,8 +1,8 @@
-import ComingSoon from "./sections/comingsoon"
+
 import styled from "styled-components";
 import SectionAllMovies from "./sections/sectionallmovies";
 import CategoriesList from "../categories/categories";
-import {useState, useEffect} from 'react'
+import {useState} from 'react'
 import MoviesbyCategory from "./sections/moviebycategory";
 
 
@@ -16,25 +16,22 @@ const PageMovie = styled.div`
 
 const Movie = () =>{
 
-    const [idCategory,setCategory] = useState()
-    const [showCategory,setShowCategory] = useState(false);
-    const handleClick = (id) =>{
-        setCategory(id)
-        setShowCategory(true)       
+    const [idCategory,setIdCategory] = useState()
+    const [isMoviesDisplayedByCategory,setIsMoviesDisplayedByCategory] = useState(false);
+    const handleClick = (idCategory) =>{
+        setIdCategory(idCategory)
+        setIsMoviesDisplayedByCategory(true)       
     }
-    const change = (e) =>{
-        e.preventDefault();
-        setShowCategory(false)
+    const switchToAllMovies = () =>{    
+        setIsMoviesDisplayedByCategory(false)
     } 
 
    
 
     return (
-        <PageMovie>
-             
-            <CategoriesList type="movie" change={change} onClick={handleClick}/> 
-            {showCategory ? <MoviesbyCategory id={idCategory}/>  : <SectionAllMovies />}
-                  
+        <PageMovie>             
+            <CategoriesList type="movie" change={switchToAllMovies} onClick={handleClick}/> 
+            {isMoviesDisplayedByCategory ? <MoviesbyCategory id={idCategory}/>  : <SectionAllMovies />}
         </PageMovie>
     )
 }

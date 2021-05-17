@@ -34,8 +34,8 @@ const Container = styled.div`
 `;
 
 const SearchPage = (props) => {
-	const [resultMovie, setResultMovie] = useState({});
-	const [resultSeries, setResultSeries] = useState({});
+	const [moviesRequestResult, setMoviesRequestResult] = useState({});
+	const [tvShowRequestResult, setTvShowRequestResult] = useState({});
 	const [toggle, setToggle] = useState(true);
 
 	useEffect(() => {
@@ -45,10 +45,11 @@ const SearchPage = (props) => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {
-				setResultMovie(data);
+			.then((dataCollected) => {
+				setMoviesRequestResult(dataCollected);
 			});
-	}, [resultMovie]);
+			 // eslint-disable-next-line 
+	}, [moviesRequestResult]);
 
 	useEffect(() => {
 		fetch(
@@ -57,15 +58,16 @@ const SearchPage = (props) => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {
-				setResultSeries(data);
+			.then((dataCollected) => {
+				setTvShowRequestResult(dataCollected);
 			});
-	}, [resultSeries]);
+			 // eslint-disable-next-line 
+	}, [tvShowRequestResult]);
 
-	const handleClickMovie = () => {
+	const handleClickMovieButton = () => {
 		setToggle(true);
 	};
-	const handleClickSerie = () => {
+	const handleClickTvShowButton = () => {
 		setToggle(false);
 	};
 
@@ -74,10 +76,10 @@ const SearchPage = (props) => {
 			<SearchPageStyled>
 				<h1>Resultats de votre recherche: {props.valueInput}</h1>
 				<div className="btn-container">
-					<Button onClick={handleClickMovie} size="1rem">
+					<Button onClick={handleClickMovieButton} size="1rem">
 						Films
 					</Button>
-					<Button onClick={handleClickSerie} size="1rem">
+					<Button onClick={handleClickTvShowButton} size="1rem">
 						Series
 					</Button>
 				</div>
@@ -85,19 +87,19 @@ const SearchPage = (props) => {
 					<>
 						<TitleSection>Resultats Films</TitleSection>
 						<div className="cards-container ">
-							{resultMovie.results
-								? resultMovie.results.map((item) => {
-										console.log(item);
+							{moviesRequestResult.results
+								? moviesRequestResult.results.map((movie) => {
+										console.log(movie);
 										return (
 											<CardMovie
-												popularity={item.popularity}
-												vote_average={item.vote_average}
-												urlImage={item.poster_path}
-												key={item.id}
-												date={item.release_date}
+												popularity={movie.popularity}
+												vote_average={movie.vote_average}
+												urlImage={movie.poster_path}
+												key={movie.id}
+												date={movie.release_date}
 												type="movie"
-												id={item.id}>
-												{item.title}
+												id={movie.id}>
+												{movie.title}
 											</CardMovie>
 										);
 								  })
@@ -108,19 +110,19 @@ const SearchPage = (props) => {
 					<>
 						<TitleSection>Resultats Séries</TitleSection>
 						<div div className="cards-container ">
-							{resultSeries.results
-								? resultSeries.results.map((item) => {
-										console.log(item);
+							{tvShowRequestResult.results
+								? tvShowRequestResult.results.map((tvShow) => {
+										console.log(tvShow);
 										return (
 											<CardMovie
-											popularity={item.popularity}
-											vote_average={item.vote_average}
-											urlImage={item.poster_path}
-											key={item.id}
-											date={item.release_date}
+											popularity={tvShow.popularity}
+											vote_average={tvShow.vote_average}
+											urlImage={tvShow.poster_path}
+											key={tvShow.id}
+											date={tvShow.release_date}
 											type="tv"
-											id={item.id}>
-												{item.name}
+											id={tvShow.id}>
+												{tvShow.name}
 											</CardMovie>
 										);
 								  })

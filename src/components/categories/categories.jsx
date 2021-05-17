@@ -4,7 +4,11 @@ import Button from "../buttons/button";
 
 
 const StyledCategorie = styled.ul`
+	position:sticky;
+	top: 2.8rem;
+	z-index:2;
 	display: flex;
+	background:${({ theme }) => theme.colors.main};
     flex-direction: ${(props) => props.flex?props.flex: 'row'};
 	justify-content: center;
     align-items: center;

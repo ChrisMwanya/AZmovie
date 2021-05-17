@@ -10,7 +10,7 @@ import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Loader from "../loader/loader";
 
-const StyledHeaderLoad = styled.div`
+const StyledHeaderLoader = styled.div`
 	position: relative;
 	width: 100vw;
 	height: 100vh;
@@ -95,7 +95,7 @@ const TextStyled = styled.div`
 `;
 
 const Header = () => {
-	const [movie, setMovie] = useState([]);
+	const [movieList, setMovieList] = useState([]);
 	const [loader, setLoader] = useState(true);
 
 	useEffect(() => {
@@ -104,12 +104,12 @@ const Header = () => {
 		)
 			.then((response) => response.json())
 			.then(({ results }) => {
-				let dataMapped = results.map(
+				let newMovieList = results.map(
 					({ id, title, release_date, poster_path, backdrop_path }) => {
 						return { id, title, release_date, poster_path, backdrop_path };
 					}
 				);
-				setMovie(dataMapped);
+				setMovieList(newMovieList);
 				setLoader(false);
 			});
 	}, []);
@@ -117,13 +117,13 @@ const Header = () => {
 	return (
 		<>
 			{loader ? (
-				<StyledHeaderLoad>
+				<StyledHeaderLoader>
 					<Loader />
-				</StyledHeaderLoad>
+				</StyledHeaderLoader>
 			) : (
 				<>
 					<Slide easing="ease" arrows={false} autoplay={true}>
-						{movie.map(({ backdrop_path }) => {
+						{movieList.map(({ backdrop_path }) => {
 							return (
 								<HeaderStyled key={backdrop_path}
 									imagefond={`https://image.tmdb.org/t/p/original${backdrop_path}`}></HeaderStyled>
