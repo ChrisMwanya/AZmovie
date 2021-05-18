@@ -5,9 +5,9 @@ import Loader from "../../loader/loader";
 import Pagination from "../../pagination/pagination";
 
 const SectionStyled = styled.section`
+	
 	margin-top: 1rem;
-	width: 100%;
-
+	width: 100vw;
 	.buttons {
 		border-bottom: 2px solid ${({ theme }) => theme.colors.secondMain};
 	}

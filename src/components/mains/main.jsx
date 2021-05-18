@@ -3,10 +3,11 @@ import styled from "styled-components";
 import SectionLatestTvShow from "./sections/sectionlastestseries";
 
 const MainStyled = styled.main`
-	 margin-top: 1rem; 
-	width: 100%;	
-	background-color: ${({ theme }) => theme.colors.main};	
-	display:flex;
+	border: 3px solid red;
+	margin-top: 1rem;
+	width: 100%;
+	background-color: ${({ theme }) => theme.colors.main};
+	display: flex;
 	justify-content: center;
 	align-items: center;
 	.bloc {
@@ -18,10 +19,9 @@ const Main = () => {
 	return (
 		<MainStyled>
 			<div className="bloc">
-			<SectionLatestMovie />
-			<SectionLatestTvShow />
+				<SectionLatestMovie />
+				<SectionLatestTvShow />
 			</div>
-		
 		</MainStyled>
 	);
 };
