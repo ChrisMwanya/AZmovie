@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import Button from "./../buttons/button";
 import { Link } from "react-router-dom";
-import defaultImage from "../../images/logo.svg"
+import defaultImage from "../../images/logo.svg";
 
 const CardStyled = styled.div`
 	margin: 5px;
@@ -9,8 +9,9 @@ const CardStyled = styled.div`
 	border-radius: 15px;
 	position: relative;
 	height: 40vh;
-	background: url("${(props) => (props.urlImage ? props.urlImage : defaultImage)}");
+	background: url("${(props) =>props.urlImage ? props.urlImage : defaultImage}");
 	background-size: cover;
+	background-position: center;
 
 	&:hover {
 		transition: all 0.3s ease;
@@ -72,10 +73,71 @@ const CardStyled = styled.div`
 			rgba(0, 0, 0, 0.9)
 		);
 	}
-	.more-infos{
+	.more-infos {
 		display: flex;
 		justify-content: space-between;
 	}
+
+	@media only screen and (max-width: 1024px) {
+		& {
+			width: 40vw;
+			height: 50vh;
+		}
+
+
+		.film-title {
+			font-weight: bold;
+			font-size: 1.4rem;
+		}
+		.info-hidden {
+			transition: all 2s ease;
+			margin-top: 10px;
+			display: block;
+			text-align: left;
+			opacity: 1;
+		}
+		.movie-info {
+			padding: 10px;
+			transition: all 1s ease;
+			height: 25%;
+			background: linear-gradient(
+				to bottom,
+				rgba(0, 0, 0, 0.8),
+				rgba(0, 0, 0, 0.8)
+			);
+		}
+	}
+
+	@media only screen and (max-width: 420px) {
+		& {
+			width: 70vw;
+		}
+
+
+		.film-title {
+			font-weight: bold;
+			font-size: 1.4rem;
+		}
+		.info-hidden {
+			transition: all 2s ease;
+			margin-top: 10px;
+			display: block;
+			text-align: left;
+			opacity: 1;
+		}
+		.movie-info {
+			padding: 10px;
+			transition: all 1s ease;
+			height: 40%;
+			background: linear-gradient(
+				to bottom,
+				rgba(0, 0, 0, 0.8),
+				rgba(0, 0, 0, 0.8)
+			);
+		}
+	}
+
+	
 `;
 
 const CardMovie = (props) => {
@@ -85,12 +147,17 @@ const CardMovie = (props) => {
 			<div className="movie-info">
 				<p className="film-title">{props.children}</p>
 				<div className="info-hidden">
-					<div className="more-infos">						
-						<p><i className="fas fa-star"></i> {props.vote_average}</p>
-						<p><i className="fas fa-eye"></i>{props.popularity}</p>
+					<div className="more-infos">
+						<p>
+							<i className="fas fa-star"></i> {props.vote_average}
+						</p>
+						<p>
+							<i className="fas fa-eye"></i>
+							{props.popularity}
+						</p>
 					</div>
-					<div className="button-container">						
-						<Link to={`/${props.type}/${props.id}`}>							
+					<div className="button-container">
+						<Link to={`/${props.type}/${props.id}`}>
 							<Button>Voir plus</Button>
 						</Link>
 					</div>
