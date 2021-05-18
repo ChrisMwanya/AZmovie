@@ -84,7 +84,6 @@ const CardStyled = styled.div`
 			height: 50vh;
 		}
 
-
 		.film-title {
 			font-weight: bold;
 			font-size: 1.4rem;
