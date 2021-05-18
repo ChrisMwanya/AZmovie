@@ -162,7 +162,7 @@ const AboutMovie = (props) => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {
+			.then((data) => {				
 				setActors(data);
 			});
 		

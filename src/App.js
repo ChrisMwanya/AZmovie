@@ -40,7 +40,7 @@ function App() {
 					<Route path="/movie/:id" render={({match}) => <AboutMovie match={match}/>}	/>	
 					<Route path="/tv/:id" render={({match}) => <AboutSerie match={match}/>}	/>			
 				</Switch>
-				{location.pathname !== "/" && <Footer />}				
+				{/* {location.pathname !== "/" && <Footer />}				 */}
 		</MainWrapper>
 
 	);

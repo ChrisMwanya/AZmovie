@@ -41,7 +41,7 @@ const ButtonsContainerStyled = styled.div`
 			background: ${({ theme }) => theme.colors.secondMain};
 			color: ${({ theme }) => theme.colors.textWhite};
 			width: 9vw;
-			font-size: 0.7rem;
+			font-size: 0.9rem;
 		}
 	}
 
@@ -54,8 +54,8 @@ const ButtonsContainerStyled = styled.div`
 			border: 1px solid ${({ theme }) => theme.colors.textWhite};
 			background: ${({ theme }) => theme.colors.secondMain};
 			color: ${({ theme }) => theme.colors.textWhite};
-			width: 15vw;
-			font-size: 0.2rem;
+			width: 20vw;
+			font-size: 0.6rem;
 		}
 	}
 `;

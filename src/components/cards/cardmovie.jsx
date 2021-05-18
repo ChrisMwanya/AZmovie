@@ -80,8 +80,8 @@ const CardStyled = styled.div`
 
 	@media ${({ theme})=> theme.mediaQueries["bellow-1024"]}  {
 		& {
-			width: 40vw;
-			height: 50vh;
+			width: 20vw;
+			height: 30vh;
 		}
 
 		.film-title {
@@ -91,7 +91,7 @@ const CardStyled = styled.div`
 		.info-hidden {
 			transition: all 2s ease;
 			margin-top: 10px;
-			display: block;
+			display: none;
 			text-align: left;
 			opacity: 1;
 		}
@@ -109,31 +109,24 @@ const CardStyled = styled.div`
 
 	@media ${({ theme})=> theme.mediaQueries["bellow-768"]} {
 		& {
-			width: 50vw;
+			width: 24vw;
+			height: 25vh;
 		}
 
 
 		.film-title {
+			display:none;
 			font-weight: bold;
-			font-size: 1.4rem;
+			font-size: .5rem;
 		}
 		.info-hidden {
 			transition: all 2s ease;
 			margin-top: 10px;
-			display: block;
+			display: none;
 			text-align: left;
 			opacity: 1;
 		}
-		.movie-info {
-			padding: 10px;
-			transition: all 1s ease;
-			height: 40%;
-			background: linear-gradient(
-				to bottom,
-				rgba(0, 0, 0, 0.8),
-				rgba(0, 0, 0, 0.8)
-			);
-		}
+	
 	}
 
 	
