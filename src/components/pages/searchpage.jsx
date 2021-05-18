@@ -55,8 +55,8 @@ const SearchPage = (props) => {
 				setMoviesRequestResult(dataCollected);
 				setTotalPagesMovie(dataCollected.total_pages)
 			});
-			 // eslint-disable-next-line 
-	}, [moviesRequestResult,actualPageMovie]);
+			
+	}, [props.valueInput,actualPageMovie]);
 
 	useEffect(() => {
 		fetch(
@@ -69,8 +69,8 @@ const SearchPage = (props) => {
 				setTvShowRequestResult(dataCollected);
 				setTotalPagesTvShow(dataCollected.total_pages);
 			});
-			 // eslint-disable-next-line 
-	}, [tvShowRequestResult,actualPageMovie]);
+			 
+	}, [props.valueInput,actualPageTvShow]);
 
 	const handleClickMovieButton = () => {
 		setToggle(true);
