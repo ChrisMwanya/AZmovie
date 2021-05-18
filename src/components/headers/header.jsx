@@ -31,6 +31,7 @@ const HeaderStyled = styled.div`
 	background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)),
 		url("${({ imagefond }) => (imagefond ? imagefond : "#111")}") no-repeat;
 	background-size: cover;
+	background-position: center;
 `;
 
 const TextStyled = styled.div`

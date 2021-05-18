@@ -78,7 +78,7 @@ const CardStyled = styled.div`
 		justify-content: space-between;
 	}
 
-	@media only screen and (max-width: 1024px) {
+	@media ${({ theme})=> theme.mediaQueries["bellow-1024"]}  {
 		& {
 			width: 40vw;
 			height: 50vh;
@@ -108,9 +108,9 @@ const CardStyled = styled.div`
 		}
 	}
 
-	@media only screen and (max-width: 420px) {
+	@media ${({ theme})=> theme.mediaQueries["bellow-768"]} {
 		& {
-			width: 70vw;
+			width: 50vw;
 		}
 
 
