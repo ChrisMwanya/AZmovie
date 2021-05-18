@@ -8,7 +8,7 @@ const CardStyled = styled.div`
 	width: 20vw;
 	border-radius: 15px;
 	position: relative;
-	height: 50vh;
+	height: 40vh;
 	background: url("${(props) => (props.urlImage ? props.urlImage : defaultImage)}");
 	background-size: cover;
 
