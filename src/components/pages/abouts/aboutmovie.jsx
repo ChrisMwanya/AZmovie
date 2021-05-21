@@ -9,11 +9,12 @@ import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
 
 const AboutMovieStyled = styled.div`
+	padding: .9rem 10rem;
 	background: ${({ theme }) => theme.colors.main};
 	color: ${({ theme }) => theme.colors.textWhite};
 	display: flex;
 	justify-content: center;
-	padding: 0.9rem;
+	
 
 	.container {
 		width: 100vw;
@@ -70,9 +71,9 @@ const AboutMovieStyled = styled.div`
 		justify-content: space-between;
 		padding: 1rem;
 		position: absolute;
-		right: 0.8rem;
+		right: 6.8rem;
 		margin-top: -6rem;
-		width: 75.2%;
+		width: 60.7%;
 		height: 9vw;
 		background: linear-gradient(
 			to bottom,

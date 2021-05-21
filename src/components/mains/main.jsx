@@ -2,8 +2,7 @@ import SectionLatestMovie from "./sections/sectionlastetMovie";
 import styled from "styled-components";
 import SectionLatestTvShow from "./sections/sectionlastestseries";
 
-const MainStyled = styled.main`
-	border: 3px solid red;
+const MainStyled = styled.main`	
 	margin-top: 1rem;
 	width: 100%;
 	background-color: ${({ theme }) => theme.colors.main};

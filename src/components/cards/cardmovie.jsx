@@ -9,13 +9,13 @@ const CardStyled = styled.div`
 	border-radius: 15px;
 	position: relative;
 	height: 40vh;
-	background: url("${(props) =>props.urlImage ? props.urlImage : defaultImage}");
+	background: url("${(props) =>props.urlImage !=="" ? props.urlImage : defaultImage}");
 	background-size: cover;
 	background-position: center;
 
 	&:hover {
 		transition: all 0.3s ease;
-		/* transform: scale(1.05); */
+	    transform: scale(1.05); 
 		box-shadow: 4px 4px 20px ${({ theme }) => theme.colors.secondMain};
 		z-index: 9;
 

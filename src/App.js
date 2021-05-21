@@ -13,12 +13,11 @@ import SearchPage from "./components/pages/searchpage"
 
 
 const MainWrapper = styled.div`
-	border: 2px solid yellow;
-	/* padding: 3rem 5rem; */
+	
 	display: flex;
 	flex-direction: column;
 	justify-content: space-evenly;
-	/* overflow-x:hidden; */
+	overflow-x:hidden;
 `;
 function App() {
 
@@ -31,17 +30,17 @@ function App() {
 	return (		
 		<MainWrapper>
 						
-			{/* {location.pathname !== "/" && <NavBar onChange={searchResults} />}		 */}
+			{location.pathname !== "/" && <NavBar onChange={searchResults} />}		
 				<Switch>
 					<Route exact path="/" component={Start} />
 					<Route path="/home" component={Home} />
 					<Route path="/searchpage" render={()=> <SearchPage valueInput={valueToSearch} /> } />
-					{/* <Route exact path="/movie" component={Movie} />	
+					<Route exact path="/movie" component={Movie} />	
 					<Route exact path="/series" component={Serie} />	
 					<Route path="/movie/:id" render={({match}) => <AboutMovie match={match}/>}	/>	
-					<Route path="/tv/:id" render={({match}) => <AboutSerie match={match}/>}	/>			 */}
+					<Route path="/tv/:id" render={({match}) => <AboutSerie match={match}/>}	/>			
 				</Switch>
-				{/* {location.pathname !== "/" && <Footer />}				 */}
+				{location.pathname !== "/" && <Footer />}				
 		</MainWrapper>
 
 	);

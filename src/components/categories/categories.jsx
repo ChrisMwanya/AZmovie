@@ -4,8 +4,10 @@ import Button from "../buttons/button";
 
 const StyledCategorie = styled.ul`
 	position: sticky;
-	top: 3rem;
-	z-index: 2;
+	top: 2.7rem;
+	margin-left: 6.3rem;
+	margin-right: 6.7rem;	
+	z-index: 50;
 	display: flex;
 	background: ${({ theme }) => theme.colors.main};
 	flex-direction: ${(props) => (props.flex ? props.flex : "row")};

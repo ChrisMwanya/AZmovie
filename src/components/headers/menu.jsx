@@ -9,7 +9,7 @@ const LinkStyled = styled(NavLink)`
 	text-decoration: none;
 
 	&:hover {		
-		font-weight: bold;
+		transition: all 0.3s ease;
 		color: Red;
 		border-bottom: 3px solid ${({ theme }) => theme.colors.textWhite};
 	}
@@ -28,7 +28,8 @@ const MenuStyle = styled.ul`
 		padding: 10px 0;
 	}
 
-	.active {		
+	.active {	
+		transition: all 0.3s ease;	
 		font-weight: bold;
 		color: Red;
 		border-bottom: 3px solid ${({ theme }) => theme.colors.textWhite};

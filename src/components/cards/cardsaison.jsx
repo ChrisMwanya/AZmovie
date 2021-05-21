@@ -3,12 +3,13 @@ import defaultImage from "../../images/logo.svg"
 
 const CardStyled = styled.div`
 	margin: 5px;
-	width: 20vw;
+	width: 15vw;
 	border-radius: 15px;
 	position: relative;
-	height: 50vh;
+	height: 40vh;
 	background: url("${(props) => (props.urlImage ? props.urlImage : defaultImage)}");
 	background-size: cover;	
+	background-position: center;
 
 
 

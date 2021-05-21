@@ -9,9 +9,9 @@ import MoviesbyCategory from "./sections/moviebycategory";
 
 const PageMovie = styled.div`
   
-    padding: 7rem; 
+    padding: 1rem 0; 
     margin-top: 2rem;   
-    width:80%;    
+    width:100%;    
     background:${({ theme }) => theme.colors.main};
 `
 

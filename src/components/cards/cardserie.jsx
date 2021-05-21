@@ -9,7 +9,7 @@ const CardStyled = styled.div`
 	border-radius: 15px;
 	position: relative;
 	height: 50vh;
-	background: url("${(props) => (props.urlImage ? props.urlImage : defaultImage)}");
+	background: url("${(props) => (props.urlImage!=="" ? props.urlImage : defaultImage)}");
 	background-size: cover;
 
 	&:hover {
