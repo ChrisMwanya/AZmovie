@@ -44,6 +44,28 @@ const CardStyled = styled.div`
 		display: flex;		
 		justify-content: center;
 	}
+
+	@media ${({ theme})=> theme.mediaQueries["bellow-768"]} {
+		& {
+			width: 24vw;
+			height: 25vh;
+		}
+
+
+		.film-title {
+			display:none;
+			font-weight: bold;
+			font-size: .5rem;
+		}
+		.info-hidden {
+			transition: all 2s ease;
+			margin-top: 10px;
+			display: none;
+			text-align: left;
+			opacity: 1;
+		}
+	
+	}
 `;
 
 const CardSerie = (props) => {

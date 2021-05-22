@@ -26,6 +26,7 @@ const AboutMovieStyled = styled.div`
 		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)),
 			url("${(props) => (props.imageFond ? props.imageFond : "")}") no-repeat;
 		background-size: cover;
+		background-position: center;
 		height: 70vh;
 		display: flex;
 		flex-direction: column;
@@ -132,6 +133,162 @@ const AboutMovieStyled = styled.div`
 	.rec.rec-pagination {
 		color: ${({ theme }) => theme.colors.textWhite};
 		display:none;
+	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-1280"]} {
+		h1 {
+			font-size: 2.8rem;
+		}
+		p {
+			padding-top: 0.6rem;
+		}
+
+		span {
+		margin: 0.2rem;
+		}
+
+		.film-poster{
+			height: 28%;
+			width: 30%;
+			margin-top: -15rem;
+		}
+
+		.more-info{
+			right: 8%;
+		 	margin-top: -8rem;
+			width: 50.2%;
+			height: 15%;
+		}
+	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-1024"]} {
+		h1 {
+			font-size: 2.8rem;
+		}
+		p {
+			padding-top: 0.6rem;
+		}
+
+		span {
+		margin: 0.2rem;
+		}
+
+		.film-poster{
+			height: 28%;
+			width: 30%;
+			margin-top: -18rem;
+		}
+
+		.more-info{
+			right: 8%;
+		 	margin-top: -8rem;
+			width: 50.2%;
+			height: 15%;
+		}
+	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-900"]} {
+		h1 {
+			font-size: 2.8rem;
+		}
+		p {
+			padding-top: 0.6rem;
+		}
+
+		span {
+		margin: 0.2rem;
+		}
+
+		.film-poster{
+			height: 28%;
+			width: 30%;
+			margin-top: -36%;
+		}
+
+		.more-info{
+			right: 8%;
+		 	margin-top: -12%;
+			width: 50.2%;
+			height: 15%;
+		}
+	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-768"]} {
+		h1 {
+			font-size: 2.8rem;
+		}
+		p {
+			padding-top: 0.6rem;
+		}
+
+		span {
+		margin: 0.2rem;
+		}
+
+		.film-poster{
+			height: 35%;
+			width: 30%;
+			margin-top: -49%;
+		}
+
+		.more-info{
+			right: 8%;
+		 	margin-top: -12%;
+			width: 50.1%;
+			height: 15%;
+		}
+	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-580"]} {
+		h1 {
+			font-size: 2.8rem;
+		}
+		p {
+			padding-top: 0.6rem;
+		}
+
+		span {
+		margin: 0.2rem;
+		}
+
+		.film-poster{
+			height: 33%;
+			width: 29%;
+			margin-top: -34%;
+		}
+
+		.more-info{
+			right: 6%;
+		 	margin-top: -18%;
+			width: 51%;
+			height: 15%;
+		}
+	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-420"]} {
+		h1 {
+			font-size: 2rem;
+		}
+		p {
+			padding-top: 0.6rem;
+		}
+
+		span {
+		margin: 0.2rem;
+		}
+
+		.film-poster{
+			height: 33%;
+			width: 29%;
+			margin-top: -39%;
+		}
+
+		.more-info{
+			right: 6%;
+		 	margin-top: -18%;
+			width: 51%;
+			height: 15%;
+		}
 	}
 `;
 

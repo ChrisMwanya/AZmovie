@@ -15,8 +15,6 @@ const ButtonStyled = styled.button`
 	background: ${(props) =>
 		props.type ? ({ theme }) => theme.colors.secondMain : "none"};
 	color: ${({ theme }) => theme.colors.textWhite};
-	/* width:35%; */
-	/* height: 40%; */
 
 	&:hover {
 		transition: all 0.8s ease;
