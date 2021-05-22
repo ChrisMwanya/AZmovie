@@ -8,7 +8,7 @@ import { useState } from "react";
 const NavBarStyled = styled.div`
 	position: fixed;
 	top: 0;
-	z-index: 100;
+	z-index: 1000;
 	display: flex;
 	justify-content: space-between;
 	height: 7vh;
@@ -61,8 +61,10 @@ const MenuInputStyled = styled.div`
 	
 
 	@media ${({ theme }) => theme.mediaQueries["bellow-1024"]} {
-		display: none;
-		transform: ${(props) => props.isHidden};
+		display: ${props => props.isDisplayed};
+		transform:${props => props.isHidden};
+		flex-direction: column;
+		transform: translateX(200%);
 		transition: all 0.8s ease;
 		text-align: right !important;
 	}

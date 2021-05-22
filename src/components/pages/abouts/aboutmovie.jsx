@@ -9,12 +9,11 @@ import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
 
 const AboutMovieStyled = styled.div`
-	padding: .9rem 10rem;
+	padding: 0.9rem 10rem;
 	background: ${({ theme }) => theme.colors.main};
 	color: ${({ theme }) => theme.colors.textWhite};
 	display: flex;
 	justify-content: center;
-	
 
 	.container {
 		width: 100vw;
@@ -26,6 +25,7 @@ const AboutMovieStyled = styled.div`
 		background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 1)),
 			url("${(props) => (props.imageFond ? props.imageFond : "")}") no-repeat;
 		background-size: cover;
+		background-position: center;
 		height: 70vh;
 		display: flex;
 		flex-direction: column;
@@ -110,7 +110,7 @@ const AboutMovieStyled = styled.div`
 		background-position: center;
 		height: 48vh;
 		width: 20vw;
-		background-position: center;
+		
 	}
 
 	.actors {
@@ -125,14 +125,93 @@ const AboutMovieStyled = styled.div`
 	}
 
 	.rec.rec-arrow {
-		
 		background: ${({ theme }) => theme.colors.secondMain};
 	}
 
 	.rec.rec-pagination {
 		color: ${({ theme }) => theme.colors.textWhite};
-		display:none;
+		display: none;
 	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-1280"]} {
+		h1 {
+			font-size: 2.8rem;
+		}
+		p {
+			padding-top: 0.6rem;
+		}
+
+		span {
+		margin: 0.2rem;
+		}
+
+		.film-poster{
+			height: 28%;
+			width: 30%;
+			margin-top: -15rem;
+		}
+
+		.more-info{
+			right: 8%;
+		 	margin-top: -8rem;
+			width: 50.2%;
+			height: 15%;
+		}
+	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-1024"]} {
+		h1 {
+			font-size: 2.8rem;
+		}
+		p {
+			padding-top: 0.6rem;
+		}
+
+		span {
+		margin: 0.2rem;
+		}
+
+		.film-poster{
+			height: 28%;
+			width: 30%;
+			margin-top: -18rem;
+		}
+
+		.more-info{
+			right: 8%;
+		 	margin-top: -8rem;
+			width: 50.2%;
+			height: 15%;
+		}
+	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-900"]} {
+		h1 {
+			font-size: 2.8rem;
+		}
+		p {
+			padding-top: 0.6rem;
+		}
+
+		span {
+		margin: 0.2rem;
+		}
+
+		.film-poster{
+			height: 28%;
+			width: 30%;
+			margin-top: -28%;
+		}
+
+		.more-info{
+			right: 8%;
+		 	margin-top: -12%;
+			width: 50.2%;
+			height: 15%;
+		}
+	}
+
+	
 `;
 
 const AboutMovie = (props) => {
@@ -163,10 +242,9 @@ const AboutMovie = (props) => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {				
+			.then((data) => {
 				setActors(data);
 			});
-		
 	}, [urlSegment]);
 
 	useEffect(() => {
@@ -179,7 +257,7 @@ const AboutMovie = (props) => {
 			.then((data) => {
 				setSimilar(data);
 			});
-			window.scrollTo(0,0)
+		window.scrollTo(0, 0);
 	}, [urlSegment]);
 
 	let urlFond = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
@@ -221,7 +299,7 @@ const AboutMovie = (props) => {
 							<p>Patientez</p>
 						)}
 					</div>
-					<div className="other-info">						
+					<div className="other-info">
 						<div>
 							<div className="status">Status: {movie.status}</div>
 							<div className="time">Durée : {movie.runtime} min</div>
@@ -262,13 +340,13 @@ const AboutMovie = (props) => {
 								{similar.results.map((movie) => {
 									return (
 										<CardMovie
-										popularity={movie.popularity}
-										vote_average={movie.vote_average}
-										urlImage={movie.poster_path}
-										key={movie.id}
-										date={movie.release_date}
-										type="movie"
-										id={movie.id}>
+											popularity={movie.popularity}
+											vote_average={movie.vote_average}
+											urlImage={movie.poster_path}
+											key={movie.id}
+											date={movie.release_date}
+											type="movie"
+											id={movie.id}>
 											{movie.title}
 										</CardMovie>
 									);

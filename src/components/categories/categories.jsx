@@ -44,12 +44,31 @@ const SidebarCategoriesStyled = styled.div`
 	margin-top: 2rem;
 	display: none;
 	color: ${({ theme }) => theme.colors.secondMain};
+
+	
 	i {
+		transition: all 2s ease;
 		color: ${({ theme }) => theme.colors.textWhite};
+		position: sticky;
+		z-index: 900;
+		font-size: 2rem;
+		margin-left:2rem;
 	}
 
 	@media ${({ theme }) => theme.mediaQueries["bellow-1024"]} {
 		display: block;
+		i{
+			margin-left:6rem;
+			font-size: 1rem;
+		}
+		
+	}
+
+	@media ${({ theme }) => theme.mediaQueries["bellow-768"]} {
+		i{
+			margin-left:3rem;
+			font-size: 1rem;
+		}
 	}
 `;
 
@@ -58,14 +77,20 @@ const CategoriesList = (props) => {
 	const [categoriesDisplayed, setCategoriesDisplayed] = useState(false);
 	const [categoriesVisible, setCategoriesVisible] =
 		useState("translateX(-200%)");
+	const [buttonCategoryIsVisible,setButtonIsVisible]=useState(true)	
 
 	const toggleCatgorie = () => {
 		setCategoriesDisplayed(!categoriesDisplayed);
+		setButtonIsVisible(!buttonCategoryIsVisible)
 		if (categoriesVisible === "translateX(-200%)") {
 			setCategoriesVisible("translateX(0%)");
 		} else {
 			setCategoriesVisible("translateX(-200%)");
 		}
+
+		
+			
+		
 	};
 
 	useEffect(() => {
@@ -82,9 +107,10 @@ const CategoriesList = (props) => {
 
 	return (
 		<>
-			<SidebarCategoriesStyled>
+			<SidebarCategoriesStyled isVisible={buttonCategoryIsVisible}>
 				<div onClick={toggleCatgorie}>
-					<i className="fas fa-filter"> Par Categories</i>
+					{buttonCategoryIsVisible ? <i className="fas fa-filter"></i> : <i className="fas fa-times-circle"></i>}
+					{/* <i className="fas fa-filter"> Par Categories</i> */}
 				</div>
 			</SidebarCategoriesStyled>
 
@@ -102,6 +128,7 @@ const CategoriesList = (props) => {
 								<Button
 									onClick={() => {
 										setCategoriesVisible("translateX(-200%)");
+										setButtonIsVisible(true)
 										props.onClick(category.id);
 									}}
 									size=".6rem">
