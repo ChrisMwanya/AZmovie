@@ -289,6 +289,9 @@ const AboutMovieStyled = styled.div`
 			width: 51%;
 			height: 15%;
 		}
+		.other-info{
+			font-size: .2rem;
+		}
 	}
 `;
 

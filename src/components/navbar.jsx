@@ -10,8 +10,9 @@ const NavBarStyled = styled.div`
 	top: 0;
 	z-index: 1000;
 	display: flex;
-	justify-content: space-between;
-	height: 7vh;
+	justify-content: center;
+	align-items: center;
+	height: 7.5vh;
 	padding: 0 2rem;
 	background-color: ${({ theme }) => theme.colors.main};
 	width: 100%;
@@ -101,7 +102,7 @@ const NavBar = (props) => {
 				<i className="fas fa-bars"></i>
 			</MenuBurgerStyled>
 			<MenuInputStyled>
-				<InputField onChange={props.onChange} />
+				<InputField  keyup={props.keyup} onChange={props.onChange} />
 				<Menu />
 			</MenuInputStyled>
 		</NavBarStyled>

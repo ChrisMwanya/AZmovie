@@ -87,14 +87,14 @@ const Loader = () => {
 		<StyledLoader>
 			<div>
 				<p>Chargement...</p>
-			<div className="loadingio-spinner-dual-ring-wzw14euopql">
+			{/* <div className="loadingio-spinner-dual-ring-wzw14euopql">
 				<div className="ldio-y1m1h6fjvff">
 					<div></div>
 					<div>
 						<div></div>
 					</div>
 				</div>
-			</div>
+			</div> */}
 			</div>
 			
 		</StyledLoader>

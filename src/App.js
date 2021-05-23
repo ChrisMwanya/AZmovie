@@ -23,14 +23,19 @@ function App() {
 
 	const [valueToSearch,setValueToSearch] = useState()
 
-    const searchResults = (e) => {
-      setValueToSearch(e.target.value)    
+	const resetValueToSearch = () => {
+		setValueToSearch('')
+	}
+
+    const searchResults = (e) => {		
+			setValueToSearch(e.target.value)		
+        
     }    
 	const location = useLocation()
 	return (		
 		<MainWrapper>
 						
-			{location.pathname !== "/" && <NavBar onChange={searchResults} />}		
+			{location.pathname !== "/" && <NavBar  keyup={resetValueToSearch} onChange={searchResults} />}		
 				<Switch>
 					<Route exact path="/" component={Start} />
 					<Route path="/home" component={Home} />

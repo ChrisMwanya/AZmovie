@@ -3,36 +3,34 @@ import { NavLink } from "react-router-dom";
 
 const LinkStyled = styled(NavLink)`
 	color: ${({ theme }) => theme.colors.textWhite};
-	font-family: "Roboto", sans-serif;
-	font-size: 0.9rem;
+	font-size: 0.8rem;
 	text-transform: uppercase;
 	text-decoration: none;
+	padding: 1rem;
+	display:flex;
+	justify-content: center;
+	align-items: center;
 
 	&:hover {		
-		transition: all 0.3s ease;
-		color: Red;
-		border-bottom: 3px solid ${({ theme }) => theme.colors.textWhite};
+		padding: 1rem;
+		background-color:${({ theme }) => theme.colors.secondMain};		
+		border-radius:  5px;
+		transition: all 0.3s ease-out;			
 	}
 `;
 
 const MenuStyle = styled.ul`
 	display: flex;
-	justify-content: space-around;
+	justify-content: flex-end;
 	width: 20%;
 	color: ${({ theme }) => theme.colors.secondText};
 
-	
-
-	.linkMenu {
-		border-left: 5px solid ${({ theme }) => theme.colors.main};
-		padding: 10px 0;
-	}
-
 	.active {	
-		transition: all 0.3s ease;	
-		font-weight: bold;
-		color: Red;
-		border-bottom: 3px solid ${({ theme }) => theme.colors.textWhite};
+		padding: 1rem;
+		background-color:${({ theme }) => theme.colors.secondMain};		
+		transition: all 0.3s ease-out;	
+		border-radius:  5px;
+		
 	}
 `;
 

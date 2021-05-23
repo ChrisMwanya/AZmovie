@@ -7,7 +7,7 @@ const ButtonStyled = styled.button`
 	border-radius: 5px;
 	margin:.3rem;
 	cursor: pointer;
-	padding: 10px;
+	padding: .6rem;
 	font-size: ${(props) => (props.size ? props.size : ".5rem")};
 	border: 1px solid
 		${(props) =>
@@ -31,6 +31,7 @@ const ButtonStyled = styled.button`
 		background-color: ${({ theme }) => theme.colors.textWhite};
 		border: 1px solid ${({ theme }) => theme.colors.secondMain};
 	}
+
 
 	
 `;
