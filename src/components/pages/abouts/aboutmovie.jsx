@@ -2,13 +2,14 @@ import styled from "styled-components";
 import Button from "./../../buttons/button";
 import CardMovie from "../../cards/cardmovie";
 import Carousel from "react-elastic-carousel";
+import { motion } from "framer-motion";
 // import imageFond from "../../images/VinDiesel.jpg";
 // import poster from "../../images/fastandfurious.jpg";
 import TitleSection from "../../mains/titleSection/titlesection";
 import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
 
-const AboutMovieStyled = styled.div`
+const AboutMovieStyled = styled(motion.div)`
 	padding: 0.9rem 10rem;
 	background: ${({ theme }) => theme.colors.main};
 	color: ${({ theme }) => theme.colors.textWhite};
@@ -110,7 +111,6 @@ const AboutMovieStyled = styled.div`
 		background-position: center;
 		height: 48vh;
 		width: 20vw;
-		
 	}
 
 	.actors {
@@ -142,18 +142,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 28%;
 			width: 30%;
 			margin-top: -15rem;
 		}
 
-		.more-info{
+		.more-info {
 			right: 8%;
-		 	margin-top: -8rem;
+			margin-top: -8rem;
 			width: 50.2%;
 			height: 15%;
 		}
@@ -168,18 +168,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 28%;
 			width: 30%;
 			margin-top: -18rem;
 		}
 
-		.more-info{
+		.more-info {
 			right: 8%;
-		 	margin-top: -8rem;
+			margin-top: -8rem;
 			width: 50.2%;
 			height: 15%;
 		}
@@ -194,18 +194,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 28%;
 			width: 30%;
 			margin-top: -36%;
 		}
 
-		.more-info{
+		.more-info {
 			right: 8%;
-		 	margin-top: -12%;
+			margin-top: -12%;
 			width: 50.2%;
 			height: 15%;
 		}
@@ -220,18 +220,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 35%;
 			width: 30%;
 			margin-top: -49%;
 		}
 
-		.more-info{
+		.more-info {
 			right: 8%;
-		 	margin-top: -12%;
+			margin-top: -12%;
 			width: 50.1%;
 			height: 15%;
 		}
@@ -246,18 +246,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 33%;
 			width: 29%;
 			margin-top: -34%;
 		}
 
-		.more-info{
+		.more-info {
 			right: 6%;
-		 	margin-top: -18%;
+			margin-top: -18%;
 			width: 51%;
 			height: 15%;
 		}
@@ -272,31 +272,41 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 33%;
 			width: 29%;
 			margin-top: -39%;
 		}
 
-		.more-info{
+		.more-info {
 			right: 6%;
-		 	margin-top: -18%;
+			margin-top: -18%;
 			width: 51%;
 			height: 15%;
 		}
 	}
-	
 `;
+
+const pageVariant = {
+	in: { opacity: 1,},
+	out: { opacity: 0, },
+};
+
+const pageTransition = {
+	
+	type: "spring",
+	stiness: 50,
+};
 
 const AboutMovie = (props) => {
 	const [movie, setMovie] = useState([]);
 	const [actors, setActors] = useState([]);
 	const [similar, setSimilar] = useState([]);
 
-	console.log(props.match);
+	
 	const urlSegment = props.match.url;
 
 	useEffect(() => {
@@ -341,7 +351,14 @@ const AboutMovie = (props) => {
 
 	let urlPoster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
 	return (
-		<AboutMovieStyled imageFond={urlFond} imagePoster={urlPoster}>
+		<AboutMovieStyled
+			imageFond={urlFond}
+			imagePoster={urlPoster}
+			initial="out"
+			animate="in"
+			exit="out"
+			variants={pageVariant}
+			transition={pageTransition}>
 			<div className="container">
 				<div className="header">
 					<h1>{movie.title}</h1>

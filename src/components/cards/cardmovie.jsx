@@ -135,7 +135,9 @@ const CardStyled = styled.div`
 const CardMovie = (props) => {
 	let url = `https://image.tmdb.org/t/p/w500/${props.urlImage}`;
 	return (
+		<Link to={`/${props.type}/${props.id}`}>	
 		<CardStyled urlImage={url}>
+					
 			<div className="movie-info">
 				<p className="film-title">{props.children}</p>
 				<div className="info-hidden">
@@ -154,8 +156,9 @@ const CardMovie = (props) => {
 						</Link>
 					</div>
 				</div>
-			</div>
+			</div>			
 		</CardStyled>
+		</Link>
 	);
 };
 

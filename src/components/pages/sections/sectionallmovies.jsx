@@ -4,8 +4,8 @@ import CardMovie from "../../cards/cardmovie";
 import Loader from "../../loader/loader";
 import Pagination from "../../pagination/pagination";
 
+
 const SectionStyled = styled.section`
-	
 	margin-top: 1rem;
 	width: 100vw;
 	.buttons {
@@ -67,27 +67,31 @@ const SectionAllMovies = () => {
 		}
 	};
 
+	
+
+
+
 	return (
 		<SectionStyled>
 			{loader ? (
 				<Loader />
 			) : (
 				<div>
-					<CardContainerStyled>
-						{Movies.map((movie, index) => {
-							return (
-								<CardMovie
-									popularity={movie.popularity}
-									vote_average={movie.vote_average}
-									urlImage={movie.poster_path}
-									key={movie.id}
-									date={movie.release_date}
-									type="movie"
-									id={movie.id}>
-									{movie.title}
-								</CardMovie>
-							);
-						})}
+					<CardContainerStyled>					
+							{Movies.map((movie, index) => {
+								return (
+									<CardMovie
+										popularity={movie.popularity}
+										vote_average={movie.vote_average}
+										urlImage={movie.poster_path}
+										key={movie.id}
+										date={movie.release_date}
+										type="movie"
+										id={movie.id}>
+										{movie.title}
+									</CardMovie>
+								);
+							})}						
 					</CardContainerStyled>
 					<Pagination
 						onClickNextPage={handleClickNextPage}

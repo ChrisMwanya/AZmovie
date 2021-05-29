@@ -22,7 +22,6 @@ const pageTransition = {
 	duration: 1,
 	type:"spring",
 	stiness: 50,
-
 };
 
 const Serie = () => {

@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import Button from "../buttons/button";
 
 const StyledCategorie = styled.ul`
-	position: sticky;
+	position: ralative;
 	top: 3rem;
 	margin-left: 6.3rem;
 	margin-right: 6.7rem;	

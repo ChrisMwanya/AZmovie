@@ -2,19 +2,21 @@ import styled from "styled-components";
 import Button from "./../../buttons/button";
 import CardMovie from "../../cards/cardmovie";
 import Carousel from "react-elastic-carousel";
+import { motion } from "framer-motion";
 // import imageFond from "../../images/VinDiesel.jpg";
 // import poster from "../../images/fastandfurious.jpg";
 import TitleSection from "../../mains/titleSection/titlesection";
 import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
 import CardSerie from "../../cards/cardsaison";
+import Loader from "../../loader/loader";
 
-const AboutMovieStyled = styled.div`
+const AboutMovieStyled = styled(motion.div)`
 	background: ${({ theme }) => theme.colors.main};
 	color: ${({ theme }) => theme.colors.textWhite};
 	display: flex;
 	justify-content: center;
-	padding: .9rem 10rem;
+	padding: 0.9rem 10rem;
 
 	.container {
 		width: 100vw;
@@ -105,7 +107,8 @@ const AboutMovieStyled = styled.div`
 		margin-left: 2rem;
 		margin-top: -13rem;
 		position: absolute;
-		background: url("${(props) =>props.imagePoster ? props.imagePoster : ""}")
+		background: url("${(props) =>
+				props.imagePoster ? props.imagePoster : ""}")
 			no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -126,13 +129,12 @@ const AboutMovieStyled = styled.div`
 	}
 
 	.rec.rec-arrow {
-		
 		background: ${({ theme }) => theme.colors.secondMain};
 	}
 
 	.rec.rec-pagination {
 		color: ${({ theme }) => theme.colors.textWhite};
-		display:none;
+		display: none;
 	}
 
 	@media ${({ theme }) => theme.mediaQueries["bellow-1280"]} {
@@ -144,18 +146,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 28%;
 			width: 30%;
 			margin-top: -15rem;
 		}
 
-		.more-info{
+		.more-info {
 			right: 8%;
-		 	margin-top: -8rem;
+			margin-top: -8rem;
 			width: 50.2%;
 			height: 15%;
 		}
@@ -170,18 +172,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 28%;
 			width: 30%;
 			margin-top: -18rem;
 		}
 
-		.more-info{
+		.more-info {
 			right: 8%;
-		 	margin-top: -8rem;
+			margin-top: -8rem;
 			width: 50.2%;
 			height: 15%;
 		}
@@ -196,18 +198,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 28%;
 			width: 30%;
 			margin-top: -36%;
 		}
 
-		.more-info{
+		.more-info {
 			right: 8%;
-		 	margin-top: -12%;
+			margin-top: -12%;
 			width: 50.2%;
 			height: 15%;
 		}
@@ -222,18 +224,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 35%;
 			width: 30%;
 			margin-top: -49%;
 		}
 
-		.more-info{
+		.more-info {
 			right: 8%;
-		 	margin-top: -12%;
+			margin-top: -12%;
 			width: 50.1%;
 			height: 15%;
 		}
@@ -248,18 +250,18 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 33%;
 			width: 29%;
 			margin-top: -34%;
 		}
 
-		.more-info{
+		.more-info {
 			right: 6%;
-		 	margin-top: -18%;
+			margin-top: -18%;
 			width: 51%;
 			height: 15%;
 		}
@@ -274,26 +276,36 @@ const AboutMovieStyled = styled.div`
 		}
 
 		span {
-		margin: 0.2rem;
+			margin: 0.2rem;
 		}
 
-		.film-poster{
+		.film-poster {
 			height: 33%;
 			width: 29%;
 			margin-top: -39%;
 		}
 
-		.more-info{
+		.more-info {
 			right: 6%;
-		 	margin-top: -18%;
+			margin-top: -18%;
 			width: 51%;
 			height: 15%;
 		}
-		.other-info{
-			font-size: .2rem;
+		.other-info {
+			font-size: 0.2rem;
 		}
 	}
 `;
+
+const pageVariant = {
+	in: { opacity: 1 },
+	out: { opacity: 0 },
+};
+
+const pageTransition = {	
+	type: "spring",
+	stiness: 50,
+};
 
 const AboutSerie = (props) => {
 	const [serie, setSerie] = useState([]);
@@ -326,7 +338,6 @@ const AboutSerie = (props) => {
 			.then((data) => {
 				setActors(data);
 			});
-		
 	}, [urlSegment]);
 
 	useEffect(() => {
@@ -339,14 +350,21 @@ const AboutSerie = (props) => {
 			.then((data) => {
 				setSimilar(data);
 			});
-			window.scrollTo(0,0)
+		window.scrollTo(0, 0);
 	}, [urlSegment]);
 
 	let urlFond = `https://image.tmdb.org/t/p/w500/${serie.backdrop_path}`;
 
 	let urlPoster = `https://image.tmdb.org/t/p/w500/${serie.poster_path}`;
 	return (
-		<AboutMovieStyled imageFond={urlFond} imagePoster={urlPoster}>
+		<AboutMovieStyled
+			imageFond={urlFond}
+			imagePoster={urlPoster}
+			initial="out"
+			animate="in"
+			exit="out"
+			variants={pageVariant}
+			transition={pageTransition}>
 			<div className="container">
 				<div className="header">
 					<h1>{serie.name}</h1>
@@ -381,14 +399,20 @@ const AboutSerie = (props) => {
 							<p>Patientez</p>
 						)}
 					</div>
-					<div className="other-info">						
+					<div className="other-info">
 						<div>
 							<div className="status">Status: {serie.status}</div>
-							<div className="time">Durée par épisode : {serie.episode_run_time} min</div>
+							<div className="time">
+								Durée par épisode : {serie.episode_run_time} min
+							</div>
 						</div>
-                        <div>
-							<div className="seasons">Total de saisons: {serie.number_of_seasons}</div>
-							<div className="epissode">Total d'épisodes : {serie.number_of_episodes}</div>
+						<div>
+							<div className="seasons">
+								Total de saisons: {serie.number_of_seasons}
+							</div>
+							<div className="epissode">
+								Total d'épisodes : {serie.number_of_episodes}
+							</div>
 						</div>
 					</div>
 				</div>
@@ -403,7 +427,7 @@ const AboutSerie = (props) => {
 						{serie.seasons ? (
 							serie.seasons.map((season) => {
 								return (
-									<CardSerie 
+									<CardSerie
 										urlImage={season.poster_path}
 										name={season.name}
 										air_date={season.air_date}
@@ -417,7 +441,7 @@ const AboutSerie = (props) => {
 					</div>
 				</div>
 
-                <div className="actors">
+				<div className="actors">
 					<TitleSection>Créer par</TitleSection>
 					<div className="actors-container">
 						{serie.created_by ? (
@@ -425,7 +449,7 @@ const AboutSerie = (props) => {
 								return (
 									<CardActor
 										urlImage={creator.profile_path}
-										name={creator.name}										
+										name={creator.name}
 									/>
 								);
 							})
@@ -464,20 +488,20 @@ const AboutSerie = (props) => {
 								{similar.results.map((movie) => {
 									return (
 										<CardMovie
-										popularity={movie.popularity}
-										vote_average={movie.vote_average}
-										urlImage={movie.poster_path}
-										key={movie.id}
-										date={movie.release_date}
-										type="tv"
-										id={movie.id}>
+											popularity={movie.popularity}
+											vote_average={movie.vote_average}
+											urlImage={movie.poster_path}
+											key={movie.id}
+											date={movie.release_date}
+											type="tv"
+											id={movie.id}>
 											{movie.name}
 										</CardMovie>
 									);
 								})}
 							</Carousel>
 						) : (
-							<p>Patientez...</p>
+							<Loader />
 						)}
 					</div>
 				</div>

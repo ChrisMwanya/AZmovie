@@ -9,8 +9,8 @@ import Logo from "../logo";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
 import Loader from "../loader/loader";
-
-const StyledHeaderLoader = styled.div`
+import {motion} from 'framer-motion'
+const StyledHeaderLoader = styled(motion.div)`
 	position: relative;
 	width: 100vw;
 	height: 100vh;
@@ -95,6 +95,16 @@ const TextStyled = styled.div`
 	}
 `;
 
+const pageVariant = {
+	in: { opacity: 1 },
+	out: { opacity: 0 },
+};
+
+const pageTransition = {	
+	type: "spring",
+	stiness: 50,
+};
+
 const Header = () => {
 	const [movieList, setMovieList] = useState([]);
 	const [loader, setLoader] = useState(true);
@@ -118,7 +128,11 @@ const Header = () => {
 	return (
 		<>
 			{loader ? (
-				<StyledHeaderLoader>
+				<StyledHeaderLoader initial="out"
+			animate="in"
+			exit="out"
+			variants={pageVariant}
+			transition={pageTransition}>
 					<Loader />
 				</StyledHeaderLoader>
 			) : (

@@ -4,6 +4,8 @@ import CardMovie from "../../components/cards/cardmovie";
 import TitleSection from "../mains/titleSection/titlesection";
 import Button from "./../buttons/button";
 import Pagination from "../pagination/pagination";
+import {motion} from 'framer-motion'
+import Loader from "../loader/loader";
 
 const SearchPageStyled = styled.div`
 	background: ${({ theme }) => theme.colors.main};
@@ -29,10 +31,20 @@ const SearchPageStyled = styled.div`
 	}
 `;
 
-const Container = styled.div`
+const Container = styled(motion.div)`
 	display: flex;
 	justify-content: center;
 `;
+
+const pageVariant = {
+	in: { opacity: 1 },
+	out: { opacity: 0 },
+};
+
+const pageTransition = {	
+	type: "spring",
+	stiness: 50,
+};
 
 const SearchPage = (props) => {
 	const [moviesRequestResult, setMoviesRequestResult] = useState({});
@@ -42,6 +54,7 @@ const SearchPage = (props) => {
 	const [totalPagesMovie, setTotalPagesMovie] = useState();
 	const [actualPageTvShow, setActualPageTvShow] = useState(1);
 	const [totalPagesTvShow, setTotalPagesTvShow] = useState();
+	const [load,setLoad] = useState(true)
 
 
 	useEffect(() => {
@@ -55,7 +68,8 @@ const SearchPage = (props) => {
 				setMoviesRequestResult(dataCollected);
 				setTotalPagesMovie(dataCollected.total_pages)
 			});
-			
+			window.scrollTo(0, 0);
+			setLoad(false)
 	}, [props.valueInput,actualPageMovie]);
 
 	useEffect(() => {
@@ -69,6 +83,7 @@ const SearchPage = (props) => {
 				setTvShowRequestResult(dataCollected);
 				setTotalPagesTvShow(dataCollected.total_pages);
 			});
+			window.scrollTo(0, 0);
 			 
 	}, [props.valueInput,actualPageTvShow]);
 
@@ -102,8 +117,13 @@ const SearchPage = (props) => {
 	};
 
 	return (
-		<Container>
-			<SearchPageStyled>
+		<Container initial="out"
+		animate="in"
+		exit="out"
+		variants={pageVariant}
+		transition={pageTransition}>
+			{load ? <Loader/> :
+				<SearchPageStyled>
 				<h1>Resultats de votre recherche: {props.valueInput}</h1>
 				<div className="btn-container">
 					<Button onClick={handleClickMovieButton} size="1rem">
@@ -133,7 +153,7 @@ const SearchPage = (props) => {
 											</CardMovie>
 										);
 								  })
-								: "patientez"}
+								: <Loader />}
 						</div>
 						<Pagination
 						onClickNextPage={handleClickNextPageMovie}
@@ -162,7 +182,7 @@ const SearchPage = (props) => {
 											</CardMovie>
 										);
 								  })
-								: "patientez"}
+								: <Loader />}
 						</div>
 						<Pagination
 						onClickNextPage={handleClickNextPageTvShow}
@@ -172,7 +192,8 @@ const SearchPage = (props) => {
 					/>
 					</>
 				)}
-			</SearchPageStyled>
+			</SearchPageStyled>}
+		
 		</Container>
 	);
 };

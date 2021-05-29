@@ -65,6 +65,7 @@ const MoviesbyCategory = (props) => {
 				setMovies(dataMapped);
 				setLoader(false);
 				setTotalPages(data.total_pages);
+				window.scrollTo(0, 0);
 			});
 	}, [props.id, actualPage]);
 

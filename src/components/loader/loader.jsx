@@ -1,103 +1,52 @@
-import styled from "styled-components";
-
-const StyledLoader = styled.div`
-	display: flex;
-	justify-content: center;
-	align-items: center;
-    background:transparent;
+import styled from 'styled-components'
 
 
-p{
-	color: ${({ theme }) => theme.colors.textWhite};
-	font-size: 1rem;
-}
-	@keyframes ldio-y1m1h6fjvff {
-		0% {
-			transform: rotate(0);
+
+const Animation = styled.div`
+	text-align: center;
+
+	@keyframes blink {
+		0%{
+			opacity: .2;
 		}
-		100% {
-			transform: rotate(360deg);
+		20%{
+			opacity: 1
+		}
+		100%{
+			opacity: .2
 		}
 	}
-	.ldio-y1m1h6fjvff div {
-        display:flex;
-        justify-content:center;
-		box-sizing: border-box !important;
-	}
-	.ldio-y1m1h6fjvff > div {
-		position: absolute;
-		width: 100px;
-		height: 100px;
-		top: 10px;
-		left: 10px;
-		border-radius: 50%;
-		border: 5px solid #000;
-		border-color: #fff transparent #fff transparent;
-		animation: ldio-y1m1h6fjvff 1s linear infinite;
-	}
-	.ldio-y1m1h6fjvff > div:nth-child(2) {
-		border-color: transparent;
-	}
-	.ldio-y1m1h6fjvff > div:nth-child(2) div {
-		position: absolute;
-		width: 100%;
-		height: 100%;
-		transform: rotate(45deg);
-	}
-	.ldio-y1m1h6fjvff > div:nth-child(2) div:before,
-	.ldio-y1m1h6fjvff > div:nth-child(2) div:after {
-		content: "";
-		display: block;
-		position: absolute;
-		width: 16rem;
-		height: 16rem;
-		left: -6rem;
-		top: 18rem;
-		background: white;
-		border-radius: 50%;
-		box-shadow: 0 12rem 0 0 white;
-	}
-	.ldio-y1m1h6fjvff > div:nth-child(2) div:after {
-		left: -6rem;
-		top: 18rem;
-		box-shadow: 128px 0 0 0 white;
-	}
-	.loadingio-spinner-dual-ring-wzw14euopql {
-		width: 15rem;
-		height: 12rem;
+
+	span{
+		color:${({ theme }) => theme.colors.textWhite};
 		display: inline-block;
-		overflow: hidden;
-		background: transparent;
+		margin-left: 4px;
+		margin-right: 4px;
+		font-size: 80px;
+		line-height: 0.1;
+		animation-name: blink;
+		animation-duration: 1s;
+		animation-iteration-count: infinite;
+		animation-fill-mode: both;
 	}
-	.ldio-y1m1h6fjvff {
-		width: 100%;
-		height: 100%;
-		position: relative;
-		transform: translateZ(0) scale(1);
-		backface-visibility: hidden;
-		transform-origin: 0 0; /* see note above */
+
+	span:nth-child(2) {
+		animation-delay: .2s;
 	}
-	.ldio-y1m1h6fjvff div {
-		box-sizing: content-box;
-	}
-`;
+
+	span:nth-child(3){
+		animation-delay: .4s;
+	}	
+`
 
 const Loader = () => {
-	return (
-		<StyledLoader>
-			<div>
-				<p>Chargement...</p>
-			{/* <div className="loadingio-spinner-dual-ring-wzw14euopql">
-				<div className="ldio-y1m1h6fjvff">
-					<div></div>
-					<div>
-						<div></div>
-					</div>
-				</div>
-			</div> */}
-			</div>
-			
-		</StyledLoader>
-	);
-};
-export default Loader;
+		return(
+			<Animation>
+				<span>.</span>
+				<span>.</span>
+				<span>.</span>
+			</Animation>
+		)	
+}
+
+export default Loader
