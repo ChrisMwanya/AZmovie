@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import CardMovie from "../../cards/cardmovie";
 import Loader from "../../loader/loader";
 import Pagination from "../../pagination/pagination";
+import {motion} from 'framer-motion'
 
-const SectionStyled = styled.section`
+const SectionStyled = styled(motion.section)`
 	margin-top: 1rem;
 	width: 100%;
 
@@ -18,6 +19,17 @@ const CardContainerStyled = styled.div`
 	justify-content: center;
 	flex-wrap: wrap;
 `;
+
+const pageVariant = {
+	in: { opacity: 1, x: 0 },
+	out: { opacity: 0, x:  "200vw" },
+};
+
+const pageTransition = {
+	duration: 1,
+	type:"spring",
+	stiness: 50,
+};
 
 const MoviesbyCategory = (props) => {
 	const [Movies, setMovies] = useState([]);
@@ -67,7 +79,11 @@ const MoviesbyCategory = (props) => {
 		}
 	};
 	return (
-		<SectionStyled>
+		<SectionStyled initial="out"
+		animate="in"
+		exit="out"
+		variants={pageVariant}
+		transition={pageTransition}>
 			{loader ? (
 				<Loader />
 			) : (

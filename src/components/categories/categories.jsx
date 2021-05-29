@@ -4,7 +4,7 @@ import Button from "../buttons/button";
 
 const StyledCategorie = styled.ul`
 	position: sticky;
-	top: 2.7rem;
+	top: 3rem;
 	margin-left: 6.3rem;
 	margin-right: 6.7rem;	
 	z-index: 50;

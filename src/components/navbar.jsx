@@ -10,12 +10,13 @@ const NavBarStyled = styled.div`
 	top: 0;
 	z-index: 1000;
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	height: 7.5vh;
 	padding: 0 2rem;
 	background-color: ${({ theme }) => theme.colors.main};
 	width: 100%;
+	overflow-x: hidden;
 
 	.logo{
 		margin-left:5rem;

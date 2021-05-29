@@ -5,6 +5,7 @@ const GlobleStyle = createGlobalStyle `
 html{
     height: 100%;
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
 }
 
 *{
