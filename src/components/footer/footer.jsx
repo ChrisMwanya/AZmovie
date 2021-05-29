@@ -1,11 +1,11 @@
 import styled from "styled-components";
-import SectionCategorie from "./section/sectionCategorie";
-import SectionMenu from "./section/sectionmenu";
-import SectionSource from "./section/sectionsource";
+
+
 
 const FooterStyled = styled.footer`
 	background: #000;
     padding: 4px;	
+	width: 100vw;
 	.section {        
 		display: flex;
 		justify-content: space-around;
@@ -20,13 +20,10 @@ const FooterStyled = styled.footer`
 const Footer = () => {
 	return (
 		<FooterStyled>
-			<div className="section">
-				<SectionCategorie />
-				<SectionMenu />
-                <SectionSource />
-                
-			</div>
-            <hr/>
+			<div className="section">			
+                            
+			</div>		
+            
             <p className="copyright">By MwanyaChristian</p>
             
             

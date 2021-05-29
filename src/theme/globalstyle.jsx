@@ -1,10 +1,11 @@
-import {createGlobalStyle} from 'styled-components'
+import {createGlobalStyle} from 'styled-components';
 
 const GlobleStyle = createGlobalStyle `
 
 html{
     height: 100%;
     font-family: 'Roboto', sans-serif;
+    overflow-x: hidden;
 }
 
 *{
@@ -18,4 +19,4 @@ li{
     list-style :none;
 }
 `;
-export default GlobleStyle
+export default GlobleStyle;
