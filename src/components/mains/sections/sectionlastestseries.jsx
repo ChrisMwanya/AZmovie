@@ -3,8 +3,9 @@ import CardMovie from "../../cards/cardmovie";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Loader from "../../loader/loader";
+import {motion} from "framer-motion"
 
-const SectionStyled = styled.section`
+const SectionStyled = styled(motion.section)`
 	width: 100vw;
 	display: flex;
 	justify-content: center;
@@ -17,6 +18,17 @@ const CardContainerStyled = styled.div`
 	justify-content: center;
 	flex-wrap: wrap;
 `;
+
+const pageVariant = {
+	in: { opacity: 1 },
+	out: { opacity: 0 },
+};
+
+const pageTransition = {	
+	duration:  3,
+	type: "spring",
+	stiness: 50,
+};
 
 const SectionLatestSeries = () => {
 	const [latestMovies, setLastestMovies] = useState([]);
@@ -39,7 +51,11 @@ const SectionLatestSeries = () => {
 	}, []);
 
 	return (
-		<SectionStyled>
+		<SectionStyled initial="out"
+		animate="in"
+		exit="out"
+		variants={pageVariant}
+		transition={pageTransition}>
 			<div>
 			{/* <TitleSection>Film du Moment</TitleSection> */}
 			{loader ?(<Loader/>):(

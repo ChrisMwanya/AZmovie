@@ -2,12 +2,13 @@ import CardMovie from "../../cards/cardmovie";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
 import Loader from "../../loader/loader";
+import {motion} from 'framer-motion'
 
-const SectionStyled = styled.section`
+const SectionStyled = styled(motion.section)`
 	width: 100vw;
 	display: flex;
 	justify-content: center;
-	align-items: center;
+	align-items: center;	
 `;
 
 const CardContainerStyled = styled.div`
@@ -15,7 +16,19 @@ const CardContainerStyled = styled.div`
 	display: flex;
 	justify-content: center;
 	flex-wrap: wrap;
+	
 `;
+
+const pageVariant = {
+	in: { opacity: 1 },
+	out: { opacity: 0 },
+};
+
+const pageTransition = {	
+	duration:  3,
+	type: "spring",
+	stiness: 50,
+};
 
 
 
@@ -59,7 +72,11 @@ const SectionLatestMovie = () => {
 
 	return (
 		<div>
-			<SectionStyled>
+			<SectionStyled initial="out"
+		animate="in"
+		exit="out"
+		variants={pageVariant}
+		transition={pageTransition}>
 				<div>
 					{loader ? (
 						<Loader />
