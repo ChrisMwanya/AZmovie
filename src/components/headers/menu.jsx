@@ -6,13 +6,13 @@ const LinkStyled = styled(NavLink)`
 	font-size: 0.8rem;
 	text-transform: uppercase;
 	text-decoration: none;
-	padding: 1rem;
+	padding: .5rem;
 	display:flex;
 	justify-content: center;
 	align-items: center;
 
 	&:hover {		
-		padding: 1rem;
+		padding: .5rem;
 		background-color:${({ theme }) => theme.colors.secondMain};		
 		border-radius:  5px;
 		transition: all 0.3s ease-out;			
@@ -26,7 +26,7 @@ const MenuStyle = styled.ul`
 	color: ${({ theme }) => theme.colors.secondText};
 
 	.active {	
-		padding: 1rem;
+		padding: .5rem;
 		background-color:${({ theme }) => theme.colors.secondMain};		
 		transition: all 0.3s ease-out;	
 		border-radius:  5px;

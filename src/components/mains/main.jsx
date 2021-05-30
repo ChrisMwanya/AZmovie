@@ -41,8 +41,8 @@ const Main = () => {
 		<MainStyled>
 			<div className="bloc">
 				<div className="title">
-					<Button onClick={handleClickMovie} type="button">Films</Button>
-					<Button onClick={handleClickTvShow} type="button">Series</Button>
+					<Button onClick={handleClickMovie} type="button" size=".8rem">Films</Button>
+					<Button onClick={handleClickTvShow} type="button" size=".8rem">Series</Button>
 				</div>
 				{tvShowisVisible ? <SectionLatestTvShow /> : <SectionLatestMovie />}
 			</div>

@@ -28,10 +28,6 @@ const SectionStyled = styled(motion.section)`
 		
 	}
 
-	.option:hover {
-		background: ${({ theme }) => theme.colors.secondMain} !important;
-	}
-
 	select:focus{
 		outline: none;
 	}
