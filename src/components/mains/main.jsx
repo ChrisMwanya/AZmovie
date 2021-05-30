@@ -22,7 +22,7 @@ const MainStyled = styled.main`
 		display: inline-block;
 		border-bottom: 1px solid ${({ theme }) => theme.colors.textWhite};
 		width: 82%;
-		margin-bottom: 3rem;
+		margin-bottom: 1rem;
 	}
 `;
 
