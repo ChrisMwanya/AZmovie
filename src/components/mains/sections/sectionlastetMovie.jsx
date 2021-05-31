@@ -9,6 +9,26 @@ const SectionStyled = styled(motion.section)`
 	display: flex;
 	justify-content: center;
 	align-items: center;	
+
+	.button-container{
+		margin-left: 9%;
+	}
+
+	select{
+		background-color: transparent;
+		background: ${({ theme }) => theme.colors.main};
+		border-radius: 5px;
+		border: 1px solid transparent;
+		font-size:1rem;
+		padding: .3rem;
+		color: ${({ theme }) => theme.colors.textWhite};
+		margin-bottom: 1rem;
+		
+	}
+
+	select:focus{
+		outline: none;
+	}
 `;
 
 const CardContainerStyled = styled.div`
@@ -35,10 +55,11 @@ const pageTransition = {
 const SectionLatestMovie = () => {
 	const [latestMovies, setLastestMovies] = useState([]);
 	const [loader, setLoader] = useState(true);
+	const [selectedOption, setselectedOption] = useState('upcoming')
 
 	useEffect(() => {
 		fetch(
-			`https://api.themoviedb.org/3/movie/now_playing?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&page=1`
+			`https://api.themoviedb.org/3/movie/${selectedOption}?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&page=1`
 		)
 			.then((response) => response.json())
 			.then((data) => {
@@ -67,9 +88,11 @@ const SectionLatestMovie = () => {
 				setLoader(false);
 				
 			});
-	}, []);
+	}, [selectedOption]);
 
-
+	const handleChangeSelect = (event) => {
+		setselectedOption(event.target.value)
+	}
 	return (
 		<div>
 			<SectionStyled initial="out"
@@ -78,6 +101,14 @@ const SectionLatestMovie = () => {
 		variants={pageVariant}
 		transition={pageTransition}>
 				<div>
+				<div className="button-container">
+					<select onChange={handleChangeSelect}>
+						<option className="option"  value="upcoming" selected>Prochaine sortie</option>
+						<option value="now_playing" >Au Cinéma</option>
+						<option value="popular">Populaire</option>
+						<option value="top_rated">Mieux coté</option>
+					</select>
+				</div>
 					{loader ? (
 						<Loader />
 					) : (
