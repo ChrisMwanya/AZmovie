@@ -8,6 +8,7 @@ import { motion } from "framer-motion";
 import TitleSection from "../../mains/titleSection/titlesection";
 import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
+import ModalVideo from "../../modal/modalVideo";
 
 const AboutMovieStyled = styled(motion.div)`
 	padding: 0.9rem 10rem;
@@ -105,7 +106,8 @@ const AboutMovieStyled = styled(motion.div)`
 		margin-left: 2rem;
 		margin-top: -13rem;
 		position: absolute;
-		background: url("${(props) =>props.imagePoster ? props.imagePoster : ""}")
+		background: url("${(props) =>
+				props.imagePoster ? props.imagePoster : ""}")
 			no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -291,12 +293,11 @@ const AboutMovieStyled = styled(motion.div)`
 `;
 
 const pageVariant = {
-	in: { opacity: 1,},
-	out: { opacity: 0, },
+	in: { opacity: 1 },
+	out: { opacity: 0 },
 };
 
 const pageTransition = {
-	
 	type: "spring",
 	stiness: 50,
 };
@@ -305,8 +306,9 @@ const AboutMovie = (props) => {
 	const [movie, setMovie] = useState([]);
 	const [actors, setActors] = useState([]);
 	const [similar, setSimilar] = useState([]);
+	const [showModal, setShowModal] = useState(false);
+	const [keyVideo, setKeyVideo] = useState("");
 
-	
 	const urlSegment = props.match.url;
 
 	useEffect(() => {
@@ -316,11 +318,21 @@ const AboutMovie = (props) => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {
-				console.log(data);
+			.then((data) => {				
 				setMovie(data);
 			});
 	}, [urlSegment]);
+
+	useEffect(() => {
+		fetch(
+			`https://api.themoviedb.org/3/${urlSegment}/videos?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US`
+		).then((response) => {
+			return response.json();
+		}).then((data) => {
+			setKeyVideo(data.results[0].key)	
+				
+		});
+	},[urlSegment]);
 
 	useEffect(() => {
 		fetch(
@@ -346,6 +358,10 @@ const AboutMovie = (props) => {
 			});
 		window.scrollTo(0, 0);
 	}, [urlSegment]);
+
+	const handleClickShowModal = () => {
+		setShowModal(true);
+	};
 
 	let urlFond = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
 
@@ -377,11 +393,19 @@ const AboutMovie = (props) => {
 					</a>
 
 					<div className="btn-container">
-						<Button size=".9rem" type="button">
+						<Button size=".9rem" type="button" onClick={handleClickShowModal}>
 							Bande d'annonce
 						</Button>
 					</div>
+					<ModalVideo
+						isOpen={showModal}
+						videoId={keyVideo}
+						isClose={() => {
+							setShowModal(false);
+						}}
+					/>
 				</div>
+
 				<div className="film-poster"></div>
 				<div className="more-info">
 					<div className="categorie">
