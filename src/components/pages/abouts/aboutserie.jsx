@@ -107,8 +107,7 @@ const AboutMovieStyled = styled(motion.div)`
 		margin-left: 2rem;
 		margin-top: -13rem;
 		position: absolute;
-		background: url("${(props) =>
-				props.imagePoster ? props.imagePoster : ""}")
+		background: url("${(props) =>props.imagePoster ? props.imagePoster : ""}")
 			no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -323,7 +322,7 @@ const AboutSerie = (props) => {
 				return response.json();
 			})
 			.then((data) => {
-				console.log(data);
+				
 				setSerie(data);
 			});
 	}, [urlSegment]);
