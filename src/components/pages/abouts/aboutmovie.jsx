@@ -328,7 +328,7 @@ const AboutMovie = (props) => {
 		).then((response) => {
 			return response.json();
 		}).then((data) => {
-			setKeyVideo(data.results[0].key)	
+			setKeyVideo(data.results[0])	
 				
 		});
 	},[urlSegment]);
@@ -362,9 +362,9 @@ const AboutMovie = (props) => {
 		setShowModal(true);
 	};
 
-	let urlFond = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
+	let urlFond = `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`;
 
-	let urlPoster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+	let urlPoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
 	return (
 		<AboutMovieStyled
 			imageFond={urlFond}

@@ -335,7 +335,7 @@ const AboutSerie = (props) => {
 		).then((response) => {
 			return response.json();
 		}).then((data) => {
-			setKeyVideo(data.results[0].key)	
+			setKeyVideo(data.results[0])	
 				
 		});
 	},[urlSegment]);
