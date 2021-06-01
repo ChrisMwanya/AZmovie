@@ -95,17 +95,17 @@ const NavBar = (props) => {
 				<Link to="/">
 					<Logo width="6vw" />
 				</Link>
-			</div>
+			</div>			
+			<MenuInputStyled>
+				<InputField  keyup={props.keyup} onChange={props.onChange} />
+				<Menu />
+			</MenuInputStyled>
 			<MenuBurgerStyled
 				isDisplayed={menuDisplayed}
 				isHidden={menuHidden}
 				onClick={handleClickMenuBurger}>
 				<i className="fas fa-bars"></i>
 			</MenuBurgerStyled>
-			<MenuInputStyled>
-				<InputField  keyup={props.keyup} onChange={props.onChange} />
-				<Menu />
-			</MenuInputStyled>
 		</NavBarStyled>
 	);
 };
