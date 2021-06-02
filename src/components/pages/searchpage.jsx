@@ -4,14 +4,69 @@ import CardMovie from "../../components/cards/cardmovie";
 import TitleSection from "../mains/titleSection/titlesection";
 import Button from "./../buttons/button";
 import Pagination from "../pagination/pagination";
-import {motion} from 'framer-motion'
-import Loader from "../loader/loader";
+import { motion } from "framer-motion";
+import PageLoader from "../loader/pageLoader";
 
 const SearchPageStyled = styled.div`
 	background: ${({ theme }) => theme.colors.main};
 	width: 100vw;
-	padding-left: 10vw;
-	margin-top: 2.4rem; 
+	padding-left: 8vw;
+	margin-top: 4rem;
+
+	.waiting-message {
+		height: 70vh;
+		color: ${({ theme }) => theme.colors.textWhite};
+	}
+
+	.search-container {
+		position: fixed;
+		top: 3rem;
+		z-index: 10;
+		width: 83%;
+		margin-right: 50%;
+		margin-bottom: 1rem;
+		padding: 1rem 0;
+		border-bottom: 1px solid ${({ theme }) => theme.colors.textWhite};
+		background-color: ${({ theme }) => theme.colors.main};
+	}
+	.input_search {
+		position: relative;
+		background: transparent;
+		width: 40%;
+		border-bottom-left-radius: 20px;
+		border-top-left-radius: 20px;
+		text-align: right;
+	}
+
+	.btn-search {
+		position: absolute;
+		margin-right: -3rem;
+		border-bottom-right-radius: 20px;
+		border-top-right-radius: 20px;
+		background: ${({ theme }) => theme.colors.secondMain};
+		transition: all 0.3s ease-in-out;
+	}
+
+	.input_search,
+	.btn-search {
+		border: 1px solid ${({ theme }) => theme.colors.textWhite};
+		font-size: 1rem;
+		color: ${({ theme }) => theme.colors.textWhite};
+		padding: 0.5rem 2rem;
+	}
+
+	.input_search:focus,
+	.btn-search:focus {
+		outline: none;
+	}
+	.btn-search:hover {
+		transform: scale(1.05);
+	}
+	.btn-search:active {
+		transform: scale(1.05);
+		color: ${({ theme }) => theme.colors.main};
+		background: ${({ theme }) => theme.colors.textWhite};
+	}
 
 	.cards-container {
 		display: flex;
@@ -19,15 +74,30 @@ const SearchPageStyled = styled.div`
 		flex-wrap: wrap;
 	}
 
+	h3,
 	h1 {
-		font-size: 3rem;
+		font-size: 1rem;
 		color: ${({ theme }) => theme.colors.textWhite};
 		font-style: italic;
+		margin-top: 4.5rem;
 	}
 
 	.btn-container {
 		text-align: left;
 		margin: 1rem;
+	}
+	@media ${({ theme }) => theme.mediaQueries["bellow-900"]} {
+		.input_search,
+		.btn-search {			
+			font-size: .6rem;			
+		}
+		.btn-search{
+			width:30%;
+			padding:0.5rem .2rem;
+		}
+		.input_search{
+			width:50%;
+		}
 	}
 `;
 
@@ -41,12 +111,15 @@ const pageVariant = {
 	out: { opacity: 0 },
 };
 
-const pageTransition = {	
+const pageTransition = {
 	type: "spring",
 	stiness: 50,
 };
 
 const SearchPage = (props) => {
+	// const [suggest, setSuggest] = useState([])
+	const [request, setRequest] = useState("");
+	const [valueInput, setValueInput] = useState("");
 	const [moviesRequestResult, setMoviesRequestResult] = useState({});
 	const [tvShowRequestResult, setTvShowRequestResult] = useState({});
 	const [toggle, setToggle] = useState(true);
@@ -54,27 +127,32 @@ const SearchPage = (props) => {
 	const [totalPagesMovie, setTotalPagesMovie] = useState();
 	const [actualPageTvShow, setActualPageTvShow] = useState(1);
 	const [totalPagesTvShow, setTotalPagesTvShow] = useState();
-	const [load,setLoad] = useState(true)
+	const [load, setLoad] = useState(true);
 
+	// useEffect(() =>{
+	// 	fetch(``)
+	// })
 
 	useEffect(() => {
+		setLoad(true);
 		fetch(
-			`https://api.themoviedb.org/3/search/movie?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US&query=${props.valueInput}&page=${actualPageMovie}&include_adult=false`
+			`https://api.themoviedb.org/3/search/movie?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&query=${request}&page=${actualPageMovie}&include_adult=false`
 		)
 			.then((response) => {
 				return response.json();
 			})
 			.then((dataCollected) => {
 				setMoviesRequestResult(dataCollected);
-				setTotalPagesMovie(dataCollected.total_pages)
+				setTotalPagesMovie(dataCollected.total_pages);
 			});
-			window.scrollTo(0, 0);
-			setLoad(false)
-	}, [props.valueInput,actualPageMovie]);
+		window.scrollTo(0, 0);
+		setLoad(false);
+	}, [request, actualPageMovie]);
 
 	useEffect(() => {
+		setLoad(true);
 		fetch(
-			`https://api.themoviedb.org/3/search/tv?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&query=${props.valueInput}&page=${actualPageTvShow}&include_adult=false`
+			`https://api.themoviedb.org/3/search/tv?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&query=${request}&page=${actualPageTvShow}&include_adult=false`
 		)
 			.then((response) => {
 				return response.json();
@@ -83,9 +161,17 @@ const SearchPage = (props) => {
 				setTvShowRequestResult(dataCollected);
 				setTotalPagesTvShow(dataCollected.total_pages);
 			});
-			window.scrollTo(0, 0);
-			 
-	}, [props.valueInput,actualPageTvShow]);
+		window.scrollTo(0, 0);
+		setLoad(false);
+	}, [request, actualPageTvShow]);
+
+	const handleClickSearch = () => {
+		setRequest(valueInput);
+	};
+
+	const handleChange = (event) => {
+		setValueInput(event.target.value);
+	};
 
 	const handleClickMovieButton = () => {
 		setToggle(true);
@@ -117,83 +203,103 @@ const SearchPage = (props) => {
 	};
 
 	return (
-		<Container initial="out"
-		animate="in"
-		exit="out"
-		variants={pageVariant}
-		transition={pageTransition}>
-			{load ? <Loader/> :
-				<SearchPageStyled>
-				<h1>Resultats de votre recherche: {props.valueInput}</h1>
-				<div className="btn-container">
-					<Button onClick={handleClickMovieButton} size="1rem">
-						Films
-					</Button>
-					<Button onClick={handleClickTvShowButton} size="1rem">
-						Series
-					</Button>
-				</div>
-				{toggle ? (
-					<>
-						<TitleSection>Resultats Films</TitleSection>
-						<div className="cards-container ">
-							{moviesRequestResult.results
-								? moviesRequestResult.results.map((movie) => {
-										console.log(movie);
-										return (
-											<CardMovie
-												popularity={movie.popularity}
-												vote_average={movie.vote_average}
-												urlImage={movie.poster_path}
-												key={movie.id}
-												date={movie.release_date}
-												type="movie"
-												id={movie.id}>
-												{movie.title}
-											</CardMovie>
-										);
-								  })
-								: <Loader />}
-						</div>
-						<Pagination
-						onClickNextPage={handleClickNextPageMovie}
-						onClickPrevPage={handleClickPrevPageMovie}
-						actualPage={actualPageMovie}
-						totalPages={totalPagesMovie}
+		<Container
+			initial="out"
+			animate="in"
+			exit="out"
+			variants={pageVariant}
+			transition={pageTransition}>
+			<SearchPageStyled>
+				<div className="search-container">
+					<input
+						type="search"
+						onChange={handleChange}
+						className="input_search"
 					/>
-					</>
+					<button className="btn-search" onClick={handleClickSearch}>
+						Recherche
+					</button>
+				</div>
+				{!request ? (
+					<h1>Resultats seront affichés ici</h1>
 				) : (
 					<>
-						<TitleSection>Resultats Séries</TitleSection>
-						<div div className="cards-container ">
-							{tvShowRequestResult.results
-								? tvShowRequestResult.results.map((tvShow) => {
-										console.log(tvShow);
-										return (
-											<CardMovie
-											popularity={tvShow.popularity}
-											vote_average={tvShow.vote_average}
-											urlImage={tvShow.poster_path}
-											key={tvShow.id}
-											date={tvShow.release_date}
-											type="tv"
-											id={tvShow.id}>
-												{tvShow.name}
-											</CardMovie>
-										);
-								  })
-								: <Loader />}
+						<h3>Resultats de votre recherche: {request}</h3>
+
+						<div className="btn-container">
+							<Button onClick={handleClickMovieButton} size="1rem">
+								Films
+							</Button>
+							<Button onClick={handleClickTvShowButton} size="1rem">
+								Series
+							</Button>
 						</div>
-						<Pagination
-						onClickNextPage={handleClickNextPageTvShow}
-						onClickPrevPage={handleClickPrevPageTvShow}
-						actualPage={actualPageTvShow}
-						totalPages={totalPagesTvShow}
-					/>
+						{toggle ? (
+							<>
+								<TitleSection>Resultats Films</TitleSection>
+								<div className="cards-container ">
+									{moviesRequestResult.results ? (
+										moviesRequestResult.results.map((movie) => {
+											console.log(movie);
+											return (
+												<CardMovie
+													popularity={movie.popularity}
+													vote_average={movie.vote_average}
+													urlImage={movie.poster_path}
+													key={movie.id}
+													date={movie.release_date}
+													type="movie"
+													id={movie.id}>
+													{movie.title}
+												</CardMovie>
+											);
+										})
+									) : (
+										<PageLoader />
+									)}
+								</div>
+								<Pagination
+									onClickNextPage={handleClickNextPageMovie}
+									onClickPrevPage={handleClickPrevPageMovie}
+									actualPage={actualPageMovie}
+									totalPages={totalPagesMovie}
+								/>
+							</>
+						) : (
+							<>
+								<TitleSection>Resultats Séries</TitleSection>
+								<div div className="cards-container ">
+									{tvShowRequestResult.results ? (
+										tvShowRequestResult.results.map((tvShow) => {
+											console.log(tvShow);
+											return (
+												<CardMovie
+													popularity={tvShow.popularity}
+													vote_average={tvShow.vote_average}
+													urlImage={tvShow.poster_path}
+													key={tvShow.id}
+													date={tvShow.release_date}
+													type="tv"
+													id={tvShow.id}>
+													{tvShow.name}
+												</CardMovie>
+											);
+										})
+									) : (
+										<PageLoader />
+									)}
+								</div>
+								<Pagination
+									onClickNextPage={handleClickNextPageTvShow}
+									onClickPrevPage={handleClickPrevPageTvShow}
+									actualPage={actualPageTvShow}
+									totalPages={totalPagesTvShow}
+								/>
+							</>
+						)}
 					</>
 				)}
-			</SearchPageStyled>}
-		
+			</SearchPageStyled>
 		</Container>
 	);
 };
