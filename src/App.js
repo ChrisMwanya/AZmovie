@@ -1,5 +1,4 @@
 import Start from "./components/pages/start";
-import { useState } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import NavBarBis from "./components/navbar/navbar";
@@ -18,32 +17,18 @@ const MainWrapper = styled.div`
 	justify-content: space-evenly;
 	overflow-x: hidden;
 	background-color: ${({ theme }) => theme.colors.main};
-	min-height:100vh; 
+	min-height: 100vh;
 `;
 function App() {
-	const [valueToSearch, setValueToSearch] = useState();
-
-	const resetValueToSearch = () => {
-		setValueToSearch("");
-	};
-
-	const searchResults = (e) => {
-		setValueToSearch(e.target.value);
-	};
 	const location = useLocation();
 	return (
-	
 		<MainWrapper>
-			{/* <NavBar keyup={resetValueToSearch} onChange={searchResults} /> */}
 			<AnimatePresence exitBeforeEnter>
 				{location.pathname !== "/" && <NavBarBis />}
 				<Switch>
 					<Route exact path="/" component={Start} />
 					<Route path="/home" component={Home} />
-					<Route
-						path="/searchpage"
-						render={() => <SearchPage valueInput={valueToSearch} />}
-					/>
+					<Route path="/searchpage" component={SearchPage} />
 					<Route exact path="/movie" component={Movie} />
 					<Route exact path="/series" component={Serie} />
 					<Route

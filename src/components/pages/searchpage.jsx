@@ -236,7 +236,8 @@ const SearchPage = (props) => {
 						</div>
 						{toggle ? (
 							<>
-								<TitleSection>Resultats Films</TitleSection>
+								{load ? <PageLoader /> : <>
+									<TitleSection>Resultats Films</TitleSection>
 								<div className="cards-container ">
 									{moviesRequestResult.results ? (
 										moviesRequestResult.results.map((movie) => {
@@ -258,12 +259,15 @@ const SearchPage = (props) => {
 										<PageLoader />
 									)}
 								</div>
+
 								<Pagination
 									onClickNextPage={handleClickNextPageMovie}
 									onClickPrevPage={handleClickPrevPageMovie}
 									actualPage={actualPageMovie}
 									totalPages={totalPagesMovie}
 								/>
+								</>}
+							
 							</>
 						) : (
 							<>

@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import CardMovie from "../../cards/cardmovie";
-import Loader from "../../loader/loader";
+
 import Pagination from "../../pagination/pagination";
 import PageLoader from "../../loader/pageLoader";
 
