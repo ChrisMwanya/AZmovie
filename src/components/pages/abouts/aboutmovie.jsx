@@ -3,13 +3,12 @@ import Button from "./../../buttons/button";
 import CardMovie from "../../cards/cardmovie";
 import Carousel from "react-elastic-carousel";
 import { motion } from "framer-motion";
-// import imageFond from "../../images/VinDiesel.jpg";
-// import poster from "../../images/fastandfurious.jpg";
 import TitleSection from "../../mains/titleSection/titlesection";
 import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
 import ModalVideo from "../../modal/modalVideo";
-import Loader from './../../loader/loader'
+import Loader from "./../../loader/loader";
+import PageAboutLoader from "../../loader/pageAboutLoader";
 
 const AboutMovieStyled = styled(motion.div)`
 	padding: 0.9rem 10rem;
@@ -42,11 +41,11 @@ const AboutMovieStyled = styled(motion.div)`
 		margin: 1rem;
 	}
 
-	.btn-hidden{
+	.btn-hidden {
 		display: none;
 	}
 
-	.btn-showed{
+	.btn-showed {
 		display: block;
 	}
 
@@ -115,7 +114,8 @@ const AboutMovieStyled = styled(motion.div)`
 		margin-left: 2rem;
 		margin-top: -13rem;
 		position: absolute;
-		background: url("${(props) =>props.imagePoster ? props.imagePoster : ""}")
+		background: url("${(props) =>
+				props.imagePoster ? props.imagePoster : ""}")
 			no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -321,14 +321,14 @@ const AboutMovie = (props) => {
 	const urlSegment = props.match.url;
 
 	useEffect(() => {
-		setLoader(true)
+		setLoader(true);
 		fetch(
 			`https://api.themoviedb.org/3${urlSegment}?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr`
 		)
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {				
+			.then((data) => {
 				setMovie(data);
 				setLoader(false);
 			});
@@ -337,13 +337,14 @@ const AboutMovie = (props) => {
 	useEffect(() => {
 		fetch(
 			`https://api.themoviedb.org/3/${urlSegment}/videos?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US`
-		).then((response) => {
-			return response.json();
-		}).then((data) => {
-			setKeyVideo(data.results)	
-				
-		});
-	},[urlSegment]);
+		)
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				setKeyVideo(data.results);
+			});
+	}, [urlSegment]);
 
 	useEffect(() => {
 		fetch(
@@ -379,122 +380,128 @@ const AboutMovie = (props) => {
 	let urlPoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
 	return (
 		<>
-	
-		<AboutMovieStyled
-			imageFond={urlFond}
-			imagePoster={urlPoster}
-			initial="out"
-			animate="in"
-			exit="out"
-			variants={pageVariant}
-			transition={pageTransition}>
-					{loader ? (
-			<Loader />
-		) : (
-			<div className="container">
-				<div className="header">
-					<h1>{movie.title}</h1>
-					<p>{movie.tagline}</p>
-					<br />
-					<div>
-						<span>
-							<i class="fas fa-calendar-day"></i> : {movie.release_date}
-						</span>{" "}
-						<span>
-							<i class="fas fa-users"></i> : {movie.popularity}{" "}
-						</span>
-					</div>
-					<a href={movie.homepage} rel="noreferrer" target="_blank">
-						Visitez le site
-					</a>
+			{loader ? (
+				<PageAboutLoader />
+			) : (
+				<AboutMovieStyled
+					imageFond={urlFond}
+					imagePoster={urlPoster}
+					initial="out"
+					animate="in"
+					exit="out"
+					variants={pageVariant}
+					transition={pageTransition}>
+					<div className="container">
+						<div className="header">
+							<h1>{movie.title}</h1>
+							<p>{movie.tagline}</p>
+							<br />
+							<div>
+								<span>
+									<i class="fas fa-calendar-day"></i> : {movie.release_date}
+								</span>{" "}
+								<span>
+									<i class="fas fa-users"></i> : {movie.popularity}{" "}
+								</span>
+							</div>
+							<a href={movie.homepage} rel="noreferrer" target="_blank">
+								Visitez le site
+							</a>
 
-					<div className={`btn-container ${keyVideo  ? 'btn-showed':'btn-hidden'}`}>
-						<Button size=".9rem" type="button" onClick={handleClickShowModal}>
-							Bande d'annonce
-						</Button>
-					</div>
-					<ModalVideo
-						isOpen={showModal}
-						videoId={keyVideo[0]}
-						isClose={() => {
-							setShowModal(false);
-						}}
-					/>
-				</div>
+							<div
+								className={`btn-container ${
+									keyVideo ? "btn-showed" : "btn-hidden"
+								}`}>
+								<Button
+									size=".9rem"
+									type="button"
+									onClick={handleClickShowModal}>
+									Bande d'annonce
+								</Button>
+							</div>
+							<ModalVideo
+								isOpen={showModal}
+								videoId={keyVideo[0]}
+								isClose={() => {
+									setShowModal(false);
+								}}
+							/>
+						</div>
 
-				<div className="film-poster"></div>
-				<div className="more-info">
-					<div className="categorie">
-						{movie.genres ? (
-							movie.genres.map((genre) => {
-								return <Button color="white">{genre.name}</Button>;
-							})
-						) : (
-							<p>Patientez</p>
-						)}
-					</div>
-					<div className="other-info">
-						<div>
-							<div className="status">Status: {movie.status}</div>
-							<div className="time">Durée : {movie.runtime} min</div>
+						<div className="film-poster"></div>
+						<div className="more-info">
+							<div className="categorie">
+								{movie.genres ? (
+									movie.genres.map((genre) => {
+										return <Button color="white">{genre.name}</Button>;
+									})
+								) : (
+									<Loader />
+								)}
+							</div>
+							<div className="other-info">
+								<div>
+									<div className="status">Status: {movie.status}</div>
+									<div className="time">Durée : {movie.runtime} min</div>
+								</div>
+							</div>
+						</div>
+						<div className="synopsis">
+							<TitleSection>Synopsis</TitleSection>
+							<p>{movie.overview}</p>
+						</div>
+
+						<div className="actors">
+							<TitleSection>Castings</TitleSection>
+							<div className="actors-container">
+								{actors.cast ? (
+									actors.cast.slice(0, 14).map((actors) => {
+										return (
+											<CardActor
+												urlImage={actors.profile_path}
+												name={actors.name}
+												character={actors.character}
+											/>
+										);
+									})
+								) : (
+									<Loader />
+								)}
+							</div>
+						</div>
+
+						<div className="other">
+							<div className="title-other">
+								<TitleSection>Silimaires</TitleSection>
+							</div>
+							<div className="slide-other">
+								{similar.results ? (
+									<Carousel itemsToShow={4}>
+										{similar.results.map((movie) => {
+											return (
+												<CardMovie
+													popularity={movie.popularity}
+													vote_average={movie.vote_average}
+													urlImage={movie.poster_path}
+													key={movie.id}
+													date={movie.release_date}
+													type="movie"
+													id={movie.id}>
+													{movie.title}
+												</CardMovie>
+											);
+										})}
+									</Carousel>
+								) : (
+									<Loader />
+								)}
+							</div>
 						</div>
 					</div>
-				</div>
-				<div className="synopsis">
-					<TitleSection>Synopsis</TitleSection>
-					<p>{movie.overview}</p>
-				</div>
-
-				<div className="actors">
-					<TitleSection>Castings</TitleSection>
-					<div className="actors-container">
-						{actors.cast ? (
-							actors.cast.slice(0, 14).map((actors) => {
-								return (
-									<CardActor
-										urlImage={actors.profile_path}
-										name={actors.name}
-										character={actors.character}
-									/>
-								);
-							})
-						) : (
-							<p>Patientez</p>
-						)}
-					</div>
-				</div>
-
-				<div className="other">
-					<div className="title-other">
-						<TitleSection>Silimaires</TitleSection>
-					</div>
-					<div className="slide-other">
-						{similar.results ? (
-							<Carousel itemsToShow={4}>
-								{similar.results.map((movie) => {
-									return (
-										<CardMovie
-											popularity={movie.popularity}
-											vote_average={movie.vote_average}
-											urlImage={movie.poster_path}
-											key={movie.id}
-											date={movie.release_date}
-											type="movie"
-											id={movie.id}>
-											{movie.title}
-										</CardMovie>
-									);
-								})}
-							</Carousel>
-						) : (
-							<p>Patientez...</p>
-						)}
-					</div>
-				</div>
-			</div>
-				)}
-		</AboutMovieStyled>
-	</>);
+				</AboutMovieStyled>
+			)}
+		</>
+	);
 };
 
 export default AboutMovie;

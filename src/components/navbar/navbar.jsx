@@ -3,10 +3,11 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import Logo from "./../logo";
 import { NavLink } from "react-router-dom";
+import Button from "../buttons/button";
 
 const NavBarStyled = styled.nav`
 	.navbar {
-		top:0;
+		top: 0;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;
@@ -22,9 +23,9 @@ const NavBarStyled = styled.nav`
 		z-index: 1000;
 	}
 
-	.navbar_logo{
+	.navbar_logo {
 		display: flex;
-		justify-content:center;
+		justify-content: center;
 		align-items: center;
 	}
 
@@ -41,7 +42,7 @@ const NavBarStyled = styled.nav`
 	}
 
 	.navbar_link-active {
-		color:red;
+		color: red;
 		border-bottom: 1px solid ${({ theme }) => theme.colors.secondMain};
 	}
 
@@ -133,10 +134,10 @@ const NavBarStyled = styled.nav`
 		}
 
 		.navbar_burger {
-			margin-top:.5rem;
+			margin-top: 0.5rem;
 			display: flex;
 			justify-content: center;
-			
+
 			position: fixed;
 			top: 1rem;
 			right: 1rem;
@@ -186,7 +187,7 @@ const NavBar = () => {
 	return (
 		<NavBarStyled>
 			<div className={`navbar ${showLinks ? "show-nav" : "hide-nav"}`}>
-				<div className="navbar_logo">					
+				<div className="navbar_logo">
 					<Link to="/">
 						<Logo />
 					</Link>
@@ -198,9 +199,9 @@ const NavBar = () => {
 							to="/home"
 							activeClassName=".navbar_link-active"
 							className="navbar_link"
-							activeStyle={{							
-								borderBottom: `1px solid #FFF`
-							  }}>
+							activeStyle={{
+								borderBottom: `1px solid #FFF`,
+							}}>
 							Accueil
 						</NavLink>
 					</li>
@@ -210,10 +211,9 @@ const NavBar = () => {
 							to="/movie"
 							activeClassName=".navbar_link-active"
 							className="navbar_link"
-							activeStyle={{							
-								borderBottom: `1px solid #FFF`
-							  }}
-							>
+							activeStyle={{
+								borderBottom: `1px solid #FFF`,
+							}}>
 							Films
 						</NavLink>
 					</li>
@@ -223,19 +223,19 @@ const NavBar = () => {
 							to="/series"
 							activeClassName=".navbar_link-active"
 							className="navbar_link"
-							activeStyle={{							
-								borderBottom: `1px solid #FFF`
-							  }}>
+							activeStyle={{
+								borderBottom: `1px solid #FFF`,
+							}}>
 							Séries
 						</NavLink>
 					</li>
 					<li className="navbar_item slideInDown-4">
 						<NavLink
-							to="/"
+							to="/searchpage"
 							exact
 							activeClassName=".navbar_link-active"
 							className="navbar_link">
-							Recherche
+							<Button type="button">Recherche</Button>
 						</NavLink>
 					</li>
 				</ul>
