@@ -6,12 +6,12 @@ const ImageContainer = styled.div`
 	height: 5vh;
 
 	@media ${({ theme }) => theme.mediaQueries["bellow-1024"]} {	
-        width: 3rem;
+        width: ${(props) => (props.width ? props.width : "80px")};
 		
 	}
 
 	@media ${({ theme }) => theme.mediaQueries["bellow-768"]} {
-		
+		width: ${(props) => (props.width ? props.width : "80px")};
 	}
 
 	.image {

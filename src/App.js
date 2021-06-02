@@ -1,8 +1,8 @@
 import Start from "./components/pages/start";
 import { useState } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
-import { AnimatePresence} from "framer-motion";
-import NavBar from "./components/navbar";
+import { AnimatePresence } from "framer-motion";
+import NavBarBis from "./components/navbar/navbar";
 import styled from "styled-components";
 import Footer from "./components/footer/footer";
 import Movie from "./components/pages/movie";
@@ -32,11 +32,11 @@ function App() {
 	};
 	const location = useLocation();
 	return (
+	
 		<MainWrapper>
+			{/* <NavBar keyup={resetValueToSearch} onChange={searchResults} /> */}
 			<AnimatePresence exitBeforeEnter>
-				{location.pathname !== "/" && (
-					<NavBar keyup={resetValueToSearch} onChange={searchResults} />
-				)}
+				{location.pathname !== "/" && <NavBarBis />}
 				<Switch>
 					<Route exact path="/" component={Start} />
 					<Route path="/home" component={Home} />

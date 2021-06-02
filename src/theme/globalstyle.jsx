@@ -1,6 +1,8 @@
-import {createGlobalStyle} from 'styled-components';
+import { createGlobalStyle } from "styled-components";
 
-const GlobleStyle = createGlobalStyle `
+
+
+const GlobleStyle = createGlobalStyle`
 
 html{
     height: 100%;
@@ -15,8 +17,19 @@ html{
     
 }
 
+ul {  
+     list-style:none;
+     padding: 0;
+     margin: 0;
+   }
+
+
 li{
     list-style :none;
+}
+
+a{
+    text-decoration :none;
 }
 `;
 export default GlobleStyle;

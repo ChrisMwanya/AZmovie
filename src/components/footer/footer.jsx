@@ -82,7 +82,7 @@ const Footer = () =>{
                 <div className="section-title">Contact</div>
                 <div className="section-content">
 					<p><i className="fas fa-envelope"></i> <a href="mailto:cmwanya@gmail.com:">cmwanya@gmail.com</a></p>
-					<p><i className="fas fa-phone"></i> <a href="tel: +234 90 69 20 283">+234 90 69 20 283</a></p>
+					<p><i className="fas fa-phone"></i> <a href="tel: +243 90 69 20 283">+234 90 69 20 283</a></p>
 					<p><i className="fas fa-map-marker-alt"></i> Kinshasa, RDC</p>
                 </div>
             </div>

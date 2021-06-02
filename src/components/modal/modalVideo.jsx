@@ -8,7 +8,7 @@ const ModalVideo = (props) => {
          <ModalVideos
             channel="youtube"
             isOpen={props.isOpen}
-            videoId={props.videoId.key}
+            videoId={props.videoId ? props.videoId.key : 'video'}
             onClose={props.isClose}
         />
      

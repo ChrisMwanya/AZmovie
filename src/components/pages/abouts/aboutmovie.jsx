@@ -41,6 +41,14 @@ const AboutMovieStyled = styled(motion.div)`
 		margin: 1rem;
 	}
 
+	.btn-hidden{
+		display: none;
+	}
+
+	.btn-showed{
+		display: block;
+	}
+
 	.synopsis {
 		margin-top: 6rem;
 		padding: 1rem;
@@ -328,7 +336,7 @@ const AboutMovie = (props) => {
 		).then((response) => {
 			return response.json();
 		}).then((data) => {
-			setKeyVideo(data.results[0])	
+			setKeyVideo(data.results)	
 				
 		});
 	},[urlSegment]);
@@ -391,14 +399,14 @@ const AboutMovie = (props) => {
 						Visitez le site
 					</a>
 
-					<div className="btn-container">
+					<div className={`btn-container ${keyVideo  ? 'btn-showed':'btn-hidden'}`}>
 						<Button size=".9rem" type="button" onClick={handleClickShowModal}>
 							Bande d'annonce
 						</Button>
 					</div>
 					<ModalVideo
 						isOpen={showModal}
-						videoId={keyVideo}
+						videoId={keyVideo[0]}
 						isClose={() => {
 							setShowModal(false);
 						}}
