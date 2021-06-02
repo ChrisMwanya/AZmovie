@@ -8,6 +8,8 @@ const FooterStyled = styled.footer`
 	display: flex;
 	justify-content: space-around;
 	flex-wrap: wrap;
+	position:sticky;
+	bottom: 0;
 
     .section {	
 		 margin-right: 1rem; 

@@ -9,6 +9,7 @@ import TitleSection from "../../mains/titleSection/titlesection";
 import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
 import ModalVideo from "../../modal/modalVideo";
+import Loader from './../../loader/loader'
 
 const AboutMovieStyled = styled(motion.div)`
 	padding: 0.9rem 10rem;
@@ -28,7 +29,7 @@ const AboutMovieStyled = styled(motion.div)`
 			url("${(props) => (props.imageFond ? props.imageFond : "")}") no-repeat;
 		background-size: cover;
 		background-position: center;
-		height: 70vh;
+		min-height: 80vh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -313,12 +314,14 @@ const AboutMovie = (props) => {
 	const [movie, setMovie] = useState([]);
 	const [actors, setActors] = useState([]);
 	const [similar, setSimilar] = useState([]);
+	const [loader, setLoader] = useState(true);
 	const [showModal, setShowModal] = useState(false);
 	const [keyVideo, setKeyVideo] = useState("");
 
 	const urlSegment = props.match.url;
 
 	useEffect(() => {
+		setLoader(true)
 		fetch(
 			`https://api.themoviedb.org/3${urlSegment}?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr`
 		)
@@ -327,6 +330,7 @@ const AboutMovie = (props) => {
 			})
 			.then((data) => {				
 				setMovie(data);
+				setLoader(false);
 			});
 	}, [urlSegment]);
 
@@ -374,6 +378,8 @@ const AboutMovie = (props) => {
 
 	let urlPoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
 	return (
+		<>
+	
 		<AboutMovieStyled
 			imageFond={urlFond}
 			imagePoster={urlPoster}
@@ -382,6 +388,9 @@ const AboutMovie = (props) => {
 			exit="out"
 			variants={pageVariant}
 			transition={pageTransition}>
+					{loader ? (
+			<Loader />
+		) : (
 			<div className="container">
 				<div className="header">
 					<h1>{movie.title}</h1>
@@ -483,8 +492,9 @@ const AboutMovie = (props) => {
 					</div>
 				</div>
 			</div>
+				)}
 		</AboutMovieStyled>
-	);
+	</>);
 };
 
 export default AboutMovie;

@@ -26,6 +26,7 @@ const SeriesbyCategory = (props) => {
 	const [totalPages, setTotalPages] = useState();
 
 	useEffect(() => {
+		setLoader(true)
 		fetch(
 			`https://api.themoviedb.org/3/discover/tv?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&sort_by=popularity.asc&include_adult=false&include_video=false&page=${actualPage}&with_genres=${props.id}&with_watch_monetization_types=flatrate`
 		)

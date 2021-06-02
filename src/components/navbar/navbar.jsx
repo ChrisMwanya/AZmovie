@@ -6,6 +6,7 @@ import { NavLink } from "react-router-dom";
 
 const NavBarStyled = styled.nav`
 	.navbar {
+		top:0;
 		display: flex;
 		flex-wrap: wrap;
 		align-items: center;

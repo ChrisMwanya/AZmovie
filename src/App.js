@@ -18,7 +18,7 @@ const MainWrapper = styled.div`
 	justify-content: space-evenly;
 	overflow-x: hidden;
 	background-color: ${({ theme }) => theme.colors.main};
-	/* height:100vh; */
+	min-height:100vh; 
 `;
 function App() {
 	const [valueToSearch, setValueToSearch] = useState();
