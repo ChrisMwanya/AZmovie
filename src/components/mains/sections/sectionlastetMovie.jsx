@@ -1,8 +1,8 @@
 import CardMovie from "../../cards/cardmovie";
 import { useState, useEffect } from "react";
 import styled from "styled-components";
-import Loader from "../../loader/loader";
 import {motion} from 'framer-motion'
+import PageLoader from "../../loader/pageLoader";
 
 const SectionStyled = styled(motion.section)`
 	width: 100vw;
@@ -58,6 +58,7 @@ const SectionLatestMovie = () => {
 	const [selectedOption, setselectedOption] = useState('upcoming')
 
 	useEffect(() => {
+		setLoader(true)
 		fetch(
 			`https://api.themoviedb.org/3/movie/${selectedOption}?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&page=1`
 		)
@@ -110,7 +111,7 @@ const SectionLatestMovie = () => {
 					</select>
 				</div>
 					{loader ? (
-						<Loader />
+						<PageLoader />
 					) : (
 						<CardContainerStyled>
 							{latestMovies.map((movie) => {

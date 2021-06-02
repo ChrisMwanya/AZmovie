@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { useState, useEffect } from "react";
 import CardMovie from "../../cards/cardmovie";
-import Loader from "../../loader/loader";
 import Pagination from "../../pagination/pagination";
 import {motion} from 'framer-motion'
+import PageLoader from "../../loader/pageLoader";
 
 const SectionStyled = styled(motion.section)`
 	margin-top: 1rem;
@@ -87,7 +87,7 @@ const MoviesbyCategory = (props) => {
 		variants={pageVariant}
 		transition={pageTransition}>
 			{loader ? (
-				<Loader />
+				<PageLoader />
 			) : (
 				<div>
 					<CardContainerStyled>

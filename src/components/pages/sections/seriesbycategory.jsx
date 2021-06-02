@@ -3,6 +3,7 @@ import { useState, useEffect } from "react";
 import CardMovie from "../../cards/cardmovie";
 import Loader from "../../loader/loader";
 import Pagination from "../../pagination/pagination";
+import PageLoader from "../../loader/pageLoader";
 
 const SectionStyled = styled.section`
 	margin-top: 1rem;
@@ -54,6 +55,7 @@ const SeriesbyCategory = (props) => {
 				setMovies(dataMapped);
 				setLoader(false);
 				setTotalPages(data.total_pages);
+				window.scrollTo(0, 0);
 			});
 	}, [props.id, actualPage]);
 
@@ -71,7 +73,7 @@ const SeriesbyCategory = (props) => {
 	return (
 		<SectionStyled>
 			{loader ? (
-				<Loader />
+				<PageLoader />
 			) : (
 				<div>
 					<CardContainerStyled>
