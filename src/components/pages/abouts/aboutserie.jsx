@@ -10,6 +10,7 @@ import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
 import CardSerie from "../../cards/cardsaison";
 import Loader from "../../loader/loader";
+import ModalVideo from "../../modal/modalVideo";
 
 const AboutMovieStyled = styled(motion.div)`
 	background: ${({ theme }) => theme.colors.main};
@@ -40,6 +41,14 @@ const AboutMovieStyled = styled(motion.div)`
 		text-decoration: none;
 		color: white;
 		margin: 1rem;
+	}
+
+	.btn-hidden{
+		display: none;
+	}
+
+	.btn-showed{
+		display: block;
 	}
 
 	.synopsis {
@@ -107,8 +116,7 @@ const AboutMovieStyled = styled(motion.div)`
 		margin-left: 2rem;
 		margin-top: -13rem;
 		position: absolute;
-		background: url("${(props) =>
-				props.imagePoster ? props.imagePoster : ""}")
+		background: url("${(props) =>props.imagePoster ? props.imagePoster : ""}")
 			no-repeat;
 		background-size: cover;
 		background-position: center;
@@ -311,8 +319,9 @@ const AboutSerie = (props) => {
 	const [serie, setSerie] = useState([]);
 	const [actors, setActors] = useState([]);
 	const [similar, setSimilar] = useState([]);
+	const [showModal, setShowModal] = useState(false);
+	const [keyVideo, setKeyVideo] = useState("");
 
-	console.log(props.match);
 	const urlSegment = props.match.url;
 
 	useEffect(() => {
@@ -323,10 +332,21 @@ const AboutSerie = (props) => {
 				return response.json();
 			})
 			.then((data) => {
-				console.log(data);
+				
 				setSerie(data);
 			});
 	}, [urlSegment]);
+
+	useEffect(() => {
+		fetch(
+			`https://api.themoviedb.org/3/${urlSegment}/videos?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US`
+		).then((response) => {
+			return response.json();
+		}).then((data) => {
+			setKeyVideo(data.results[0])	
+				
+		});
+	},[urlSegment]);
 
 	useEffect(() => {
 		fetch(
@@ -352,6 +372,11 @@ const AboutSerie = (props) => {
 			});
 		window.scrollTo(0, 0);
 	}, [urlSegment]);
+
+	const handleClickShowModal = () => {
+		setShowModal(true);
+	};
+
 
 	let urlFond = `https://image.tmdb.org/t/p/w500/${serie.backdrop_path}`;
 
@@ -382,11 +407,18 @@ const AboutSerie = (props) => {
 						Visitez le site
 					</a>
 
-					<div className="btn-container">
-						<Button size=".9rem" type="button">
+					<div className={`btn-container ${keyVideo  ? 'btn-showed':'btn-hidden'}`}>
+						<Button size=".9rem" type="button" onClick={handleClickShowModal}>
 							Bande d'annonce
 						</Button>
 					</div>
+					<ModalVideo
+						isOpen={showModal}
+						videoId={keyVideo}
+						isClose={() => {
+							setShowModal(false);
+						}}
+					/>
 				</div>
 				<div className="film-poster"></div>
 				<div className="more-info">
@@ -396,7 +428,7 @@ const AboutSerie = (props) => {
 								return <Button color="white">{genre.name}</Button>;
 							})
 						) : (
-							<p>Patientez</p>
+							<Loader />
 						)}
 					</div>
 					<div className="other-info">
@@ -436,7 +468,7 @@ const AboutSerie = (props) => {
 								);
 							})
 						) : (
-							<p>Patientez</p>
+							<Loader />
 						)}
 					</div>
 				</div>
@@ -454,7 +486,7 @@ const AboutSerie = (props) => {
 								);
 							})
 						) : (
-							<p>Patientez</p>
+							<Loader />
 						)}
 					</div>
 				</div>
@@ -473,7 +505,7 @@ const AboutSerie = (props) => {
 								);
 							})
 						) : (
-							<p>Patientez</p>
+							<Loader />
 						)}
 					</div>
 				</div>

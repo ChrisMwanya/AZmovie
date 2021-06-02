@@ -8,12 +8,17 @@
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
     "framer-motion": "^4.1.17",
+    "node-sass": "^4.14.1",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
 <<<<<<< HEAD
 =======
     "react-elastic-carousel": "^0.11.5",
     "react-infinite-scroll-component": "^6.1.0",
+<<<<<<< HEAD
+>>>>>>> develop
+=======
+    "react-modal-video": "^1.2.7",
 >>>>>>> develop
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",

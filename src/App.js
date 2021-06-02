@@ -1,30 +1,10 @@
-<<<<<<< HEAD
-import { Route, Switch, Redirect } from "react-router-dom";
-import NavBar from "./components/navbar";
-import styled from "styled-components";
-import Header from "./components/headers/header";
-import Main from "./components/mains/main";
-import Footer from "./components/footer/footer";
 
-const MainWrapper = styled.div`
-	width: 100vw;
-	margin: 0 auto;
-`;
-function App() {
-	return (
-		<MainWrapper>
-			<NavBar />
-			<Switch>
-				<Header />
-				<Main />
-				<Footer />
-			</Switch>
-=======
+
 import Start from "./components/pages/start";
 import { useState } from "react";
 import { Route, Switch, useLocation } from "react-router-dom";
-import { AnimatePresence} from "framer-motion";
-import NavBar from "./components/navbar";
+import { AnimatePresence } from "framer-motion";
+import NavBarBis from "./components/navbar/navbar";
 import styled from "styled-components";
 import Footer from "./components/footer/footer";
 import Movie from "./components/pages/movie";
@@ -40,7 +20,7 @@ const MainWrapper = styled.div`
 	justify-content: space-evenly;
 	overflow-x: hidden;
 	background-color: ${({ theme }) => theme.colors.main};
-	/* height:100vh; */
+	min-height:100vh; 
 `;
 function App() {
 	const [valueToSearch, setValueToSearch] = useState();
@@ -54,11 +34,11 @@ function App() {
 	};
 	const location = useLocation();
 	return (
+	
 		<MainWrapper>
+			{/* <NavBar keyup={resetValueToSearch} onChange={searchResults} /> */}
 			<AnimatePresence exitBeforeEnter>
-				{location.pathname !== "/" && (
-					<NavBar keyup={resetValueToSearch} onChange={searchResults} />
-				)}
+				{location.pathname !== "/" && <NavBarBis />}
 				<Switch>
 					<Route exact path="/" component={Start} />
 					<Route path="/home" component={Home} />
@@ -79,7 +59,7 @@ function App() {
 				</Switch>
 				{location.pathname !== "/" && <Footer />}
 			</AnimatePresence>
->>>>>>> develop
+
 		</MainWrapper>
 	);
 }

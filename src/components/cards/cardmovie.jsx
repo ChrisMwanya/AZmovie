@@ -133,7 +133,7 @@ const CardStyled = styled.div`
 `;
 
 const CardMovie = (props) => {
-	let url = `https://image.tmdb.org/t/p/w500/${props.urlImage}`;
+	let url = `https://image.tmdb.org/t/p/original/${props.urlImage}`;
 	return (
 		<Link to={`/${props.type}/${props.id}`}>	
 		<CardStyled urlImage={url}>

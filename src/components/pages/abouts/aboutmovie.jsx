@@ -8,6 +8,8 @@ import { motion } from "framer-motion";
 import TitleSection from "../../mains/titleSection/titlesection";
 import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
+import ModalVideo from "../../modal/modalVideo";
+import Loader from './../../loader/loader'
 
 const AboutMovieStyled = styled(motion.div)`
 	padding: 0.9rem 10rem;
@@ -27,7 +29,7 @@ const AboutMovieStyled = styled(motion.div)`
 			url("${(props) => (props.imageFond ? props.imageFond : "")}") no-repeat;
 		background-size: cover;
 		background-position: center;
-		height: 70vh;
+		min-height: 80vh;
 		display: flex;
 		flex-direction: column;
 		justify-content: center;
@@ -38,6 +40,14 @@ const AboutMovieStyled = styled(motion.div)`
 		text-decoration: none;
 		color: white;
 		margin: 1rem;
+	}
+
+	.btn-hidden{
+		display: none;
+	}
+
+	.btn-showed{
+		display: block;
 	}
 
 	.synopsis {
@@ -291,12 +301,11 @@ const AboutMovieStyled = styled(motion.div)`
 `;
 
 const pageVariant = {
-	in: { opacity: 1,},
-	out: { opacity: 0, },
+	in: { opacity: 1 },
+	out: { opacity: 0 },
 };
 
 const pageTransition = {
-	
 	type: "spring",
 	stiness: 50,
 };
@@ -305,22 +314,36 @@ const AboutMovie = (props) => {
 	const [movie, setMovie] = useState([]);
 	const [actors, setActors] = useState([]);
 	const [similar, setSimilar] = useState([]);
+	const [loader, setLoader] = useState(true);
+	const [showModal, setShowModal] = useState(false);
+	const [keyVideo, setKeyVideo] = useState("");
 
-	
 	const urlSegment = props.match.url;
 
 	useEffect(() => {
+		setLoader(true)
 		fetch(
 			`https://api.themoviedb.org/3${urlSegment}?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr`
 		)
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {
-				console.log(data);
+			.then((data) => {				
 				setMovie(data);
+				setLoader(false);
 			});
 	}, [urlSegment]);
+
+	useEffect(() => {
+		fetch(
+			`https://api.themoviedb.org/3/${urlSegment}/videos?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US`
+		).then((response) => {
+			return response.json();
+		}).then((data) => {
+			setKeyVideo(data.results)	
+				
+		});
+	},[urlSegment]);
 
 	useEffect(() => {
 		fetch(
@@ -347,10 +370,16 @@ const AboutMovie = (props) => {
 		window.scrollTo(0, 0);
 	}, [urlSegment]);
 
-	let urlFond = `https://image.tmdb.org/t/p/w500/${movie.backdrop_path}`;
+	const handleClickShowModal = () => {
+		setShowModal(true);
+	};
 
-	let urlPoster = `https://image.tmdb.org/t/p/w500/${movie.poster_path}`;
+	let urlFond = `https://image.tmdb.org/t/p/original/${movie.backdrop_path}`;
+
+	let urlPoster = `https://image.tmdb.org/t/p/original/${movie.poster_path}`;
 	return (
+		<>
+	
 		<AboutMovieStyled
 			imageFond={urlFond}
 			imagePoster={urlPoster}
@@ -359,6 +388,9 @@ const AboutMovie = (props) => {
 			exit="out"
 			variants={pageVariant}
 			transition={pageTransition}>
+					{loader ? (
+			<Loader />
+		) : (
 			<div className="container">
 				<div className="header">
 					<h1>{movie.title}</h1>
@@ -376,12 +408,20 @@ const AboutMovie = (props) => {
 						Visitez le site
 					</a>
 
-					<div className="btn-container">
-						<Button size=".9rem" type="button">
+					<div className={`btn-container ${keyVideo  ? 'btn-showed':'btn-hidden'}`}>
+						<Button size=".9rem" type="button" onClick={handleClickShowModal}>
 							Bande d'annonce
 						</Button>
 					</div>
+					<ModalVideo
+						isOpen={showModal}
+						videoId={keyVideo[0]}
+						isClose={() => {
+							setShowModal(false);
+						}}
+					/>
 				</div>
+
 				<div className="film-poster"></div>
 				<div className="more-info">
 					<div className="categorie">
@@ -452,8 +492,9 @@ const AboutMovie = (props) => {
 					</div>
 				</div>
 			</div>
+				)}
 		</AboutMovieStyled>
-	);
+	</>);
 };
 
 export default AboutMovie;

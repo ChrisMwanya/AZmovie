@@ -3,8 +3,9 @@ import { useState, useEffect } from "react";
 import Button from "../buttons/button";
 
 const StyledCategorie = styled.ul`
-	position: ralative;
-	top: 3rem;
+	position: relative;
+	top: .4rem;
+	width:90%;
 	margin-left: 6.3rem;
 	margin-right: 6.7rem;	
 	z-index: 50;

@@ -32,6 +32,10 @@ const ButtonStyled = styled.button`
 		border: 1px solid ${({ theme }) => theme.colors.secondMain};
 	}
 
+	&:active{
+		background-color: green;
+	}
+
 
 	
 `;
