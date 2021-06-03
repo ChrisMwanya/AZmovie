@@ -5,7 +5,7 @@ import Button from "../buttons/button";
 const StyledCategorie = styled.ul`
 	position: relative;
 	top: .4rem;
-	width:90%;
+	width:85%;
 	margin-left: 6.3rem;
 	margin-right: 6.7rem;	
 	z-index: 50;
