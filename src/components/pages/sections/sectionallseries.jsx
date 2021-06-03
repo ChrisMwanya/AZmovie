@@ -26,7 +26,7 @@ const SectionAllSeries = () => {
 	const [totalPages, setTotalPages] = useState();
 
 	useEffect(() => {
-		setLoader(true)
+		setLoader(true);
 		fetch(
 			`https://api.themoviedb.org/3/tv/popular?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr&page=${actualPage}`
 		)

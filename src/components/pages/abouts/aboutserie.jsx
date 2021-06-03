@@ -42,11 +42,11 @@ const AboutMovieStyled = styled(motion.div)`
 		margin: 1rem;
 	}
 
-	.btn-hidden{
+	.btn-hidden {
 		display: none;
 	}
 
-	.btn-showed{
+	.btn-showed {
 		display: block;
 	}
 
@@ -309,7 +309,7 @@ const pageVariant = {
 	out: { opacity: 0 },
 };
 
-const pageTransition = {	
+const pageTransition = {
 	type: "spring",
 	stiness: 50,
 };
@@ -332,7 +332,7 @@ const AboutSerie = (props) => {
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {				
+			.then((data) => {
 				setSerie(data);
 				setLoader(false);
 			});
@@ -341,13 +341,14 @@ const AboutSerie = (props) => {
 	useEffect(() => {
 		fetch(
 			`https://api.themoviedb.org/3/${urlSegment}/videos?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=en-US`
-		).then((response) => {
-			return response.json();
-		}).then((data) => {
-			setKeyVideo(data.results[0])	
-				
-		});
-	},[urlSegment]);
+		)
+			.then((response) => {
+				return response.json();
+			})
+			.then((data) => {
+				setKeyVideo(data.results[0]);
+			});
+	}, [urlSegment]);
 
 	useEffect(() => {
 		fetch(
@@ -378,174 +379,179 @@ const AboutSerie = (props) => {
 		setShowModal(true);
 	};
 
-
 	let urlFond = `https://image.tmdb.org/t/p/w500/${serie.backdrop_path}`;
 
 	let urlPoster = `https://image.tmdb.org/t/p/w500/${serie.poster_path}`;
 	return (
 		<>
-		{loader ? (
-			<PageAboutLoader />
-		) : (
-		<AboutMovieStyled
-			imageFond={urlFond}
-			imagePoster={urlPoster}
-			initial="out"
-			animate="in"
-			exit="out"
-			variants={pageVariant}
-			transition={pageTransition}>
-			<div className="container">
-				<div className="header">
-					<h1>{serie.name}</h1>
-					<p>{serie.tagline}</p>
-					<br />
-					<div>
-						<span>
-							<i class="fas fa-calendar-day"></i> : {serie.first_air_date}
-						</span>{" "}
-						<span>
-							<i class="fas fa-users"></i> : {serie.popularity}{" "}
-						</span>
-					</div>
-					<a href={serie.homepage} rel="noreferrer" target="_blank">
-						Visitez le site
-					</a>
+			{loader ? (
+				<PageAboutLoader />
+			) : (
+				<AboutMovieStyled
+					imageFond={urlFond}
+					imagePoster={urlPoster}
+					initial="out"
+					animate="in"
+					exit="out"
+					variants={pageVariant}
+					transition={pageTransition}>
+					<div className="container">
+						<div className="header">
+							<h1>{serie.name}</h1>
+							<p>{serie.tagline}</p>
+							<br />
+							<div>
+								<span>
+									<i class="fas fa-calendar-day"></i> : {serie.first_air_date}
+								</span>{" "}
+								<span>
+									<i class="fas fa-users"></i> : {serie.popularity}{" "}
+								</span>
+							</div>
+							<a href={serie.homepage} rel="noreferrer" target="_blank">
+								Visitez le site
+							</a>
 
-					<div className={`btn-container ${keyVideo  ? 'btn-showed':'btn-hidden'}`}>
-						<Button size=".9rem" type="button" onClick={handleClickShowModal}>
-							Bande d'annonce
-						</Button>
-					</div>
-					<ModalVideo
-						isOpen={showModal}
-						videoId={keyVideo}
-						isClose={() => {
-							setShowModal(false);
-						}}
-					/>
-				</div>
-				<div className="film-poster"></div>
-				<div className="more-info">
-					<div className="categorie">
-						{serie.genres ? (
-							serie.genres.map((genre) => {
-								return <Button color="white">{genre.name}</Button>;
-							})
-						) : (
-							<Loader />
-						)}
-					</div>
-					<div className="other-info">
-						<div>
-							<div className="status">Status: {serie.status}</div>
-							<div className="time">
-								Durée par épisode : {serie.episode_run_time} min
+							<div
+								className={`btn-container ${
+									keyVideo ? "btn-showed" : "btn-hidden"
+								}`}>
+								<Button
+									size=".9rem"
+									type="button"
+									onClick={handleClickShowModal}>
+									Bande d'annonce
+								</Button>
+							</div>
+							<ModalVideo
+								isOpen={showModal}
+								videoId={keyVideo}
+								isClose={() => {
+									setShowModal(false);
+								}}
+							/>
+						</div>
+						<div className="film-poster"></div>
+						<div className="more-info">
+							<div className="categorie">
+								{serie.genres ? (
+									serie.genres.map((genre) => {
+										return <Button color="white">{genre.name}</Button>;
+									})
+								) : (
+									<Loader />
+								)}
+							</div>
+							<div className="other-info">
+								<div>
+									<div className="status">Status: {serie.status}</div>
+									<div className="time">
+										Durée par épisode : {serie.episode_run_time} min
+									</div>
+								</div>
+								<div>
+									<div className="seasons">
+										Total de saisons: {serie.number_of_seasons}
+									</div>
+									<div className="epissode">
+										Total d'épisodes : {serie.number_of_episodes}
+									</div>
+								</div>
 							</div>
 						</div>
-						<div>
-							<div className="seasons">
-								Total de saisons: {serie.number_of_seasons}
+						<div className="synopsis">
+							<TitleSection>Synopsis</TitleSection>
+							<p>{serie.overview}</p>
+						</div>
+
+						<div className="actors">
+							<TitleSection>Saisons</TitleSection>
+							<div className="actors-container">
+								{serie.seasons ? (
+									serie.seasons.map((season) => {
+										return (
+											<CardSerie
+												urlImage={season.poster_path}
+												name={season.name}
+												air_date={season.air_date}
+												episode_count={season.episode_count}
+											/>
+										);
+									})
+								) : (
+									<Loader />
+								)}
 							</div>
-							<div className="epissode">
-								Total d'épisodes : {serie.number_of_episodes}
+						</div>
+
+						<div className="actors">
+							<TitleSection>Créer par</TitleSection>
+							<div className="actors-container">
+								{serie.created_by ? (
+									serie.created_by.map((creator) => {
+										return (
+											<CardActor
+												urlImage={creator.profile_path}
+												name={creator.name}
+											/>
+										);
+									})
+								) : (
+									<Loader />
+								)}
+							</div>
+						</div>
+
+						<div className="actors">
+							<TitleSection>Castings</TitleSection>
+							<div className="actors-container">
+								{actors.cast ? (
+									actors.cast.slice(0, 14).map((actors) => {
+										return (
+											<CardActor
+												urlImage={actors.profile_path}
+												name={actors.name}
+												character={actors.character}
+											/>
+										);
+									})
+								) : (
+									<Loader />
+								)}
+							</div>
+						</div>
+
+						<div className="other">
+							<div className="title-other">
+								<TitleSection>Silimaires</TitleSection>
+							</div>
+							<div className="slide-other">
+								{similar.results ? (
+									<Carousel itemsToShow={4}>
+										{similar.results.map((movie) => {
+											return (
+												<CardMovie
+													popularity={movie.popularity}
+													vote_average={movie.vote_average}
+													urlImage={movie.poster_path}
+													key={movie.id}
+													date={movie.release_date}
+													type="tv"
+													id={movie.id}>
+													{movie.name}
+												</CardMovie>
+											);
+										})}
+									</Carousel>
+								) : (
+									<Loader />
+								)}
 							</div>
 						</div>
 					</div>
-				</div>
-				<div className="synopsis">
-					<TitleSection>Synopsis</TitleSection>
-					<p>{serie.overview}</p>
-				</div>
-
-				<div className="actors">
-					<TitleSection>Saisons</TitleSection>
-					<div className="actors-container">
-						{serie.seasons ? (
-							serie.seasons.map((season) => {
-								return (
-									<CardSerie
-										urlImage={season.poster_path}
-										name={season.name}
-										air_date={season.air_date}
-										episode_count={season.episode_count}
-									/>
-								);
-							})
-						) : (
-							<Loader />
-						)}
-					</div>
-				</div>
-
-				<div className="actors">
-					<TitleSection>Créer par</TitleSection>
-					<div className="actors-container">
-						{serie.created_by ? (
-							serie.created_by.map((creator) => {
-								return (
-									<CardActor
-										urlImage={creator.profile_path}
-										name={creator.name}
-									/>
-								);
-							})
-						) : (
-							<Loader />
-						)}
-					</div>
-				</div>
-
-				<div className="actors">
-					<TitleSection>Castings</TitleSection>
-					<div className="actors-container">
-						{actors.cast ? (
-							actors.cast.slice(0, 14).map((actors) => {
-								return (
-									<CardActor
-										urlImage={actors.profile_path}
-										name={actors.name}
-										character={actors.character}
-									/>
-								);
-							})
-						) : (
-							<Loader />
-						)}
-					</div>
-				</div>
-
-				<div className="other">
-					<div className="title-other">
-						<TitleSection>Silimaires</TitleSection>
-					</div>
-					<div className="slide-other">
-						{similar.results ? (
-							<Carousel itemsToShow={4}>
-								{similar.results.map((movie) => {
-									return (
-										<CardMovie
-											popularity={movie.popularity}
-											vote_average={movie.vote_average}
-											urlImage={movie.poster_path}
-											key={movie.id}
-											date={movie.release_date}
-											type="tv"
-											id={movie.id}>
-											{movie.name}
-										</CardMovie>
-									);
-								})}
-							</Carousel>
-						) : (
-							<Loader />
-						)}
-					</div>
-				</div>
-			</div>
-		</AboutMovieStyled>
+				</AboutMovieStyled>
 			)}
-			</>
+		</>
 	);
 };
 

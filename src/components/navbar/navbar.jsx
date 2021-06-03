@@ -235,7 +235,9 @@ const NavBar = () => {
 							exact
 							activeClassName=".navbar_link-active"
 							className="navbar_link">
-							<Button size=".7rem" type="button">Recherche</Button>
+							<Button size=".7rem" type="button">
+								Recherche
+							</Button>
 						</NavLink>
 					</li>
 				</ul>

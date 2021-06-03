@@ -1,5 +1,3 @@
-
-
 import Start from "./components/pages/start";
 import { Route, Switch, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
@@ -44,7 +42,6 @@ function App() {
 				</Switch>
 				{location.pathname !== "/" && <Footer />}
 			</AnimatePresence>
-
 		</MainWrapper>
 	);
 }

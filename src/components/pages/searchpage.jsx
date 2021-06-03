@@ -88,16 +88,16 @@ const SearchPageStyled = styled.div`
 	}
 	@media ${({ theme }) => theme.mediaQueries["bellow-900"]} {
 		.input_search,
-		.btn-search {			
-			font-size: .6rem;			
+		.btn-search {
+			font-size: 0.6rem;
 		}
-		.btn-search{
-			width:30%;
-			padding:0.5rem .2rem;
+		.btn-search {
+			width: 30%;
+			padding: 0.5rem 0.2rem;
 		}
-		.input_search{
-			width:50%;
-			padding:0.5rem .2rem
+		.input_search {
+			width: 50%;
+			padding: 0.5rem 0.2rem;
 		}
 	}
 `;
@@ -118,7 +118,6 @@ const pageTransition = {
 };
 
 const SearchPage = (props) => {
-	
 	const [request, setRequest] = useState("");
 	const [valueInput, setValueInput] = useState("");
 	const [moviesRequestResult, setMoviesRequestResult] = useState({});
@@ -129,8 +128,6 @@ const SearchPage = (props) => {
 	const [actualPageTvShow, setActualPageTvShow] = useState(1);
 	const [totalPagesTvShow, setTotalPagesTvShow] = useState();
 	const [load, setLoad] = useState(true);
-
-
 
 	useEffect(() => {
 		setLoad(true);
@@ -223,10 +220,10 @@ const SearchPage = (props) => {
 				{!request ? (
 					<div className="waiting-message">
 						<h1>Les Resultats seront affichés ici</h1>
-					</div>				
+					</div>
 				) : (
 					<>
-						<h3>Resultat(s) de la  recherche pour: {request}</h3>
+						<h3>Resultat(s) de la recherche pour: {request}</h3>
 
 						<div className="btn-container">
 							<Button onClick={handleClickMovieButton} size="1rem">
@@ -238,38 +235,41 @@ const SearchPage = (props) => {
 						</div>
 						{toggle ? (
 							<>
-								{load ? <PageLoader /> : <>
-									<TitleSection>Resultats Films</TitleSection>
-								<div className="cards-container ">
-									{moviesRequestResult.results ? (
-										moviesRequestResult.results.map((movie) => {
-											console.log(movie);
-											return (
-												<CardMovie
-													popularity={movie.popularity}
-													vote_average={movie.vote_average}
-													urlImage={movie.poster_path}
-													key={movie.id}
-													date={movie.release_date}
-													type="movie"
-													id={movie.id}>
-													{movie.title}
-												</CardMovie>
-											);
-										})
-									) : (
-										<PageLoader />
-									)}
-								</div>
+								{load ? (
+									<PageLoader />
+								) : (
+									<>
+										<TitleSection>Resultats Films</TitleSection>
+										<div className="cards-container ">
+											{moviesRequestResult.results ? (
+												moviesRequestResult.results.map((movie) => {
+													console.log(movie);
+													return (
+														<CardMovie
+															popularity={movie.popularity}
+															vote_average={movie.vote_average}
+															urlImage={movie.poster_path}
+															key={movie.id}
+															date={movie.release_date}
+															type="movie"
+															id={movie.id}>
+															{movie.title}
+														</CardMovie>
+													);
+												})
+											) : (
+												<PageLoader />
+											)}
+										</div>
 
-								<Pagination
-									onClickNextPage={handleClickNextPageMovie}
-									onClickPrevPage={handleClickPrevPageMovie}
-									actualPage={actualPageMovie}
-									totalPages={totalPagesMovie}
-								/>
-								</>}
-							
+										<Pagination
+											onClickNextPage={handleClickNextPageMovie}
+											onClickPrevPage={handleClickPrevPageMovie}
+											actualPage={actualPageMovie}
+											totalPages={totalPagesMovie}
+										/>
+									</>
+								)}
 							</>
 						) : (
 							<>
