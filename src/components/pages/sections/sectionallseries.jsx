@@ -55,7 +55,7 @@ const SectionAllSeries = () => {
 				setSeries(dataMapped);
 				setLoader(false);
 				setTotalPages(data.total_pages);
-				window.scrollTo(0, 0);
+				window.scrollTo({ top: 0, behavior: "smooth" });
 			});
 	}, [actualPage]);
 

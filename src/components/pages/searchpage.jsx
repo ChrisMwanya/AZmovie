@@ -141,7 +141,7 @@ const SearchPage = (props) => {
 				setMoviesRequestResult(dataCollected);
 				setTotalPagesMovie(dataCollected.total_pages);
 			});
-		window.scrollTo(0, 0);
+		window.scrollTo({ top: 0, behavior: "smooth" });
 		setLoad(false);
 	}, [request, actualPageMovie]);
 
@@ -242,6 +242,10 @@ const SearchPage = (props) => {
 										<TitleSection>Resultats Films</TitleSection>
 										<div className="cards-container ">
 											{moviesRequestResult.results ? (
+												moviesRequestResult.results.length === 0 ?
+												<div className="waiting-message">
+												<p> Pas de Resultat pour cette recherche ! </p>
+												</div>:
 												moviesRequestResult.results.map((movie) => {
 													console.log(movie);
 													return (
@@ -276,6 +280,10 @@ const SearchPage = (props) => {
 								<TitleSection>Resultats Séries</TitleSection>
 								<div div className="cards-container ">
 									{tvShowRequestResult.results ? (
+											tvShowRequestResult.results.length === 0 ?
+											<div className="waiting-message">
+											<p> Pas de Resultat pour cette recherche ! </p>
+											</div>:
 										tvShowRequestResult.results.map((tvShow) => {
 											console.log(tvShow);
 											return (

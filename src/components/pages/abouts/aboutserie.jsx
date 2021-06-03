@@ -402,10 +402,10 @@ const AboutSerie = (props) => {
 							<br />
 							<div>
 								<span>
-									<i class="fas fa-calendar-day"></i> : {serie.first_air_date}
+									<i class="fas fa-calendar-day"></i>  {serie.first_air_date}
 								</span>{" "}
 								<span>
-									<i class="fas fa-users"></i> : {serie.popularity}{" "}
+								<i class="fas fa-eye"></i>  {serie.popularity}{" "}
 								</span>
 							</div>
 							<a href={serie.homepage} rel="noreferrer" target="_blank">

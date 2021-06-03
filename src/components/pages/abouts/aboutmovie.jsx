@@ -367,7 +367,7 @@ const AboutMovie = (props) => {
 			.then((data) => {
 				setSimilar(data);
 			});
-		window.scrollTo(0, 0);
+		window.scrollTo({ top: 0, behavior: "smooth" });
 	}, [urlSegment]);
 
 	const handleClickShowModal = () => {
@@ -397,10 +397,10 @@ const AboutMovie = (props) => {
 							<br />
 							<div>
 								<span>
-									<i class="fas fa-calendar-day"></i> : {movie.release_date}
+									<i class="fas fa-calendar-day"></i>  {movie.release_date}
 								</span>{" "}
 								<span>
-									<i class="fas fa-users"></i> : {movie.popularity}{" "}
+								<i class="fas fa-eye"></i> {movie.popularity}{" "}
 								</span>
 							</div>
 							<a href={movie.homepage} rel="noreferrer" target="_blank">
@@ -475,6 +475,7 @@ const AboutMovie = (props) => {
 							</div>
 							<div className="slide-other">
 								{similar.results ? (
+									similar.results.length > 0 ?
 									<Carousel itemsToShow={4}>
 										{similar.results.map((movie) => {
 											return (
@@ -490,7 +491,7 @@ const AboutMovie = (props) => {
 												</CardMovie>
 											);
 										})}
-									</Carousel>
+									</Carousel> : <p></p>
 								) : (
 									<Loader />
 								)}
