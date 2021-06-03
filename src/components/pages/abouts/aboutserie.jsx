@@ -3,14 +3,13 @@ import Button from "./../../buttons/button";
 import CardMovie from "../../cards/cardmovie";
 import Carousel from "react-elastic-carousel";
 import { motion } from "framer-motion";
-// import imageFond from "../../images/VinDiesel.jpg";
-// import poster from "../../images/fastandfurious.jpg";
 import TitleSection from "../../mains/titleSection/titlesection";
 import CardActor from "../../cards/cardactor";
 import { useState, useEffect } from "react";
 import CardSerie from "../../cards/cardsaison";
 import Loader from "../../loader/loader";
 import ModalVideo from "../../modal/modalVideo";
+import PageAboutLoader from "../../loader/pageAboutLoader";
 
 const AboutMovieStyled = styled(motion.div)`
 	background: ${({ theme }) => theme.colors.main};
@@ -318,6 +317,7 @@ const pageTransition = {
 const AboutSerie = (props) => {
 	const [serie, setSerie] = useState([]);
 	const [actors, setActors] = useState([]);
+	const [loader, setLoader] = useState(true);
 	const [similar, setSimilar] = useState([]);
 	const [showModal, setShowModal] = useState(false);
 	const [keyVideo, setKeyVideo] = useState("");
@@ -325,15 +325,16 @@ const AboutSerie = (props) => {
 	const urlSegment = props.match.url;
 
 	useEffect(() => {
+		setLoader(true);
 		fetch(
 			`https://api.themoviedb.org/3${urlSegment}?api_key=9320cf81bdc9ea7daa7bd98066b669de&language=fr`
 		)
 			.then((response) => {
 				return response.json();
 			})
-			.then((data) => {
-				
+			.then((data) => {				
 				setSerie(data);
+				setLoader(false);
 			});
 	}, [urlSegment]);
 
@@ -382,6 +383,10 @@ const AboutSerie = (props) => {
 
 	let urlPoster = `https://image.tmdb.org/t/p/w500/${serie.poster_path}`;
 	return (
+		<>
+		{loader ? (
+			<PageAboutLoader />
+		) : (
 		<AboutMovieStyled
 			imageFond={urlFond}
 			imagePoster={urlPoster}
@@ -539,6 +544,8 @@ const AboutSerie = (props) => {
 				</div>
 			</div>
 		</AboutMovieStyled>
+			)}
+			</>
 	);
 };
 

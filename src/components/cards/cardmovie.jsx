@@ -1,5 +1,4 @@
 import styled from "styled-components";
-import Button from "./../buttons/button";
 import { Link } from "react-router-dom";
 import defaultImage from "../../images/logo.svg";
 
@@ -149,12 +148,7 @@ const CardMovie = (props) => {
 							<i className="fas fa-eye"></i>
 							{props.popularity}
 						</p>
-					</div>
-					<div className="button-container">
-						<Link to={`/${props.type}/${props.id}`}>
-							<Button>Voir plus</Button>
-						</Link>
-					</div>
+					</div>				
 				</div>
 			</div>			
 		</CardStyled>

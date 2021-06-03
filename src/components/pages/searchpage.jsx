@@ -22,7 +22,7 @@ const SearchPageStyled = styled.div`
 		position: fixed;
 		top: 3rem;
 		z-index: 10;
-		width: 83%;
+		width: 84%;
 		margin-right: 50%;
 		margin-bottom: 1rem;
 		padding: 1rem 0;
@@ -97,6 +97,7 @@ const SearchPageStyled = styled.div`
 		}
 		.input_search{
 			width:50%;
+			padding:0.5rem .2rem
 		}
 	}
 `;
@@ -117,7 +118,7 @@ const pageTransition = {
 };
 
 const SearchPage = (props) => {
-	// const [suggest, setSuggest] = useState([])
+	
 	const [request, setRequest] = useState("");
 	const [valueInput, setValueInput] = useState("");
 	const [moviesRequestResult, setMoviesRequestResult] = useState({});
@@ -129,9 +130,7 @@ const SearchPage = (props) => {
 	const [totalPagesTvShow, setTotalPagesTvShow] = useState();
 	const [load, setLoad] = useState(true);
 
-	// useEffect(() =>{
-	// 	fetch(``)
-	// })
+
 
 	useEffect(() => {
 		setLoad(true);
@@ -215,16 +214,19 @@ const SearchPage = (props) => {
 						type="search"
 						onChange={handleChange}
 						className="input_search"
+						placeholder="Recherche..."
 					/>
 					<button className="btn-search" onClick={handleClickSearch}>
 						Recherche
 					</button>
 				</div>
 				{!request ? (
-					<h1>Resultats seront affichés ici</h1>
+					<div className="waiting-message">
+						<h1>Les Resultats seront affichés ici</h1>
+					</div>				
 				) : (
 					<>
-						<h3>Resultats de votre recherche: {request}</h3>
+						<h3>Resultat(s) de la  recherche pour: {request}</h3>
 
 						<div className="btn-container">
 							<Button onClick={handleClickMovieButton} size="1rem">
