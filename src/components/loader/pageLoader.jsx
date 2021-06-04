@@ -5,13 +5,17 @@ import Loader from "./loader";
 const PageStyled = styled.div`
 	display: flex;
 	justify-content: center;
+	align-items: center;
 	flex-wrap: wrap;
 
 	.fake-card {
+		display: flex;
+		justify-content: center;
+		align-items: center;
 		margin: 5px;
 		width: 20vw;
 		border-radius: 15px;
-		position: relative;
+		position: relative;		
 		height: 40vh;
         background-color: ${({ theme }) => theme.colors.secondMain};
 	}

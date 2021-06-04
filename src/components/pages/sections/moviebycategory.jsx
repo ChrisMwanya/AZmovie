@@ -21,8 +21,8 @@ const CardContainerStyled = styled.div`
 `;
 
 const pageVariant = {
-	in: { opacity: 1, x: 0 },
-	out: { opacity: 0, x:  "200vw" },
+	in: { opacity: 1},
+	out: { opacity: 0},
 };
 
 const pageTransition = {

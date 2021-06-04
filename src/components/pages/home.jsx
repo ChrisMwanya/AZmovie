@@ -9,13 +9,12 @@ const HomeStyled = styled(motion.section)`
 `;
 
 const pageVariant = {
-	in: { opacity: 1, x: 0 },
-	out: { opacity: 0, x: "200vw" },
+	in: { opacity: 1 },
+	out: { opacity: 0 },
 };
 
 const pageTransition = {
-	duration: 1,
-	type:"spring",
+	type: "spring",
 	stiness: 50,
 };
 const Home = () => {

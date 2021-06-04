@@ -18,7 +18,7 @@ const NavBarStyled = styled.nav`
 		min-height: 20px;
 		height: 50px;
 		padding: 0 0.9rem;
-		background: #000;
+		background: #111;
 		color: #fff;
 		z-index: 1000;
 	}

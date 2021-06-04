@@ -20,7 +20,6 @@ const MainStyled = styled.main`
 		color: ${({ theme }) => theme.colors.textWhite};
 		margin-left: 9%;
 		display: flex;
-		justify-content: space-between;
 		border-bottom: 1px solid ${({ theme }) => theme.colors.textWhite};
 		width: 82%;
 		margin-bottom: 1rem;

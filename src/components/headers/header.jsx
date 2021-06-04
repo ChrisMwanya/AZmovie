@@ -80,8 +80,7 @@ const TextStyled = styled.div`
 		border-radius: 10px;
 	}
 
-	.text-container {
-		/* padding-top: 200px; */
+	.text-container {		
 		padding-right: 30px;
 	}
 
