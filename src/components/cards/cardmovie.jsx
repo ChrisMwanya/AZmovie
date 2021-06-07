@@ -85,7 +85,7 @@ const CardStyled = styled.div`
 
 		.film-title {
 			font-weight: bold;
-			font-size: 1.4rem;
+			font-size: 1.1rem;
 		}
 		.info-hidden {
 			transition: all 2s ease;
