@@ -154,8 +154,8 @@ const NavBarStyled = styled.nav`
 		.burger-bar::before,
 		.burger-bar::after {
 			display: block;
-			width: 2.5rem;
-			height: 0.188rem;
+			width: 1.8rem;
+			height: 0.118rem;
 			position: relative;
 			border-radius: 3px;
 			background-color: ${({ theme }) => theme.colors.textWhite};

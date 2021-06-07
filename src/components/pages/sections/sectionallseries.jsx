@@ -32,7 +32,6 @@ const SectionAllSeries = () => {
 		)
 			.then((response) => response.json())
 			.then((data) => {
-				console.log(data);
 				let dataMapped = data.results.map(
 					({
 						id,
